@@ -53,6 +53,19 @@ class Q3_LongestSubstring_Test extends TestCase
         $response = $this->solution->lengthOfLongestSubstring($s);
         $this->assertEquals(1, $response);
     }
+
+    public function testWa2()
+    {
+        // Input
+        // "au"
+        // Output
+        // 0
+        // Expected
+        // 2
+        $s = " ";
+        $response = $this->solution->lengthOfLongestSubstring($s);
+        $this->assertEquals(1, $response);
+    }
 }
 
 class Solution
@@ -64,9 +77,6 @@ class Solution
     public function lengthOfLongestSubstring($str)
     {
         $len = strlen($str);
-        if ($len == 1) {
-            return 1;
-        }
 
         $max = 0;
         for ($i = 0 ; $i <= $len-2; $i++) {
@@ -79,6 +89,10 @@ class Solution
                     break;
                 }
             }
+        }
+
+        if ($max == 0) {
+            $max = $len;
         }
         return $max;
     }
