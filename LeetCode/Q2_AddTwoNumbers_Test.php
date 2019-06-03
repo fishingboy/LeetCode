@@ -14,16 +14,16 @@ class Q2_AddTwoNumbers_Test extends TestCase
         $l2->next = $l3;
 
         $val = $solution->getInt($l1);
-        $this->assertEquals(342, $val);
+        $this->assertEquals("342", $val);
     }
 
     public function testToListNode()
     {
         $solution = new Solution();
-        $n = 342;
+        $n = "342";
         $node = $solution->toListNode($n);
         $val = $solution->getInt($node);
-        $this->assertEquals(342, $val);
+        $this->assertEquals("342", $val);
     }
 
     public function testSample()
@@ -32,14 +32,15 @@ class Q2_AddTwoNumbers_Test extends TestCase
         // Output: 7 -> 0 -> 8
         // Explanation: 342 + 465 = 807.
         $solution = new Solution();
-        $n1 = 342;
-        $n2 = 465;
+        $n1 = "342";
+        $n2 = "465";
 
         $node1 = $solution->toListNode($n1);
         $node2 = $solution->toListNode($n2);
 
         $response = $solution->addTwoNumbers($node1, $node2);
-        $this->assertEquals(807, $solution->getInt($response));
+        echo "<pre>response = " . json_encode($response, JSON_PRETTY_PRINT + JSON_UNESCAPED_UNICODE) . "</pre>";
+        $this->assertEquals("807", $solution->getInt($response));
     }
 
     public function testSample2()
@@ -61,6 +62,26 @@ class Q2_AddTwoNumbers_Test extends TestCase
         $response = $solution->addTwoNumbers($node1, $node2);
         $this->assertEquals(1000000000000000000000000000466, $solution->getInt($response));
     }
+
+    public function testSample3()
+    {
+        // Input
+        // [5]
+        // [5]
+        // Output
+        // [0]
+        // Expected
+        // [0,1]
+        $solution = new Solution();
+        $n1 = 5;
+        $n2 = 5;
+
+        $node1 = $solution->toListNode($n1);
+        $node2 = $solution->toListNode($n2);
+
+        $response = $solution->addTwoNumbers($node1, $node2);
+        $this->assertEquals("10", $solution->getInt($response));
+    }
 }
 
 class ListNode
@@ -74,16 +95,48 @@ class Solution
 {
     /**
      * 兩個串列相加
-     * @param ListNode $l1
-     * @param ListNode $l2
+     * @param ListNode $node1
+     * @param ListNode $node2
      * @return ListNode
      */
-    function addTwoNumbers($l1, $l2)
+    function addTwoNumbers($node1, $node2)
     {
-        $n1 = $this->getInt($l1);
-        $n2 = $this->getInt($l2);
-        $sum = $n1 + $n2;
-        return $this->toListNode($sum);
+        $d = 0;
+        $node = null;
+        $next = null;
+
+        $nodes = [];
+        while ($node1 || $node2) {
+            $val1 = $node1->val ?? 0;
+            $val2 = $node2->val ?? 0;
+
+            // 加總
+            $sum = $val1 + $val2 + $d;
+
+            // 進位
+            $d = $sum >= 10 ? 1 : 0;
+
+            // 儲存答案
+            $nodes[] = new ListNode($sum % 10);
+
+            // 往上一個位數
+            $node1 = $node1->next ?? null;
+            $node2 = $node2->next ?? null;
+        }
+        // 如果還有進位的話
+        if ($d > 0) {
+            echo 'cc';
+            $nodes[] = new ListNode($d);
+        }
+
+        // 串起來
+        foreach ($nodes as $i => $node) {
+            if (isset($nodes[$i + 1])) {
+                $node->next = $nodes[$i + 1];
+            }
+        }
+
+        return $nodes[0];
     }
 
     /**
@@ -100,21 +153,20 @@ class Solution
             $node = $node->next;
         }
         $tmp = array_reverse($tmp);
-        return intval(implode("", $tmp));
+        return implode("", $tmp);
     }
 
     /**
      * 數字轉成串列
-     * @param int $number
+     * @param string $number
      * @return ListNode
      */
     public function toListNode($number)
     {
-        $str = "$number";
-        $n = strlen($str);
+        $n = strlen($number);
         $next = null;
         for ($i = 0; $i < $n; $i++) {
-            $v = intval($str[$i]);
+            $v = intval($number[$i]);
             $node = new ListNode($v);
             $node->next = $next;
             $next = $node;
