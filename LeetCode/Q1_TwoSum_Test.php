@@ -1,5 +1,5 @@
 <?php
-
+namespace LeetCode\Q1;
 use PHPUnit\Framework\TestCase;
 
 class Q1_TwoSum_Test extends TestCase
