@@ -63,6 +63,13 @@ class HanoiTower
 {
     private $step_no = 1;
     private $results = [];
+
+    /**
+     * @param int $n          總共幾個盤子
+     * @param string $origin  原本的柱子
+     * @param string $target  目標柱子
+     * @param string $tmp     緩衝用的柱子
+     */
     public function move($n, $origin, $target, $tmp)
     {
         // 把其他的盤子搬到暫存柱
