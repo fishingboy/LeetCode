@@ -79,6 +79,16 @@ class Q3_LongestSubstring_Test extends TestCase
         $response = $this->solution->lengthOfLongestSubstring($s);
         $this->assertEquals(2, $response);
     }
+
+    public function testIsUnique()
+    {
+        $s = "abccd";
+        $response = $this->solution->isUnique($s, 0, 1);
+        $this->assertTrue($response);
+
+        $response = $this->solution->isUnique($s, 0, 3);
+        $this->assertFalse($response);
+    }
 }
 
 class Solution
@@ -95,18 +105,16 @@ class Solution
         for ($i = 0 ; $i <= $len-2; $i++) {
             $sub_len = 1;
             for ($j = $i + 1 ; $j <= $len-1; $j++) {
-                if ($str[$i] == $str[$j]) {
+                // 如果字母重複了，就跳開
+                if ( ! $this->isUnique($str, $i, $j)) {
                     break;
                 }
                 $sub_len++;
-                if ($sub_len > $max) {
-                    $max = $sub_len;
-                    echo substr($str, $i, $j-$i+1) . "\n";
-                }
             }
+
+            // 找最大值
             if ($sub_len > $max) {
                 $max = $sub_len;
-                echo substr($str, $i, $j-$i+1) . "\n";
             }
         }
 
@@ -114,5 +122,22 @@ class Solution
             $max = $len;
         }
         return $max;
+    }
+
+    /**
+     * 判斷字串 str[j] 是否在 i ~ j - 1 中有出現過
+     * @param string $str
+     * @param int $i
+     * @param int $j
+     * @return bool
+     */
+    public function isUnique($str, $i, $j)
+    {
+        for ($k = $i; $k < $j; $k++) {
+            if ($str[$k] == $str[$j]) {
+                return false;
+            }
+        }
+        return true;
     }
 }
