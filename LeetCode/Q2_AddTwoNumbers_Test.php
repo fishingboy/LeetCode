@@ -39,7 +39,6 @@ class Q2_AddTwoNumbers_Test extends TestCase
         $node2 = $solution->toListNode($n2);
 
         $response = $solution->addTwoNumbers($node1, $node2);
-        echo "<pre>response = " . json_encode($response, JSON_PRETTY_PRINT + JSON_UNESCAPED_UNICODE) . "</pre>";
         $this->assertEquals("807", $solution->getInt($response));
     }
 
@@ -53,14 +52,14 @@ class Q2_AddTwoNumbers_Test extends TestCase
         // Expected
         // [6,6,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]
         $solution = new Solution();
-        $n1 = 1000000000000000000000000000001;
-        $n2 = 465;
+        $n1 = "1000000000000000000000000000001";
+        $n2 = "465";
 
         $node1 = $solution->toListNode($n1);
         $node2 = $solution->toListNode($n2);
 
         $response = $solution->addTwoNumbers($node1, $node2);
-        $this->assertEquals(1000000000000000000000000000466, $solution->getInt($response));
+        $this->assertEquals("1000000000000000000000000000466", $solution->getInt($response));
     }
 
     public function testSample3()
@@ -73,8 +72,8 @@ class Q2_AddTwoNumbers_Test extends TestCase
         // Expected
         // [0,1]
         $solution = new Solution();
-        $n1 = 5;
-        $n2 = 5;
+        $n1 = "5";
+        $n2 = "5";
 
         $node1 = $solution->toListNode($n1);
         $node2 = $solution->toListNode($n2);
@@ -123,9 +122,9 @@ class Solution
             $node1 = $node1->next ?? null;
             $node2 = $node2->next ?? null;
         }
+
         // 如果還有進位的話
         if ($d > 0) {
-            echo 'cc';
             $nodes[] = new ListNode($d);
         }
 
