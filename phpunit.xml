@@ -3,6 +3,7 @@
 	<testsuites>
 		<testsuite name="TestSuite">
 			<directory>LeetCode/</directory>
+			<directory>Other/</directory>
 		</testsuite>
 	</testsuites>
 	<php>
