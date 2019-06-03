@@ -104,11 +104,19 @@ class Solution
         $max = 0;
         for ($i = 0 ; $i <= $len-2; $i++) {
             $sub_len = 1;
+
+            // 儲存已存在字母表
+            $str_map = [$str[$i] => true];
             for ($j = $i + 1 ; $j <= $len-1; $j++) {
                 // 如果字母重複了，就跳開
-                if ( ! $this->isUnique($str, $i, $j)) {
+                if (isset($str_map[$str[$j]])) {
                     break;
                 }
+
+                // 儲存已存在字母表
+                $str_map[$str[$j]] = true;
+
+                // 長度 + 1
                 $sub_len++;
             }
 
