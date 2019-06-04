@@ -61,6 +61,14 @@ class Q4_MedianOfTwoSortedArrays_Test extends TestCase
         $response = $this->solution->findMedianSortedArrays($nums1, $nums2);
         $this->assertEquals(1, $response);
     }
+
+//    public function testBoundary5()
+//    {
+//        $nums1 = [4, 3];
+//        $nums2 = [2, 1];
+//        $response = $this->solution->findMedianSortedArrays($nums1, $nums2);
+//        $this->assertEquals(2.5, $response);
+//    }
 }
 
 class Solution
@@ -72,16 +80,44 @@ class Solution
      */
     function findMedianSortedArrays($nums1, $nums2)
     {
-        $new_array = array_merge($nums1, $nums2);
-        sort($new_array);
+        // 計算總數
+        $cnt = count($nums1) + count($nums2);
 
-        $cnt = count($new_array);
+        // 提前跳出位置
+        $break_index = intval($cnt / 2) + 1;
+
+        $new_array = [];
+        for ($i=1; ;$i++) {
+            // 兩個陣列都清空就跳出
+            if (count($nums1) == 0 && count($nums2) == 0) {
+                break;
+            }
+
+            // 超過中位數範圍就不要再算了
+            if ($i > $break_index) {
+                break;
+            }
+
+            // 插入排序法
+            if (count($nums1) == 0) {
+                $number = array_shift($nums2);
+            } else if (count($nums2) == 0) {
+                $number = array_shift($nums1);
+            } else if ($nums1[0] < $nums2[0]) {
+                $number = array_shift($nums1);
+            } else {
+                $number = array_shift($nums2);
+            }
+            $new_array[] = $number;
+        }
+
+        // 計算中位數
         if ($cnt % 2 == 1) {
-            $i = ($cnt + 1) / 2 - 1;
-            return $new_array[$i];
+            $index = ($cnt + 1) / 2 - 1;
+            return $new_array[$index];
         } else {
-            $i = $cnt / 2 - 1;
-            return ($new_array[$i] + $new_array[$i + 1]) / 2;
+            $index = $cnt / 2 - 1;
+            return ($new_array[$index] + $new_array[$index + 1]) / 2;
         }
     }
 }
