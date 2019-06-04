@@ -16,11 +16,6 @@ class Q4_MedianOfTwoSortedArrays_Test extends TestCase
     
     public function testSample()
     {
-        // nums1 = [1, 3]
-        // nums2 = [2]
-        //
-        // The median is 2.0
-
         $nums1 = [1, 3];
         $nums2 = [2];
         $response = $this->solution->findMedianSortedArrays($nums1, $nums2);
@@ -29,15 +24,42 @@ class Q4_MedianOfTwoSortedArrays_Test extends TestCase
 
     public function testSample2()
     {
-        // nums1 = [1, 2]
-        // nums2 = [3, 4]
-        //
-        // The median is (2 + 3)/2 = 2.5
-
         $nums1 = [1, 2];
         $nums2 = [3, 4];
         $response = $this->solution->findMedianSortedArrays($nums1, $nums2);
         $this->assertEquals(2.5, $response);
+    }
+
+    public function testBoundary1()
+    {
+        $nums1 = [1, 2, 3, 4];
+        $nums2 = [];
+        $response = $this->solution->findMedianSortedArrays($nums1, $nums2);
+        $this->assertEquals(2.5, $response);
+    }
+
+    public function testBoundary2()
+    {
+        $nums1 = [4];
+        $nums2 = [];
+        $response = $this->solution->findMedianSortedArrays($nums1, $nums2);
+        $this->assertEquals(4, $response);
+    }
+
+    public function testBoundary3()
+    {
+        $nums1 = [1,1,1,1,1,1];
+        $nums2 = [1,1,1,1,1,1];
+        $response = $this->solution->findMedianSortedArrays($nums1, $nums2);
+        $this->assertEquals(1, $response);
+    }
+
+    public function testBoundary4()
+    {
+        $nums1 = [1,1,1,1,1,1];
+        $nums2 = [1,1,1,1,1];
+        $response = $this->solution->findMedianSortedArrays($nums1, $nums2);
+        $this->assertEquals(1, $response);
     }
 }
 
