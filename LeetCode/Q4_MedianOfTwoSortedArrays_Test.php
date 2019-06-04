@@ -74,7 +74,6 @@ class Solution
     {
         $new_array = array_merge($nums1, $nums2);
         sort($new_array);
-        echo "<pre>new_array = " . json_encode($new_array, JSON_PRETTY_PRINT + JSON_UNESCAPED_UNICODE) . "</pre>";
 
         $cnt = count($new_array);
         if ($cnt % 2 == 1) {
