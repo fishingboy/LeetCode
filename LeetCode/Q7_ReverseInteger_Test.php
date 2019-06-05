@@ -48,6 +48,19 @@ class Q7_ReverseInteger_Test extends TestCase
         $response = $this->solution->reverse($x);
         $this->assertEquals(0, $response);
     }
+
+    // Input
+    // 1534236469
+    // Output
+    // 9646324351
+    // Expected
+    // 0
+    public function testWa1()
+    {
+        $x = 1534236469;
+        $response = $this->solution->reverse($x);
+        $this->assertEquals(0, $response);
+    }
 }
 
 class Solution
@@ -62,10 +75,18 @@ class Solution
         $str = "" . abs($x);
         $new_x = "";
 
+        // 反轉
         $len = strlen($str);
         for ($i = $len - 1; $i >= 0; $i--) {
             $new_x .= $str[$i];
         }
-        return $sign * $new_x;
+
+        // 判斷溢位
+        $v = $sign * $new_x;
+        if ($v > 2147483647 || $v < -2147483648) {
+            return 0;
+        } else {
+            return $v;
+        }
     }
 }
