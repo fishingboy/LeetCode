@@ -10,4 +10,10 @@
 		<const name="PHPUNIT_TEST" value="1" />
 		<server name="REMOTE_ADDR" value="0.0.0.0" />
 	</php>
+    <filter>
+        <whitelist>
+            <directory>LeetCode</directory>
+            <directory>Other</directory>
+        </whitelist>
+    </filter>
 </phpunit>

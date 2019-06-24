@@ -23,6 +23,16 @@ class Q1_TwoSum_Test extends TestCase
         $response = $solution->twoSum($nums, $target);
         $this->assertEquals([1, 2], $response);
     }
+
+    public function testSample3()
+    {
+        $solution = new Solution();
+        $nums = [];
+        $target = 0;
+
+        $response = $solution->twoSum($nums, $target);
+        $this->assertEquals([0, 0], $response);
+    }
 }
 
 class Solution
