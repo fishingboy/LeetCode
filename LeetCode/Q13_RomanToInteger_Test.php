@@ -48,6 +48,13 @@ class Q13_RomanToInteger_Test extends TestCase
         $response = $this->solution->romanToInt($roman);
         $this->assertEquals(1994, $response);
     }
+
+    public function test_MMCCCXCIX應該回傳2399()
+    {
+        $roman = "MMCCCXCIX";
+        $response = $this->solution->romanToInt($roman);
+        $this->assertEquals(2399, $response);
+    }
 }
 
 class Solution
@@ -68,6 +75,7 @@ class Solution
             "LXX" => 70,
             "CCC" => 300,
             "DCC" => 700,
+            "MMM" => 3000,
             "II" => 2,
             "IV" => 4,
             "VI" => 6,
@@ -80,6 +88,7 @@ class Solution
             "CD" => 400,
             "DC" => 600,
             "CM" => 900,
+            "MM" => 2000,
             "I" => 1,
             "V" => 5,
             "X" => 10,
