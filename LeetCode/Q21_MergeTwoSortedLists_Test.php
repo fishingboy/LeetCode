@@ -47,6 +47,28 @@ class Q21_MergeTwoSortedLists_Test extends TestCase
         $this->assertArraySubset([1, 1, 2, 3, 4, 4], $array);
     }
 
+    public function testExample2()
+    {
+        $l1 = $this->arrayToListNode( []);
+        $l2 = $this->arrayToListNode( [1]);
+        $response = $this->solution->mergeTwoLists($l1, $l2);
+        $this->assertIsObject($response);
+
+        $array = $this->listNodeToArray($response);
+        $this->assertArraySubset([1], $array);
+    }
+
+    public function testExample3()
+    {
+        $l1 = $this->arrayToListNode( [-10,-4,-4,0,0,1,4,6]);
+        $l2 = $this->arrayToListNode( []);
+        $response = $this->solution->mergeTwoLists($l1, $l2);
+        $this->assertIsObject($response);
+
+        $array = $this->listNodeToArray($response);
+        $this->assertArraySubset([-10,-4,-4,0,0,1,4,6], $array);
+    }
+
     /**
      * 數字轉成串列
      * @param $nums
@@ -103,10 +125,16 @@ class Solution {
             $l2_value = $l2->val ?? null;
 
             $value = 0;
-            if ($l1_value < $l2_value || ! $l2_value) {
+            if ($l1_value === null && isset($l2_value)) {
+                $value = $l2_value;
+                $l2 = $l2->next ?? null;
+            } else if (isset($l1_value) && $l2_value === null ) {
                 $value = $l1_value;
                 $l1 = $l1->next ?? null;
-            } else if ($l2_value) {
+            } else if ($l1_value < $l2_value) {
+                $value = $l1_value;
+                $l1 = $l1->next ?? null;
+            } else if ($l2_value <= $l1_value) {
                 $value = $l2_value;
                 $l2 = $l2->next ?? null;
             }
