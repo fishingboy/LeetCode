@@ -2,6 +2,13 @@
 namespace LeetCode\Q21;
 use PHPUnit\Framework\TestCase;
 
+
+class ListNode {
+    public $val = 0;
+    public $next = null;
+    function __construct($val) { $this->val = $val; }
+}
+
 class Q21_MergeTwoSortedLists_Test extends TestCase
 {
     /**
@@ -24,13 +31,21 @@ class Q21_MergeTwoSortedLists_Test extends TestCase
         $this->assertIsObject($node);
         $node = $node->next;
         $this->assertNull($node);
+
+        $array = $this->listNodeToArray($l1);
+        $this->assertArraySubset([1,2,3], $array);
     }
     
-//    public function testExample()
-//    {
-//        $response = $this->solution->mergeTwoLists($l1, $l2);
-//        $this->assertFalse($response);
-//    }
+    public function testExample()
+    {
+        $l1 = $this->arrayToListNode( [1, 2, 4]);
+        $l2 = $this->arrayToListNode( [1, 3, 4]);
+        $response = $this->solution->mergeTwoLists($l1, $l2);
+        $this->assertIsObject($response);
+
+        $array = $this->listNodeToArray($response);
+        $this->assertArraySubset([1, 1, 2, 3, 4, 4], $array);
+    }
 
     /**
      * 數字轉成串列
@@ -51,27 +66,19 @@ class Q21_MergeTwoSortedLists_Test extends TestCase
 
     /**
      * 數字轉成串列
-     * @param string $number
-     * @return ListNode
+     * @param ListNode $node
+     * @return array
      */
-    private function ListNodeToArray($nums)
+    private function listNodeToArray($node)
     {
-        $n = strlen($number);
-        $next = null;
-        for ($i = 0; $i < $n; $i++) {
-            $v = intval($number[$i]);
-            $node = new ListNode($v);
-            $node->next = $next;
-            $next = $node;
+        $result = [];
+        while($node)
+        {
+            $result[] = $node->val;
+            $node = $node->next;
         }
-        return $node;
+        return $result;
     }
-}
-
-class ListNode {
-    public $val = 0;
-    public $next = null;
-    function __construct($val) { $this->val = $val; }
 }
 
 /**
@@ -90,6 +97,28 @@ class Solution {
      */
     function mergeTwoLists($l1, $l2)
     {
+        $first_node = $pre_node = null;
+        while ($l1 || $l2) {
+            $l1_value = $l1->val ?? null;
+            $l2_value = $l2->val ?? null;
 
+            $value = 0;
+            if ($l1_value < $l2_value || ! $l2_value) {
+                $value = $l1_value;
+                $l1 = $l1->next ?? null;
+            } else if ($l2_value) {
+                $value = $l2_value;
+                $l2 = $l2->next ?? null;
+            }
+
+            $node = new ListNode($value);
+            if ( ! $first_node) {
+                $first_node = $node;
+            } else {
+                $pre_node->next = $node;
+            }
+            $pre_node = $node;
+        }
+        return $first_node;
     }
 }
