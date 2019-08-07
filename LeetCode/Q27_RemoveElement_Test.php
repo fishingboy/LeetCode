@@ -1,8 +1,8 @@
 <?php
-namespace LeetCode\Q26;
+namespace LeetCode\Q27;
 use PHPUnit\Framework\TestCase;
 
-class Q26_RemoveDuplicatesFromSortedArray_Test extends TestCase
+class Q27_RemoveElement_Test extends TestCase
 {
     /**
      * @var Solution
@@ -16,18 +16,20 @@ class Q26_RemoveDuplicatesFromSortedArray_Test extends TestCase
 
     public function testSample1()
     {
-        $array = [1,1,2];
-        $response = $this->solution->removeDuplicates($array);
+        $array = [3,2,2,3];
+        $val = 3;
+        $response = $this->solution->removeElement($array, $val);
         $this->assertEquals(2, $response);
-        $this->assertArraySubset([1,2], $array);
+        $this->assertArraySubset([2,2], $array);
     }
 
     public function testSample2()
     {
-        $array = [0,0,1,1,1,2,2,3,3,4];
-        $response = $this->solution->removeDuplicates($array);
+        $array = [0,1,2,2,3,0,4,2];
+        $val = 2;
+        $response = $this->solution->removeElement($array, $val);
         $this->assertEquals(5, $response);
-        $this->assertArraySubset([0,1,2,3,4], $array);
+        $this->assertArraySubset([0,1,3,0,4], $array);
     }
 }
 
@@ -35,19 +37,18 @@ class Solution
 {
     /**
      * @param Integer[] $nums
+     * @param Integer $val
      * @return Integer
      */
-    function removeDuplicates(&$nums)
+    function removeElement(&$nums, $val)
     {
         $result = [];
-        $pre = null;
         foreach ($nums as $num) {
-            if ($num !== $pre) {
-                $pre = $num;
+            if ($num != $val) {
                 $result[] = $num;
             }
         }
         $nums = $result;
-        return count($nums);
+        return count($result);
     }
 }
