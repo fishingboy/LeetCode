@@ -39,15 +39,14 @@ class Solution
      */
     function removeDuplicates(&$nums)
     {
-        $result = [];
         $pre = null;
-        foreach ($nums as $num) {
-            if ($num !== $pre) {
-                $pre = $num;
-                $result[] = $num;
+        $len = count($nums);
+        for ($i=$len-1; $i >= 0; $i--) {
+            if ($nums[$i] === $pre) {
+                array_splice($nums, $i, 1);
             }
+            $pre = $nums[$i];
         }
-        $nums = $result;
         return count($nums);
     }
 }
