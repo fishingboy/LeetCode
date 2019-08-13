@@ -52,7 +52,7 @@ class Solution
      */
     function strStr($haystack, $needle)
     {
-        if ("$needle" === "") {
+        if ($needle === "") {
             return 0;
         }
         $pos = strpos($haystack, $needle);
