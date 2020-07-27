@@ -50,7 +50,38 @@ class Q70_ClimbingStairs extends TestCase
     }
 }
 
+/**
+ * 費氏數列解
+ * Class Solution
+ * @package LeetCode\Q70
+ */
 class Solution
+{
+    /**
+     * @param Integer $n
+     * @return Integer
+     */
+    function climbStairs($n)
+    {
+        static $fibonacci;
+
+        if ( ! $fibonacci) {
+            $fibonacci = [1, 1];
+            for ($i = 2; $i <=45; $i++) {
+                $fibonacci[$i] = $fibonacci[$i-1] + $fibonacci[$i-2];
+            }
+        }
+
+        return $fibonacci[$n];
+    }
+}
+
+/**
+ * 遞迴版解答(時間會過長，不過已經證明該解答為費氏數列)
+ * Class Solution_Recursive
+ * @package LeetCode\Q70
+ */
+class Solution_Recursive
 {
     private $solutions = 0;
     /**
