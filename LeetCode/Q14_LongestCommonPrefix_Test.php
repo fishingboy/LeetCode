@@ -34,6 +34,13 @@ class Q14_LongestCommonPrefix_Test extends TestCase
         $response = $this->solution->longestCommonPrefix($strs);
         $this->assertEquals("a", $response);
     }
+
+    public function test_wa2()
+    {
+        $strs = ["a","b"];
+        $response = $this->solution->longestCommonPrefix($strs);
+        $this->assertEquals("", $response);
+    }
 }
 
 class Solution
@@ -53,7 +60,7 @@ class Solution
         }
 
         for ($i=0; $i<$first_len; $i++) {
-            for ($j = 2; $j < $count; $j++) {
+            for ($j = 1; $j < $count; $j++) {
                 if ($strs[$j][$i] != $strs[0][$i]) {
                     break;
                 }
