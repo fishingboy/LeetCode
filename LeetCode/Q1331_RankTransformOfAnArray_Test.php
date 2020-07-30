@@ -36,6 +36,13 @@ class Q1331_RankTransformOfAnArray_Test extends TestCase
         $response = $this->solution->arrayRankTransform($arr);
         $this->assertArraySubset([5,3,4,2,8,6,7,1,3], $response);
     }
+
+    public function test_wa2()
+    {
+        $arr = [27,46,-3,-36,31,-14,-7,-36,27,-14,41,-40,23];
+        $response = $this->solution->arrayRankTransform($arr);
+        $this->assertArraySubset([7,10,5,2,8,3,4,2,7,3,9,1,6], $response);
+    }
 }
 
 class Solution
@@ -47,7 +54,7 @@ class Solution
     function arrayRankTransform($arr)
     {
         // 取出不重覆的陣列
-        $unique_arr = array_unique($arr);
+        $unique_arr = array_values(array_unique($arr));
 
         // 排名次
         $count = count($unique_arr);
