@@ -46,23 +46,13 @@ class Solution
      */
     function checkIfExist($arr)
     {
-        $hash = [];
+        $half_hash = $double_hash = [];
         foreach ($arr as $item) {
-            $half = $item / 2;
-            if (is_integer($half)) {
-                if (isset($hash[$half])) {
-                    return true;
-                }
+            if (isset($half_hash[$item]) || isset($double_hash[$item])) {
+                return true;
             }
-
-            $double = $item * 2;
-            if (is_integer($double)) {
-                if (isset($hash[$double])) {
-                    return true;
-                }
-            }
-
-            $hash[$item] = 1;
+            $half_hash[($item / 2) . ""] = 1;
+            $double_hash[($item * 2) . ""] = 1;
         }
         return false;
     }
