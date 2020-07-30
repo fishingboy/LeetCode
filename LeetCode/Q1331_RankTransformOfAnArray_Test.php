@@ -46,15 +46,63 @@ class Solution
      */
     function arrayRankTransform($arr)
     {
+        // 取出不重覆的陣列
+        $unique_arr = array_unique($arr);
+
+        // 排名次
+        $count = count($unique_arr);
+        $rank = array_pad([], $count, $count);
+        for ($i = 0; $i < $count; $i++) {
+            for ($j = $i + 1; $j < $count; $j++) {
+                if ($unique_arr[$i] < $unique_arr[$j]) {
+                    $rank[$i]--;
+                }
+                if ($unique_arr[$i] > $unique_arr[$j]) {
+                    $rank[$j]--;
+                }
+            }
+        }
+
+        // 把值對應回名次
+        $rank_map = [];
+        foreach ($unique_arr as $i => $item) {
+            $rank_map[$item] = $rank[$i];
+        }
+
+        // 把原本的陣列轉回名次
+        $answer = [];
+        foreach ($arr as $i => $item) {
+            $answer[$i] = $rank_map[$item];
+        }
+
+        return $answer;
+    }
+}
+
+/**
+ * 這個解法在名次並排的情況下不對
+ * 如果有第兩個第 1 名，就沒有第 2 名
+ * (其實不是大部份名次都是這樣算的嗎？)
+ * Class Solution_1
+ * @package LeetCode\Q1331
+ */
+class Solution_1
+{
+    /**
+     * @param Integer[] $arr
+     * @return Integer[]
+     */
+    function arrayRankTransform($arr)
+    {
         $count = count($arr);
         $rank = array_pad([], $count, $count);
 
         for ($i = 0; $i < $count; $i++) {
             for ($j = $i + 1; $j < $count; $j++) {
-                if ($arr[$i] <= $arr[$j]) {
+                if ($arr[$i] < $arr[$j]) {
                     $rank[$i]--;
                 }
-                if ($arr[$i] >= $arr[$j]) {
+                if ($arr[$i] > $arr[$j]) {
                     $rank[$j]--;
                 }
             }
