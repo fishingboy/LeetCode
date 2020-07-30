@@ -52,7 +52,47 @@ class Q1331_RankTransformOfAnArray_Test extends TestCase
     }
 }
 
+
+/**
+ * 直接用內建排序好了
+ * Class Solution
+ * @package LeetCode\Q1331
+ */
 class Solution
+{
+    /**
+     * @param Integer[] $arr
+     * @return Integer[]
+     */
+    function arrayRankTransform($arr)
+    {
+        // 取出不重覆的陣列
+        $unique_arr = array_values(array_unique($arr));
+        sort($unique_arr);
+
+        // 排名次
+        $rank_map = [];
+        foreach ($unique_arr as $i => $item) {
+            $rank_map[$item] = $i + 1;
+        }
+
+        // 把原本的陣列轉回名次
+        $answer = [];
+        foreach ($arr as $i => $item) {
+            $answer[$i] = $rank_map[$item];
+        }
+
+        return $answer;
+    }
+}
+
+
+/**
+ * 執行時間過長
+ * Class Solution_2
+ * @package LeetCode\Q1331
+ */
+class Solution_2
 {
     /**
      * @param Integer[] $arr
