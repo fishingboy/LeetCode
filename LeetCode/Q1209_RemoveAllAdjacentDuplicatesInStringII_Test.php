@@ -35,22 +35,19 @@ class Solution
         $stack = [];
         $len = strlen($s);
 
-        for ($i=0; $i<$k-1;$i++) {
+        for ($i=0; $i<$k-1; $i++) {
             array_push($stack, $s[$i]);
         }
 
         $diff_stack = [];
         while ($i < $len) {
-            $prev_s = "";
-            for ($i=0; $i<$k-1; $i++) {
-                $curr_s = $s[$i];
+            for ($j=0; $j<$k; $j++) {
                 $diff_stack[] = array_pop($stack) ;
-            }
-
-            $curr_s = $s[$i];
-            if ($curr_s != $prev_s) {
-                array_push($stack, $prev_s);
-                array_push($stack, $curr_s);
+                if ($j > 0 && $diff_stack[$j] != $diff_stack[$j - 1]) {
+                    while (count($diff_stack)) {
+                        array_push($stack, array_pop($diff_stack));
+                    }
+                }
             }
             $i++;
         }
