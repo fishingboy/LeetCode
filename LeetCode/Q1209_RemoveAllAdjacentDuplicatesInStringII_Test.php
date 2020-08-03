@@ -16,34 +16,10 @@ class Q1209_RemoveAllAdjacentDuplicatesInStringII_Test extends TestCase
 
     public function testSample1()
     {
-        $s = "abcd"; $k = 2;
-        $response = $this->solution->removeDuplicates($s, $k);
-        var_dump($response);
-        $this->assertEquals("abcd", $response);
-    }
-
-    public function testSample2()
-    {
         $s = "deeedbbcccbdaa"; $k = 3;
         $response = $this->solution->removeDuplicates($s, $k);
         var_dump($response);
-        $this->assertEquals("aa", $response);
-    }
-
-    public function testSample3()
-    {
-        $s = "pbbcggttciiippooaais"; $k = 2;
-        $response = $this->solution->removeDuplicates($s, $k);
-        var_dump($response);
-        $this->assertEquals("ps", $response);
-    }
-
-    public function test_self1()
-    {
-        $s = "rppaaccccaappr"; $k = 4;
-        $response = $this->solution->removeDuplicates($s, $k);
-        var_dump($response);
-        $this->assertEquals("rr", $response);
+        $this->assertEquals("ca", $response);
     }
 }
 
@@ -52,7 +28,6 @@ class Solution
 {
     /**
      * @param String $s
-     * @param Integer $k
      * @return String
      */
     function removeDuplicates($s, $k)
@@ -60,31 +35,23 @@ class Solution
         $stack = [];
         $len = strlen($s);
 
-        for ($i=0; $i<$k-1; $i++) {
+        for ($i=0; $i<$k-1;$i++) {
             array_push($stack, $s[$i]);
         }
 
+        $diff_stack = [];
         while ($i < $len) {
-            $diff_stack = [$s[$i]];
-            for ($j=0; $j<$k-1; $j++) {
-                array_push($diff_stack, array_pop($stack)) ;
+            $prev_s = "";
+            for ($i=0; $i<$k-1; $i++) {
+                $curr_s = $s[$i];
+                $diff_stack[] = array_pop($stack) ;
             }
 
-            if (count($diff_stack) == $k) {
-                for ($j=0; $j<$k-1; $j++) {
-                    if ($diff_stack[$j] != $diff_stack[$j+1]) {
-                        while (count($diff_stack)) {
-                            array_push($stack, array_pop($diff_stack));
-                        }
-                        break;
-                    }
-                }
-            } else {
-                while (count($diff_stack)) {
-                    array_push($stack, array_pop($diff_stack));
-                }
+            $curr_s = $s[$i];
+            if ($curr_s != $prev_s) {
+                array_push($stack, $prev_s);
+                array_push($stack, $curr_s);
             }
-
             $i++;
         }
 
