@@ -19,7 +19,7 @@ class Q1209_RemoveAllAdjacentDuplicatesInStringII_Test extends TestCase
         $s = "deeedbbcccbdaa"; $k = 3;
         $response = $this->solution->removeDuplicates($s, $k);
         var_dump($response);
-        $this->assertEquals("ca", $response);
+        $this->assertEquals("aa", $response);
     }
 }
 
@@ -28,6 +28,7 @@ class Solution
 {
     /**
      * @param String $s
+     * @param Integer $k
      * @return String
      */
     function removeDuplicates($s, $k)
@@ -35,23 +36,31 @@ class Solution
         $stack = [];
         $len = strlen($s);
 
-        for ($i=0; $i<$k-1;$i++) {
+        for ($i=0; $i<$k-1; $i++) {
             array_push($stack, $s[$i]);
         }
 
-        $diff_stack = [];
         while ($i < $len) {
-            $prev_s = "";
-            for ($i=0; $i<$k-1; $i++) {
-                $curr_s = $s[$i];
-                $diff_stack[] = array_pop($stack) ;
+            $diff_stack = [$s[$i]];
+            for ($j=0; $j<$k-1; $j++) {
+                array_push($diff_stack, array_pop($stack)) ;
             }
 
-            $curr_s = $s[$i];
-            if ($curr_s != $prev_s) {
-                array_push($stack, $prev_s);
-                array_push($stack, $curr_s);
+            if (count($diff_stack) == $k) {
+                for ($j=0; $j<$k-1; $j++) {
+                    if ($diff_stack[$j] != $diff_stack[$j+1]) {
+                        while (count($diff_stack)) {
+                            array_push($stack, array_pop($diff_stack));
+                        }
+                        break;
+                    }
+                }
+            } else {
+                while (count($diff_stack)) {
+                    array_push($stack, array_pop($diff_stack));
+                }
             }
+
             $i++;
         }
 
