@@ -16,10 +16,26 @@ class Q1209_RemoveAllAdjacentDuplicatesInStringII_Test extends TestCase
 
     public function testSample1()
     {
+        $s = "abcd"; $k = 2;
+        $response = $this->solution->removeDuplicates($s, $k);
+        var_dump($response);
+        $this->assertEquals("abcd", $response);
+    }
+
+    public function testSample2()
+    {
         $s = "deeedbbcccbdaa"; $k = 3;
         $response = $this->solution->removeDuplicates($s, $k);
         var_dump($response);
         $this->assertEquals("aa", $response);
+    }
+
+    public function testSample3()
+    {
+        $s = "pbbcggttciiippooaais"; $k = 2;
+        $response = $this->solution->removeDuplicates($s, $k);
+        var_dump($response);
+        $this->assertEquals("ps", $response);
     }
 
     public function test_TLE1()
@@ -46,31 +62,23 @@ class Solution
         $stack = [];
         $len = strlen($s);
 
-        for ($i=0; $i<$k-1; $i++) {
-            array_push($stack, $s[$i]);
-        }
-
+        $i = 0;
         while ($i < $len) {
-            $diff_stack = [$s[$i]];
-            for ($j=0; $j<$k-1; $j++) {
-                array_push($diff_stack, array_pop($stack)) ;
-            }
-
-            if (count($diff_stack) == $k) {
-                for ($j=0; $j<$k-1; $j++) {
-                    if ($diff_stack[$j] != $diff_stack[$j+1]) {
-                        while (count($diff_stack)) {
-                            array_push($stack, array_pop($diff_stack));
-                        }
+            array_push($stack, $s[$i]);
+            if (count($stack) >= $k) {
+                for ($j=$k-1; $j>0; $j--) {
+                    $shift = count($stack) - $k;
+                    if ($stack[$j+$shift] != $stack[$j-1+$shift]) {
                         break;
                     }
                 }
-            } else {
-                while (count($diff_stack)) {
-                    array_push($stack, array_pop($diff_stack));
+
+                if ($j == 0) {
+                    for ($j=0; $j<$k; $j++) {
+                        array_pop($stack);
+                    }
                 }
             }
-
             $i++;
         }
 
