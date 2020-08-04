@@ -90,3 +90,16 @@ class Solution
         return $answer;
     }
 }
+
+/**
+ * Next challenges:
+ *
+ * Binary Search Tree Iterator
+ * https://leetcode.com/problems/binary-search-tree-iterator/
+ *
+ * Next Greater Element I
+ * https://leetcode.com/problems/next-greater-element-i/
+ *
+ * Sum of Subarray Minimums
+ * https://leetcode.com/problems/sum-of-subarray-minimums/
+ */
