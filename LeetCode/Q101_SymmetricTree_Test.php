@@ -124,3 +124,10 @@ class TreeNode
         $this->right = $right;
     }
 }
+
+/**
+ * Next challenges:
+ * https://leetcode.com/problems/course-schedule-ii/
+ * https://leetcode.com/problems/binary-tree-longest-consecutive-sequence-ii/
+ * https://leetcode.com/problems/escape-a-large-maze/
+ */
