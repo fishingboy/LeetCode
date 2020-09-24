@@ -1,5 +1,6 @@
 <?php
 namespace LeetCode\Q21;
+use Library\ListBuilder;
 use Library\ListNode;
 use PHPUnit\Framework\TestCase;
 
@@ -70,14 +71,8 @@ class Q21_MergeTwoSortedLists_Test extends TestCase
      */
     private function arrayToListNode($nums)
     {
-        $nums = array_reverse($nums);
-        $node = $next = null;
-        foreach ($nums as $num) {
-            $node = new ListNode($num);
-            $node->next = $next;
-            $next = $node;
-        }
-        return $node;
+        $builder = new ListBuilder($nums);
+        return $builder->getHead();
     }
 
     /**
