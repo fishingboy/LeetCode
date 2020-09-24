@@ -1,0 +1,13 @@
+{
+  "description": "LeetCode",
+  "name": "fishingboy/LeetCode",
+  "type": "project",
+  "require": {
+    "php": ">=7.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Library\\": "Library/"
+    }
+  }
+}
