@@ -51,6 +51,21 @@ class Q103_BinaryTreeZigzagLevelOrderTraversal_Test extends TestCase
         ], $response);
     }
 
+    public function test_3()
+    {
+        $tree = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
+        $root = $this->buildTree($tree);
+        $response = $this->solution->zigzagLevelOrder($root);
+        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
+        $this->assertArraySubset([
+            [1],
+            [3,2],
+            [4,5,6,7],
+            [15,14,13,12,11,10,9,8],
+            [31,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16]
+        ], $response);
+    }
+
     public function test_wa1()
     {
         $tree = [0,-4,-3,null,-1,8,null,null,3,null,-9,-2,null,4];
@@ -67,12 +82,18 @@ class Q103_BinaryTreeZigzagLevelOrderTraversal_Test extends TestCase
         $node_queue[] = $root;
         while (count($nums)) {
             $node = array_shift($node_queue);
-            $left_node = new TreeNode(array_shift($nums));
-            $right_node = new TreeNode(array_shift($nums));
-            $node->left = $left_node;
-            $node->right = $right_node;
-            $node_queue[] = $left_node;
-            $node_queue[] = $right_node;
+            $left_value = array_shift($nums);
+            $right_value = array_shift($nums);
+            if (null !== $left_value) {
+                $left_node = new TreeNode($left_value);
+                $node->left = $left_node;
+                $node_queue[] = $left_node;
+            }
+            if (null !== $right_value) {
+                $right_node = new TreeNode($right_value);
+                $node->right = $right_node;
+                $node_queue[] = $right_node;
+            }
         }
         return $root;
     }
@@ -111,6 +132,8 @@ class Solution
         ];
         $node_queue[] = $root;
         while (count($node_queue)) {
+            echo $way;
+
             // 取出同層的值
             $level_nums = [];
             $next_queue = [];
