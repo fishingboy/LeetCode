@@ -1,5 +1,7 @@
 <?php
 namespace LeetCode\Q101;
+use Library\TreeBuilder;
+use Library\TreeNode;
 use PHPUnit\Framework\TestCase;
 
 class Q101_SymmetricTree_Test extends TestCase
@@ -40,19 +42,8 @@ class Q101_SymmetricTree_Test extends TestCase
 
     public function buildTree($nums)
     {
-        $num = array_shift($nums);
-        $root = new TreeNode($num);
-        $node_queue[] = $root;
-        while (count($nums)) {
-            $node = array_shift($node_queue);
-            $left_node = new TreeNode(array_shift($nums));
-            $right_node = new TreeNode(array_shift($nums));
-            $node->left = $left_node;
-            $node->right = $right_node;
-            $node_queue[] = $left_node;
-            $node_queue[] = $right_node;
-        }
-        return $root;
+        $builder = new TreeBuilder($nums);
+        return $builder->getRoot();
     }
 }
 
@@ -108,20 +99,6 @@ class Solution
             $node_queue = $next_queue;
         }
         return true;
-    }
-}
-
-class TreeNode
-{
-    public $val = null;
-    public $left = null;
-    public $right = null;
-
-    function __construct($val = 0, $left = null, $right = null)
-    {
-        $this->val   = $val;
-        $this->left  = $left;
-        $this->right = $right;
     }
 }
 
