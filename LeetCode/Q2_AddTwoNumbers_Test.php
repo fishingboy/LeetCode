@@ -1,5 +1,6 @@
 <?php
 namespace LeetCode\Q2;
+use Library\ListNode;
 use PHPUnit\Framework\TestCase;
 
 class Q2_AddTwoNumbers_Test extends TestCase
@@ -88,12 +89,6 @@ class Q2_AddTwoNumbers_Test extends TestCase
     }
 }
 
-class ListNode
-{
-    public $val = 0;
-    public $next = null;
-    function __construct($val) { $this->val = $val; }
-}
 
 class Solution
 {

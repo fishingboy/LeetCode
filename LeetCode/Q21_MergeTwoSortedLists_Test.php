@@ -1,13 +1,7 @@
 <?php
 namespace LeetCode\Q21;
+use Library\ListNode;
 use PHPUnit\Framework\TestCase;
-
-
-class ListNode {
-    public $val = 0;
-    public $next = null;
-    function __construct($val) { $this->val = $val; }
-}
 
 class Q21_MergeTwoSortedLists_Test extends TestCase
 {
