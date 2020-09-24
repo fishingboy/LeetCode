@@ -62,7 +62,7 @@ class Q103_BinaryTreeZigzagLevelOrderTraversal_Test extends TestCase
             [3,2],
             [4,5,6,7],
             [15,14,13,12,11,10,9,8],
-            [31,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16]
+            [16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
         ], $response);
     }
 
@@ -137,28 +137,25 @@ class Solution
             // 取出同層的值
             $level_nums = [];
             $next_queue = [];
-            while ($node = ($way) ? array_shift($node_queue) : array_pop($node_queue)) {
+            while ($node = array_pop($node_queue)) {
                 if ($way) {
                     if ($node->left && $node->left->val !== null) {
                         $level_nums[] = $node->left->val;
+                        $next_queue[] = $node->left;
                     }
                     if ($node->right && $node->right->val !== null) {
                         $level_nums[] = $node->right->val;
+                        $next_queue[] = $node->right;
                     }
                 } else {
                     if ($node->right && $node->right->val !== null) {
                         $level_nums[] = $node->right->val;
+                        $next_queue[] = $node->right;
                     }
                     if ($node->left && $node->left->val !== null) {
                         $level_nums[] = $node->left->val;
+                        $next_queue[] = $node->left;
                     }
-                }
-
-                if ($node->left !== null) {
-                    $next_queue[] = $node->left;
-                }
-                if ($node->right !== null) {
-                    $next_queue[] = $node->right;
                 }
             }
 
