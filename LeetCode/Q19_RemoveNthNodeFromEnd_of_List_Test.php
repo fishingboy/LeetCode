@@ -120,11 +120,11 @@ class Solution
             $curr = $curr->next;
         }
 
-        if (null === $break_node) {
-            return null;
+        if ($i == $n) {
+            $head = $head->next;
+        } else {
+            $break_node->next = $break_node->next->next ?? null;
         }
-
-        $break_node->next = $break_node->next->next ?? null;
 
         return $head;
     }
