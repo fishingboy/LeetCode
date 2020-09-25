@@ -22,10 +22,39 @@ class Q19_RemoveNthNodeFromEnd_of_List_Test extends TestCase
         $head = $this->arrayToListNode($nums);
         $n = 2;
         $response = $this->solution->removeNthFromEnd($head, $n);
-        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset(["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"], $response);
+        $array = $this->listNodeToArray($response);
+        $this->assertArraySubset([1,2,3,5], $array);
     }
 
+    public function test_1()
+    {
+        $nums = [1];
+        $head = $this->arrayToListNode($nums);
+        $n = 1;
+        $response = $this->solution->removeNthFromEnd($head, $n);
+        $array = $this->listNodeToArray($response);
+        $this->assertArraySubset([], $array);
+    }
+
+    public function test_2()
+    {
+        $nums = [1,2];
+        $head = $this->arrayToListNode($nums);
+        $n = 1;
+        $response = $this->solution->removeNthFromEnd($head, $n);
+        $array = $this->listNodeToArray($response);
+        $this->assertArraySubset([1], $array);
+    }
+
+    public function test_wa1()
+    {
+        $nums = [1,2];
+        $head = $this->arrayToListNode($nums);
+        $n = 2;
+        $response = $this->solution->removeNthFromEnd($head, $n);
+        $array = $this->listNodeToArray($response);
+        $this->assertArraySubset([2], $array);
+    }
 
     /**
      * 數字轉成串列
@@ -36,6 +65,23 @@ class Q19_RemoveNthNodeFromEnd_of_List_Test extends TestCase
     {
         $builder = new ListBuilder($nums);
         return $builder->getHead();
+    }
+
+
+    /**
+     * 數字轉成串列
+     * @param ListNode $node
+     * @return array
+     */
+    private function listNodeToArray($node)
+    {
+        $result = [];
+        while($node)
+        {
+            $result[] = $node->val;
+            $node = $node->next;
+        }
+        return $result;
     }
 }
 
@@ -60,15 +106,25 @@ class Solution
     function removeNthFromEnd($head, $n)
     {
         $curr = $head;
-        $total = 1;
-        while ($curr->next) {
-            $total++;
+        $i = 0;
+        $break_node = null;
+        while ($curr) {
+            if ($i >= $n) {
+                if (null === $break_node) {
+                    $break_node = $head;
+                } else {
+                    $break_node = $break_node->next;
+                }
+            }
+            $i++;
+            $curr = $curr->next;
         }
 
-        $pos = $total - $n + 1;
-        while ($curr->next) {
-            $total++;
+        if (null === $break_node) {
+            return null;
         }
+
+        $break_node->next = $break_node->next->next ?? null;
 
         return $head;
     }
