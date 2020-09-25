@@ -25,6 +25,15 @@ class Q83_RemoveDuplicates_from_SortedList_Test extends TestCase
         $this->assertArraySubset([1,2,3], $array);
     }
 
+    public function test_1()
+    {
+        $nums = [3,3,3,3,3];
+        $head = $this->arrayToListNode($nums);
+        $response = $this->solution->deleteDuplicates($head);
+        $array = $this->listNodeToArray($response);
+        $this->assertArraySubset([3], $array);
+    }
+
     /**
      * 數字轉成串列
      * @param $nums
@@ -73,11 +82,18 @@ class Solution
     function deleteDuplicates($head)
     {
         $prev = null;
+        $prev_node = null;
         $curr = $head;
         while ($curr) {
+            if ($curr->val == $prev) {
+                $prev_node->next = $curr->next;
+            } else {
+                $prev_node = $curr;
+            }
 
-
+            $prev = $curr->val;
             $curr = $curr->next;
         }
+        return $head;
     }
 }
