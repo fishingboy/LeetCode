@@ -40,6 +40,14 @@ class Q98_ValidateBinarySearchTree_Test extends TestCase
         $this->assertFalse($response);
     }
 
+    public function test_wa2()
+    {
+        $nums = [10,5,15,null,null,6,20];
+        $root = $this->buildTree($nums);
+        $response = $this->solution->isValidBST($root);
+        $this->assertFalse($response);
+    }
+
     public function buildTree($nums)
     {
         $builder = new TreeBuilder($nums);
@@ -61,25 +69,53 @@ class Q98_ValidateBinarySearchTree_Test extends TestCase
  *     }
  * }
  */
-class Solution {
-
+class Solution
+{
     /**
      * @param TreeNode $root
      * @return Boolean
      */
     function isValidBST($root)
     {
-        if (null !== $root->left && $root->left->val > $root->val) {
+        return $this->valid($root);
+    }
+
+    /**
+     * @param TreeNode $root
+     * @param int $max
+     * @param int $min
+     * @return bool
+     */
+    public function valid($root, $max = null, $min = null)
+    {
+        if (null !== $max && $root->val <= $max) {
             return false;
         }
-        if (null !== $root->right && $root->right->val < $root->val) {
+
+        if (null !== $min && $root->val >= $min) {
             return false;
         }
-        if (null !== $root->left && ! $this->isValidBST($root->left)) {
+
+        // 左邊節點要小
+        if (null !== $root->left && $root->left->val >= $root->val) {
             return false;
         }
-        if (null !== $root->right &&  ! $this->isValidBST($root->right)) {
+        // 右邊節點要大
+        if (null !== $root->right && $root->right->val <= $root->val) {
             return false;
+        }
+
+        if (null !== $root->left) {
+            $new_min = (null == $min || $root->val < $min) ? $root->val : $min;
+            if (! $this->valid($root->left, $max, $new_min)) {
+                return false;
+            }
+        }
+        if (null !== $root->right) {
+            $new_max = (null == $max || $root->val > $max) ? $root->val : $max;
+            if (! $this->valid($root->right, $new_max, $min)) {
+                return false;
+            }
         }
         return true;
     }
