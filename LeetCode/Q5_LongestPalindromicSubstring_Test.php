@@ -41,6 +41,21 @@ class Q5_LongestPalindromicSubstring_Test extends TestCase
         $response = $this->solution->longestPalindrome($s);
         $this->assertEquals("bb", $response);
     }
+
+
+    public function test_wa3()
+    {
+        $s = "bb";
+        $response = $this->solution->longestPalindrome($s);
+        $this->assertEquals("bb", $response);
+    }
+
+    public function test_wa4()
+    {
+        $s = "ccc";
+        $response = $this->solution->longestPalindrome($s);
+        $this->assertEquals("ccc", $response);
+    }
 }
 
 class Solution
