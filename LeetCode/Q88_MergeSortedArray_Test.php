@@ -35,16 +35,18 @@ class Solution
     function merge(&$nums1, $m, $nums2, $n)
     {
         $index = 0;
-        foreach ($nums2 as $i => $item) {
-            while ($nums1[$index] < $item && $index < $m) {
+        for ($i=0; $i<$n; $i++) {
+            $item = $nums2[$i];
+            while ($nums1[$index] <= $item && $index < $m) {
                 $index++;
             }
 
-            for ($j = $m + $i; $j > $index - 1; $j--) {
+            for ($j = $m; $j > $index; $j--) {
                 $nums1[$j] = $nums1[$j - 1];
             }
             $nums1[$index] = $item;
             $index++;
+            $m++;
         }
     }
 }
