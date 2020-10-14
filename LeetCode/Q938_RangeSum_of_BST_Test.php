@@ -79,3 +79,10 @@ class Solution
         return $sum;
     }
 }
+
+/**
+ * Next challenges:
+ * Medium https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
+ * Easy   https://leetcode.com/problems/search-in-a-binary-search-tree/
+ * Hard   https://leetcode.com/problems/move-sub-tree-of-n-ary-tree/
+ */
