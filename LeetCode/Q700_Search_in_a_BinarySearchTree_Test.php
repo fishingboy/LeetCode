@@ -67,3 +67,9 @@ class Solution
         return null;
     }
 }
+
+/**
+ * Next challenges:
+ * Easy   https://leetcode.com/problems/closest-binary-search-tree-value/
+ * Medium https://leetcode.com/problems/insert-into-a-binary-search-tree/
+ */
