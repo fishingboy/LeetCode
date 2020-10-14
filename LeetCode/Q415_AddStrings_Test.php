@@ -56,9 +56,9 @@ class Solution
                 $n2 = intval($num2[$len2 - $i]);
             }
 
-            $sum = $n1 + $n2 + $remaining;
-            $answer = ($sum % 10) . $answer;
-            $remaining = intval($sum / 10);
+            $remaining = $n1 + $n2 + $remaining;
+            $answer = ($remaining % 10) . $answer;
+            $remaining = floor($remaining / 10);
         }
 
         if ($remaining) {
