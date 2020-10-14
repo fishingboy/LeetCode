@@ -105,3 +105,10 @@ class Solution
         return true;
     }
 }
+
+/**
+ * Next challenges:
+ * Easy https://leetcode.com/problems/flood-fill/
+ * Easy https://leetcode.com/problems/leaf-similar-trees/
+ * Medium https://leetcode.com/problems/binary-tree-coloring-game/
+ */
