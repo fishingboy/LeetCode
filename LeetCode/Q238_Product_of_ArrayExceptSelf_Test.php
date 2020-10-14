@@ -78,3 +78,10 @@ class Solution
         return $answers;
     }
 }
+
+/**
+ * Next challenges:
+ * Hard   https://leetcode.com/problems/trapping-rain-water/
+ * Medium https://leetcode.com/problems/maximum-product-subarray/
+ * Hard   https://leetcode.com/problems/paint-house-ii/
+ */
