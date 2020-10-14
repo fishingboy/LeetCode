@@ -49,19 +49,32 @@ class Solution
      */
     function productExceptSelf($nums)
     {
-        $n = 1;
-        foreach ($nums as $i => $num) {
-            if ($num != 0) {
-                $n *= $num;
-            }
+        $count = count($nums);
+
+        // 左邊乘積
+        $l_product[0] = $nums[0];
+        for ($i=1; $i<$count; $i++) {
+            $l_product[$i] = $l_product[$i - 1] * $nums[$i];
         }
-        foreach ($nums as $i => $num) {
-            if ($num == 0) {
-                $nums[$i] = 0;
+
+        // 右邊乘積
+        $r_product[$count - 1] = $nums[$count - 1];
+        for ($i = $count-2; $i >= 0; $i--) {
+            $r_product[$i] = $r_product[$i + 1] * $nums[$i];
+        }
+
+        // 計算答案
+        $answers = [];
+        for ($i=0; $i<$count; $i++) {
+            if ($i == 0) {
+                $answers[$i] = $r_product[1];
+            } else if ($i == $count - 1) {
+                $answers[$i] = $l_product[$count -2];
             } else {
-                $nums[$i] = $n / $num;
+                $answers[$i] = $l_product[$i-1] * $r_product[$i+1];
             }
         }
-        return $nums;
+
+        return $answers;
     }
 }
