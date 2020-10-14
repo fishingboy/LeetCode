@@ -60,19 +60,22 @@ class Solution
      */
     function rangeSumBST($root, $L, $R)
     {
-        $left_sum = $right_sum = 0;
-        if (null !== $root->left){
-            if ($root->val > $L && $L > ) {
-                $left_sum = $this->rangeSumBST($root->left, $L, $R);
-            } else {
+        $sum = 0;
+        $stack = [$root];
+        while (count($stack)) {
+            $node = array_pop($stack);
 
+            if ($node->val >= $L && $node->val <= $R) {
+                $sum += $node->val;
+            }
+
+            if ($node->left) {
+                array_push($stack, $node->left);
+            }
+            if ($node->right) {
+                array_push($stack, $node->right);
             }
         }
-        if (null !== $root->right) {
-            if ($root->left->val < $L) {
-                $right_sum = $this->rangeSumBST($root->right, $L, $R);
-            }
-        }
-        return $root->val + $left_sum + $right_sum;
+        return $sum;
     }
 }
