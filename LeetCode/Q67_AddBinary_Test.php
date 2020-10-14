@@ -2,6 +2,11 @@
 namespace LeetCode\Q67;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * 就是二進位版的大數運算
+ * Class Q67_AddBinary_Test
+ * @package LeetCode\Q67
+ */
 class Q67_AddBinary_Test extends TestCase
 {
     /**
@@ -151,3 +156,9 @@ class Solution_fail
         return $answer;
     }
 }
+
+/**
+ * Next challenges:
+ * https://leetcode.com/problems/multiply-strings/
+ * https://leetcode.com/problems/add-to-array-form-of-integer/
+ */
