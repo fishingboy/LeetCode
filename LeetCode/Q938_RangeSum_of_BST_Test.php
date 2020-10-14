@@ -69,10 +69,10 @@ class Solution
                 $sum += $node->val;
             }
 
-            if ($node->left) {
+            if ($node->left && $node->val > $L) {
                 array_push($stack, $node->left);
             }
-            if ($node->right) {
+            if ($node->right && $node->val < $R) {
                 array_push($stack, $node->right);
             }
         }
