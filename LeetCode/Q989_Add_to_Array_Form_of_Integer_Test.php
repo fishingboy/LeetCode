@@ -62,9 +62,9 @@ class Solution
         while ($K || $i < $count) {
             $i++;
             $bit = $K % 10;
-            $sum = $A[$count - $i] + $bit + $remaining;
-            $answers[] = $sum % 10;
-            $remaining = intval($sum / 10);
+            $remaining = $A[$count - $i] + $bit + $remaining;
+            $answers[] = $remaining % 10;
+            $remaining = intval($remaining / 10);
             $K = intval($K / 10);
         }
 
