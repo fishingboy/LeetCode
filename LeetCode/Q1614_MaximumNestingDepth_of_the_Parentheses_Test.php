@@ -20,6 +20,20 @@ class Q1614_MaximumNestingDepth_of_the_Parentheses_Test extends TestCase
         $response = $this->solution->maxDepth($s);
         $this->assertEquals(3, $response);
     }
+
+    public function test_sample2()
+    {
+        $s = "(1)+((2))+(((3)))";
+        $response = $this->solution->maxDepth($s);
+        $this->assertEquals(3, $response);
+    }
+
+    public function test_sample3()
+    {
+        $s = "1+(2*3)/(2-1)";
+        $response = $this->solution->maxDepth($s);
+        $this->assertEquals(1, $response);
+    }
 }
 
 class Solution
@@ -36,8 +50,8 @@ class Solution
             $word = $s[$i];
             if ($word == "(") {
                 array_push($stack, $word);
-                if (count($stack) - 1 > $max) {
-                    $max = count($stack) - 1;
+                if (count($stack) > $max) {
+                    $max = count($stack);
                 }
             } else if ($word == ")") {
                 array_pop($stack);
