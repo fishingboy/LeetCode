@@ -53,10 +53,6 @@ class Q40_CombinationSumII_Test extends TestCase
 
 class Solution
 {
-    private $candidates;
-    private $count;
-    private $solutions;
-
     /**
      * @param Integer[] $candidates
      * @param Integer $target
@@ -65,33 +61,18 @@ class Solution
     public function combinationSum2($candidates, $target)
     {
         sort($candidates);
-        $this->candidates = $this->countCandidates($candidates);
-        $this->count = count($this->candidates);
-        $this->solutions = [];
-        $this->find($target, [], 0);
-        return $this->solutions;
-    }
+        $candidates = $this->countCandidates($candidates);
+        $count = count($candidates);
 
-    public function find($remaining, $output, $index)
-    {
-        for ($i=$index; $i < $this->count ;$i++) {
-            if  ($this->candidates[$i]['quota'] == 0) {
-                continue;
-            }
+        $solutions = [];
 
-            $item = $this->candidates[$i]['number'];
-            if ($item == $remaining) {
-                // find
-                $output[] = $item;
-                $this->solutions[] = $output;
-                break;
-            } else if ($item < $remaining) {
-                $new_output = array_merge($output, [$item]);
-                $this->candidates[$index]['quota']--;
-                $this->find($remaining - $item, $new_output, $i);
-                $this->candidates[$index]['quota']++;
-            }
+        $stack = [];
+        $remaining = $target, $output = [], $index = 0;
+        while (true) {
+            $item = $candidates[$index]['quota'];
         }
+
+        return $solutions;
     }
 
     /**
