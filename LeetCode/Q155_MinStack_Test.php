@@ -2,9 +2,6 @@
 namespace LeetCode\Q155;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @todo
- */
 class Q155_MinStack_Test extends TestCase
 {
     /**
@@ -19,21 +16,28 @@ class Q155_MinStack_Test extends TestCase
 
     public function testSample1()
     {
-        $x = 1;
+        $minStack = new MinStack();
+        $minStack->push(-2);
+        $minStack->push(0);
+        $minStack->push(-3);
 
-        $obj = $this->solution;
-        $obj->push($x);
-        $response = $obj->pop();
-        $this->assertEquals(1, $response);
-//        $ret_3 = $obj->top();
-//        $ret_4 = $obj->getMin();
+        $response = $minStack->getMin(); // return -3
+        $this->assertEquals(-3, $response);
+
+        $response = $minStack->pop();
+        $this->assertEquals(-3, $response);
+
+        $response = $minStack->top();    // return 0
+        $this->assertEquals(0, $response);
+
+        $response = $minStack->getMin(); // return -2
+        $this->assertEquals(-2, $response);
     }
 }
 
 class MinStack
 {
     private $stack;
-    private $i;
 
     /**
      * initialize your data structure here.
@@ -50,7 +54,6 @@ class MinStack
     function push($x)
     {
         $this->stack[] = $x;
-//        return 1;
     }
 
     /**
@@ -58,7 +61,7 @@ class MinStack
      */
     function pop()
     {
-        return 1;
+        return array_pop($this->stack);
     }
 
     /**
@@ -66,7 +69,7 @@ class MinStack
      */
     function top()
     {
-        return 1;
+        return $this->stack[count($this->stack) - 1];
     }
 
     /**
@@ -74,6 +77,6 @@ class MinStack
      */
     function getMin()
     {
-        return 1;
+        return min($this->stack);
     }
 }
