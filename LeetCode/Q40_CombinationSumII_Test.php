@@ -67,7 +67,7 @@ class Solution
         $solutions = [];
 
         $stack = [];
-        $remaining = $target, $output = [], $index = 0;
+        $remaining = $target; $output = [];$index = 0;
         while (true) {
             $item = $candidates[$index]['quota'];
         }
