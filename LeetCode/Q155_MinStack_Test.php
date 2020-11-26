@@ -27,7 +27,9 @@ class Q155_MinStack_Test extends TestCase
 
 class MinStack
 {
-    private $stack;
+    private $stack = [];
+    private $min_stack = [];
+    private $curr_min = null;
 
     /**
      * initialize your data structure here.
@@ -43,6 +45,13 @@ class MinStack
      */
     function push($x)
     {
+        if ($this->curr_min === null || $x < $this->curr_min) {
+            $this->curr_min    = $x;
+            $this->min_stack[] = $x;
+        } else {
+            $this->min_stack[] = $this->curr_min;
+        }
+
         $this->stack[] = $x;
     }
 
@@ -51,6 +60,7 @@ class MinStack
      */
     function pop()
     {
+        array_pop($this->min_stack);
         return array_pop($this->stack);
     }
 
@@ -67,6 +77,6 @@ class MinStack
      */
     function getMin()
     {
-        return min($this->stack);
+        return $this->min_stack[count($this->min_stack) - 1];
     }
 }
