@@ -42,6 +42,17 @@ class Q155_MinStack_Test extends TestCase
         $this->assertArraySubset([null,null,null,null,2147483647,null,2147483646,null,2147483646,null,null,2147483647,2147483647,null,-2147483648,-2147483648,null,2147483647], $response);
     }
 
+    public function test_WA2()
+    {
+        $actions = ["MinStack","push","push","getMin","getMin","push","getMin","getMin","top","getMin","pop","push","push","getMin","push","pop","top","getMin","pop"];
+        $params = [[],[-10],[14],[],[],[-20],[],[],[],[],[],[10],[-7],[],[-7],[],[],[],[]];
+        $response = $this->operation($actions, $params);
+
+        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
+
+        $this->assertArraySubset([null,null,null,-10,-10,null,-20,-20,-20,-20,null,null,null,-10,null,null,-7,-10,null], $response);
+    }
+
     public function operation($actions, $params)
     {
         $minStack = new MinStack();
@@ -114,6 +125,8 @@ class MinStack
 
         if (count($this->stack) == 0) {
             $this->curr_min = null;
+        } else {
+            $this->curr_min = $this->getMin();
         }
 
         return NULL;
