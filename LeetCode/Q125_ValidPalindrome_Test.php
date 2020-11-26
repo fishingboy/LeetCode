@@ -73,7 +73,7 @@ class Solution
         $output = "";
         $len = strlen($s);
         for ($i=0; $i<$len; $i++) {
-            if (false !== strpos("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", $s[$i])) {
+            if (preg_match("/[0-9A-Z]/", $s[$i])) {
                 $output .= $s[$i];
             }
         }
