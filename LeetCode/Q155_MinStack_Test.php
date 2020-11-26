@@ -4,16 +4,6 @@ use PHPUnit\Framework\TestCase;
 
 class Q155_MinStack_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp()
-    {
-        $this->solution = new MinStack();
-    }
-
     public function testSample1()
     {
         $minStack = new MinStack();
