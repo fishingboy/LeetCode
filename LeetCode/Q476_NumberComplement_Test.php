@@ -44,7 +44,7 @@ class Solution
                 $complement += $base;
             }
 
-            $num = intval($num/2);
+            $num = (int)($num/2);
             $base *= 2;
         }
         return $complement;
