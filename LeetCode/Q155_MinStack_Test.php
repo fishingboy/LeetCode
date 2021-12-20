@@ -28,7 +28,7 @@ class Q155_MinStack_Test extends TestCase
         $actions = ["MinStack","push","push","push","getMin","pop","top","getMin"];
         $params = [[],[-2],[0],[-3],[],[],[],[]];
         $response = $this->operation($actions, $params);
-        $this->assertArraySubset([null,null,null,null,-3,null,0,-2], $response);
+        $this->assertEquals([null,null,null,null,-3,null,0,-2], $response);
     }
 
     public function test_WA1()
@@ -39,7 +39,7 @@ class Q155_MinStack_Test extends TestCase
 
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
 
-        $this->assertArraySubset([null,null,null,null,2147483647,null,2147483646,null,2147483646,null,null,2147483647,2147483647,null,-2147483648,-2147483648,null,2147483647], $response);
+        $this->assertEquals([null,null,null,null,2147483647,null,2147483646,null,2147483646,null,null,2147483647,2147483647,null,-2147483648,-2147483648,null,2147483647], $response);
     }
 
     public function test_WA2()
@@ -50,7 +50,7 @@ class Q155_MinStack_Test extends TestCase
 
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
 
-        $this->assertArraySubset([null,null,null,-10,-10,null,-20,-20,-20,-20,null,null,null,-10,null,null,-7,-10,null], $response);
+        $this->assertEquals([null,null,null,-10,-10,null,-20,-20,-20,-20,null,null,null,-10,null,null,-7,-10,null], $response);
     }
 
     public function operation($actions, $params)

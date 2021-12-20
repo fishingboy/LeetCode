@@ -9,7 +9,7 @@ class Q17_LetterCombinationsOf_a_PhoneNumber_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -19,7 +19,7 @@ class Q17_LetterCombinationsOf_a_PhoneNumber_Test extends TestCase
         $digits = "23";
         $response = $this->solution->letterCombinations($digits);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset(["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"], $response);
+        $this->assertEquals(["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"], $response);
     }
 
     public function test_WA1()
@@ -27,7 +27,7 @@ class Q17_LetterCombinationsOf_a_PhoneNumber_Test extends TestCase
         $digits = "";
         $response = $this->solution->letterCombinations($digits);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([], $response);
+        $this->assertEquals([], $response);
     }
 }
 

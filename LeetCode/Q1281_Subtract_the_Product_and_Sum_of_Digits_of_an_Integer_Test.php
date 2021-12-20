@@ -9,7 +9,7 @@ class Q1281_Subtract_the_Product_and_Sum_of_Digits_of_an_Integer_Test extends Te
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }

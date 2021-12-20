@@ -11,7 +11,7 @@ class Q83_RemoveDuplicates_from_SortedList_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -22,7 +22,7 @@ class Q83_RemoveDuplicates_from_SortedList_Test extends TestCase
         $head = $this->arrayToListNode($nums);
         $response = $this->solution->deleteDuplicates($head);
         $array = $this->listNodeToArray($response);
-        $this->assertArraySubset([1,2,3], $array);
+        $this->assertEquals([1,2,3], $array);
     }
 
     public function test_1()
@@ -31,7 +31,7 @@ class Q83_RemoveDuplicates_from_SortedList_Test extends TestCase
         $head = $this->arrayToListNode($nums);
         $response = $this->solution->deleteDuplicates($head);
         $array = $this->listNodeToArray($response);
-        $this->assertArraySubset([3], $array);
+        $this->assertEquals([3], $array);
     }
 
     public function test_WA1()
@@ -40,7 +40,7 @@ class Q83_RemoveDuplicates_from_SortedList_Test extends TestCase
         $head = $this->arrayToListNode($nums);
         $response = $this->solution->deleteDuplicates($head);
         $array = $this->listNodeToArray($response);
-        $this->assertArraySubset([0], $array);
+        $this->assertEquals([0], $array);
     }
 
     /**

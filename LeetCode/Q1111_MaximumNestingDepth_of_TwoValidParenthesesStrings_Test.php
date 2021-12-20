@@ -9,7 +9,7 @@ class Q1111_MaximumNestingDepth_of_TwoValidParenthesesStrings_Test extends TestC
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -18,21 +18,21 @@ class Q1111_MaximumNestingDepth_of_TwoValidParenthesesStrings_Test extends TestC
     {
         $seq = "(()())";
         $response = $this->solution->maxDepthAfterSplit($seq);
-        $this->assertArraySubset([0,1,1,1,1,0], $response);
+        $this->assertEquals([0,1,1,1,1,0], $response);
     }
 
     public function testSample2()
     {
         $seq = "()(())()";
         $response = $this->solution->maxDepthAfterSplit($seq);
-        $this->assertArraySubset([0,0,0,1,1,0,1,1], $response);
+        $this->assertEquals([0,0,0,1,1,0,1,1], $response);
     }
 
     public function test_WA1()
     {
         $seq = "((()))";
         $response = $this->solution->maxDepthAfterSplit($seq);
-        $this->assertArraySubset([0,0,1,0,0,1], $response);
+        $this->assertEquals([0,0,1,0,0,1], $response);
     }
 }
 

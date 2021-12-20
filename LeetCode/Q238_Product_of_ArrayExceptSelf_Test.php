@@ -11,7 +11,7 @@ class Q238_Product_of_ArrayExceptSelf_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -21,7 +21,7 @@ class Q238_Product_of_ArrayExceptSelf_Test extends TestCase
         $nums = [1,2,3,4];
         $response = $this->solution->productExceptSelf($nums);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([24,12,8,6], $response);
+        $this->assertEquals([24,12,8,6], $response);
     }
 
     public function test_WA1()
@@ -29,7 +29,7 @@ class Q238_Product_of_ArrayExceptSelf_Test extends TestCase
         $nums = [0,0];
         $response = $this->solution->productExceptSelf($nums);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([0,0], $response);
+        $this->assertEquals([0,0], $response);
     }
 
     public function test_WA2()
@@ -37,7 +37,7 @@ class Q238_Product_of_ArrayExceptSelf_Test extends TestCase
         $nums = [1,0];
         $response = $this->solution->productExceptSelf($nums);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([0,1], $response);
+        $this->assertEquals([0,1], $response);
     }
 }
 

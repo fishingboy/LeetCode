@@ -9,7 +9,7 @@ class Q119_Pascal_Triangle_II_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -18,7 +18,7 @@ class Q119_Pascal_Triangle_II_Test extends TestCase
     {
         $response = $this->solution->getRow(3);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([1,3,3,1],$response);
+        $this->assertEquals([1,3,3,1],$response);
     }
 
 }

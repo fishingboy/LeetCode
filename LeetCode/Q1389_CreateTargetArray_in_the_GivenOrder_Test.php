@@ -9,7 +9,7 @@ class Q1389_CreateTargetArray_in_the_GivenOrder_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -18,14 +18,14 @@ class Q1389_CreateTargetArray_in_the_GivenOrder_Test extends TestCase
     {
         $nums = [0,1,2,3,4]; $index = [0,1,2,2,1];
         $response = $this->solution->createTargetArray($nums, $index);
-        $this->assertArraySubset([0,4,1,3,2], $response);
+        $this->assertEquals([0,4,1,3,2], $response);
     }
 
     public function testSample2()
     {
         $nums = [1,2,3,4,0]; $index = [0,1,2,3,0];
         $response = $this->solution->createTargetArray($nums, $index);
-        $this->assertArraySubset([0,1,2,3,4], $response);
+        $this->assertEquals([0,1,2,3,4], $response);
     }
 }
 

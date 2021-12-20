@@ -11,7 +11,7 @@ class Q1365_HowManyNumbersAreSmallerThanTheCurrentNumber_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -20,21 +20,21 @@ class Q1365_HowManyNumbersAreSmallerThanTheCurrentNumber_Test extends TestCase
     {
        $nums = [8,1,2,2,3];
         $response = $this->solution->smallerNumbersThanCurrent($nums);
-        $this->assertArraySubset([4,0,1,1,3], $response);
+        $this->assertEquals([4,0,1,1,3], $response);
     }
 
     public function test_sample2()
     {
         $nums = [7,7,7,7];
         $response = $this->solution->smallerNumbersThanCurrent($nums);
-        $this->assertArraySubset([0,0,0,0], $response);
+        $this->assertEquals([0,0,0,0], $response);
     }
 
     public function test_boundary1()
     {
         $nums = [7];
         $response = $this->solution->smallerNumbersThanCurrent($nums);
-        $this->assertArraySubset([0], $response);
+        $this->assertEquals([0], $response);
     }
 }
 

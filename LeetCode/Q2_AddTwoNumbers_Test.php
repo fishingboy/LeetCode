@@ -10,7 +10,7 @@ class Q2_AddTwoNumbers_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }

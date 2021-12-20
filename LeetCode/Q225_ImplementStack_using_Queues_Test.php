@@ -4,7 +4,7 @@ use PHPUnit\Framework\TestCase;
 
 class Q225_ImplementStack_using_Queues_Test extends TestCase
 {
-    public function setUp()
+    public function setUp() : void
     {
     }
 

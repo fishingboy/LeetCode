@@ -11,7 +11,7 @@ class Q1470_ShuffleTheArray_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -21,7 +21,7 @@ class Q1470_ShuffleTheArray_Test extends TestCase
         $nums = [2,5,1,3,4,7]; $n = 3;
         $response = $this->solution->shuffle($nums, $n);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([2,3,5,4,1,7], $response);
+        $this->assertEquals([2,3,5,4,1,7], $response);
     }
 }
 

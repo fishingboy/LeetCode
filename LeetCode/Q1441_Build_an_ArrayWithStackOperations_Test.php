@@ -9,7 +9,7 @@ class Q1441_Build_an_ArrayWithStackOperations_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -19,7 +19,7 @@ class Q1441_Build_an_ArrayWithStackOperations_Test extends TestCase
         $target = [1,3];
         $n = 3;
         $response = $this->solution->buildArray($target, $n);
-        $this->assertArraySubset(["Push","Push","Pop","Push"], $response);
+        $this->assertEquals(["Push","Push","Pop","Push"], $response);
     }
 
     public function testSample2()
@@ -27,7 +27,7 @@ class Q1441_Build_an_ArrayWithStackOperations_Test extends TestCase
         $target = [1,2,3];
         $n = 3;
         $response = $this->solution->buildArray($target, $n);
-        $this->assertArraySubset(["Push","Push","Push"], $response);
+        $this->assertEquals(["Push","Push","Push"], $response);
     }
 
     public function testSample3()
@@ -35,7 +35,7 @@ class Q1441_Build_an_ArrayWithStackOperations_Test extends TestCase
         $target = [1,2];
         $n = 4;
         $response = $this->solution->buildArray($target, $n);
-        $this->assertArraySubset(["Push","Push"], $response);
+        $this->assertEquals(["Push","Push"], $response);
     }
 }
 

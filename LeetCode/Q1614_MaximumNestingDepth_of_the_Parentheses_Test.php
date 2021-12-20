@@ -9,7 +9,7 @@ class Q1614_MaximumNestingDepth_of_the_Parentheses_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }

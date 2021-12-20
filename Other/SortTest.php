@@ -7,14 +7,14 @@ class SortTest extends TestCase
     {
         $nums = [5,9,44,3];
         $response = select_sort($nums);
-        $this->assertArraySubset([3,5,9,44], $response);
+        $this->assertEquals([3,5,9,44], $response);
     }
 
     public function testSample2()
     {
         $nums = [5,9,44,3];
         $response = bubble_sort($nums);
-        $this->assertArraySubset([3,5,9,44], $response);
+        $this->assertEquals([3,5,9,44], $response);
     }
 }
 

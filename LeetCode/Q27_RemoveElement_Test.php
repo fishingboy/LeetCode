@@ -9,7 +9,7 @@ class Q27_RemoveElement_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -20,7 +20,7 @@ class Q27_RemoveElement_Test extends TestCase
         $val = 3;
         $response = $this->solution->removeElement($array, $val);
         $this->assertEquals(2, $response);
-        $this->assertArraySubset([2,2], $array);
+        $this->assertEquals([2,2], $array);
     }
 
     public function testSample2()
@@ -29,7 +29,7 @@ class Q27_RemoveElement_Test extends TestCase
         $val = 2;
         $response = $this->solution->removeElement($array, $val);
         $this->assertEquals(5, $response);
-        $this->assertArraySubset([0,1,3,0,4], $array);
+        $this->assertEquals([0,1,3,0,4], $array);
     }
 }
 

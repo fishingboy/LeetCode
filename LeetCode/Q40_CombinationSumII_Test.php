@@ -9,7 +9,7 @@ class Q40_CombinationSumII_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -18,7 +18,7 @@ class Q40_CombinationSumII_Test extends TestCase
     {
         $candidates = [1,2,1,2,2];;
         $response = $this->solution->countCandidates($candidates);
-        $this->assertArraySubset([
+        $this->assertEquals([
             [
                 "number" => 1,
                 "quota" => 2,
@@ -34,7 +34,7 @@ class Q40_CombinationSumII_Test extends TestCase
     {
         $candidates = [10,1,2,7,6,1,5]; $target = 8;
         $response = $this->solution->combinationSum2($candidates, $target);
-        $this->assertArraySubset([
+        $this->assertEquals([
             [1,1,6],
             [1,2,5],
             [1,7],
@@ -46,7 +46,7 @@ class Q40_CombinationSumII_Test extends TestCase
     {
         $candidates = [1,2]; $target = 4;
         $response = $this->solution->combinationSum2($candidates, $target);
-        $this->assertArraySubset([], $response);
+        $this->assertEquals([], $response);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
     }
 }

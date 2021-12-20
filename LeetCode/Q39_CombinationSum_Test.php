@@ -9,7 +9,7 @@ class Q39_CombinationSum_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -19,7 +19,7 @@ class Q39_CombinationSum_Test extends TestCase
         $candidates = [2,3,6,7];
         $target = 7;
         $response = $this->solution->combinationSum($candidates, $target);
-        $this->assertArraySubset([[2,2,3],[7]], $response);
+        $this->assertEquals([[2,2,3],[7]], $response);
     }
 }
 

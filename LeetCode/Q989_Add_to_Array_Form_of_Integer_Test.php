@@ -9,7 +9,7 @@ class Q989_Add_to_Array_Form_of_Integer_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -19,7 +19,7 @@ class Q989_Add_to_Array_Form_of_Integer_Test extends TestCase
         $A = [1,2,0,0]; $K = 34;
         $response = $this->solution->addToArrayForm($A, $K);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([1,2,3,4], $response);
+        $this->assertEquals([1,2,3,4], $response);
     }
 
     public function testSample2()
@@ -27,7 +27,7 @@ class Q989_Add_to_Array_Form_of_Integer_Test extends TestCase
         $A = [2,7,4]; $K = 181;
         $response = $this->solution->addToArrayForm($A, $K);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([4,5,5], $response);
+        $this->assertEquals([4,5,5], $response);
     }
 
     public function testSample3()
@@ -35,7 +35,7 @@ class Q989_Add_to_Array_Form_of_Integer_Test extends TestCase
         $A = [2,1,5]; $K = 806;
         $response = $this->solution->addToArrayForm($A, $K);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([1,0,2,1], $response);
+        $this->assertEquals([1,0,2,1], $response);
     }
 
     public function testSample4()
@@ -43,7 +43,7 @@ class Q989_Add_to_Array_Form_of_Integer_Test extends TestCase
         $A = [9,9,9,9,9,9,9,9,9,9]; $K = 1;
         $response = $this->solution->addToArrayForm($A, $K);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([1,0,0,0,0,0,0,0,0,0,0], $response);
+        $this->assertEquals([1,0,0,0,0,0,0,0,0,0,0], $response);
     }
 }
 

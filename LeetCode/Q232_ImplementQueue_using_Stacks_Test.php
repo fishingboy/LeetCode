@@ -4,7 +4,7 @@ use PHPUnit\Framework\TestCase;
 
 class Q232_ImplementQueue_using_Stacks_Test extends TestCase
 {
-    public function setUp()
+    public function setUp() : void
     {
     }
 

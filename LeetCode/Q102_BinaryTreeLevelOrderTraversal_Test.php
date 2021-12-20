@@ -11,7 +11,7 @@ class Q102_BinaryTreeLevelOrderTraversal_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -22,7 +22,7 @@ class Q102_BinaryTreeLevelOrderTraversal_Test extends TestCase
         $root = $this->buildTree($tree);
         $response = $this->solution->levelOrder($root);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([
+        $this->assertEquals([
             [3],
             [9,20],
             [15,7]
@@ -35,7 +35,7 @@ class Q102_BinaryTreeLevelOrderTraversal_Test extends TestCase
         $root = $this->buildTree($tree);
         $response = $this->solution->levelOrder($root);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([
+        $this->assertEquals([
             [1],
             [2,3],
         ], $response);
@@ -47,7 +47,7 @@ class Q102_BinaryTreeLevelOrderTraversal_Test extends TestCase
         $root = $this->buildTree($tree);
         $response = $this->solution->levelOrder($root);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([
+        $this->assertEquals([
             [1],
             [2],
         ], $response);
@@ -59,7 +59,7 @@ class Q102_BinaryTreeLevelOrderTraversal_Test extends TestCase
         $root = $this->buildTree($tree);
         $response = $this->solution->levelOrder($root);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([
+        $this->assertEquals([
         ], $response);
     }
 

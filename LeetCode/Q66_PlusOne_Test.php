@@ -9,7 +9,7 @@ class Q66_PlusOne_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -18,28 +18,28 @@ class Q66_PlusOne_Test extends TestCase
     {
         $digits = [1,2,3];
         $response = $this->solution->plusOne($digits);
-        $this->assertArraySubset([1,2,4], $response);
+        $this->assertEquals([1,2,4], $response);
     }
 
     public function testSample2()
     {
         $digits = [1,2,9];
         $response = $this->solution->plusOne($digits);
-        $this->assertArraySubset([1,3,0], $response);
+        $this->assertEquals([1,3,0], $response);
     }
 
     public function testSample3()
     {
         $digits = [9, 9, 9];
         $response = $this->solution->plusOne($digits);
-        $this->assertArraySubset([1, 0, 0, 0], $response);
+        $this->assertEquals([1, 0, 0, 0], $response);
     }
 
     public function test_wa1()
     {
         $digits = [9];
         $response = $this->solution->plusOne($digits);
-        $this->assertArraySubset([1, 0], $response);
+        $this->assertEquals([1, 0], $response);
     }
 }
 

@@ -11,7 +11,7 @@ class Q21_MergeTwoSortedLists_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -28,7 +28,7 @@ class Q21_MergeTwoSortedLists_Test extends TestCase
         $this->assertNull($node);
 
         $array = $this->listNodeToArray($l1);
-        $this->assertArraySubset([1,2,3], $array);
+        $this->assertEquals([1,2,3], $array);
     }
     
     public function testExample()
@@ -39,7 +39,7 @@ class Q21_MergeTwoSortedLists_Test extends TestCase
         $this->assertIsObject($response);
 
         $array = $this->listNodeToArray($response);
-        $this->assertArraySubset([1, 1, 2, 3, 4, 4], $array);
+        $this->assertEquals([1, 1, 2, 3, 4, 4], $array);
     }
 
     public function testExample2()
@@ -50,7 +50,7 @@ class Q21_MergeTwoSortedLists_Test extends TestCase
         $this->assertIsObject($response);
 
         $array = $this->listNodeToArray($response);
-        $this->assertArraySubset([1], $array);
+        $this->assertEquals([1], $array);
     }
 
     public function testExample3()
@@ -61,7 +61,7 @@ class Q21_MergeTwoSortedLists_Test extends TestCase
         $this->assertIsObject($response);
 
         $array = $this->listNodeToArray($response);
-        $this->assertArraySubset([-10,-4,-4,0,0,1,4,6], $array);
+        $this->assertEquals([-10,-4,-4,0,0,1,4,6], $array);
     }
 
     /**

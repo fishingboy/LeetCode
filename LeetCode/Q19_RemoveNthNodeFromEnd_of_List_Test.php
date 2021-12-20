@@ -11,7 +11,7 @@ class Q19_RemoveNthNodeFromEnd_of_List_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -23,7 +23,7 @@ class Q19_RemoveNthNodeFromEnd_of_List_Test extends TestCase
         $n = 2;
         $response = $this->solution->removeNthFromEnd($head, $n);
         $array = $this->listNodeToArray($response);
-        $this->assertArraySubset([1,2,3,5], $array);
+        $this->assertEquals([1,2,3,5], $array);
     }
 
     public function test_1()
@@ -33,7 +33,7 @@ class Q19_RemoveNthNodeFromEnd_of_List_Test extends TestCase
         $n = 1;
         $response = $this->solution->removeNthFromEnd($head, $n);
         $array = $this->listNodeToArray($response);
-        $this->assertArraySubset([], $array);
+        $this->assertEquals([], $array);
     }
 
     public function test_2()
@@ -43,7 +43,7 @@ class Q19_RemoveNthNodeFromEnd_of_List_Test extends TestCase
         $n = 1;
         $response = $this->solution->removeNthFromEnd($head, $n);
         $array = $this->listNodeToArray($response);
-        $this->assertArraySubset([1], $array);
+        $this->assertEquals([1], $array);
     }
 
     public function test_wa1()
@@ -53,7 +53,7 @@ class Q19_RemoveNthNodeFromEnd_of_List_Test extends TestCase
         $n = 2;
         $response = $this->solution->removeNthFromEnd($head, $n);
         $array = $this->listNodeToArray($response);
-        $this->assertArraySubset([2], $array);
+        $this->assertEquals([2], $array);
     }
 
     /**

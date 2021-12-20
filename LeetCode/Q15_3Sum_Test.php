@@ -9,7 +9,7 @@ class Q15_3Sum_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -19,7 +19,7 @@ class Q15_3Sum_Test extends TestCase
         $nums = [-1, 0, 1, 2, -1, -4];
         $response = $this->solution->threeSum($nums);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([
+        $this->assertEquals([
             [-1, -1, 2],
             [-1, 0, 1],
         ], $response);

@@ -9,7 +9,7 @@ class Q26_RemoveDuplicatesFromSortedArray_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -19,7 +19,7 @@ class Q26_RemoveDuplicatesFromSortedArray_Test extends TestCase
         $array = [1,1,2];
         $response = $this->solution->removeDuplicates($array);
         $this->assertEquals(2, $response);
-        $this->assertArraySubset([1,2], $array);
+        $this->assertEquals([1,2], $array);
     }
 
     public function testSample2()
@@ -27,7 +27,7 @@ class Q26_RemoveDuplicatesFromSortedArray_Test extends TestCase
         $array = [0,0,1,1,1,2,2,3,3,4];
         $response = $this->solution->removeDuplicates($array);
         $this->assertEquals(5, $response);
-        $this->assertArraySubset([0,1,2,3,4], $array);
+        $this->assertEquals([0,1,2,3,4], $array);
     }
 }
 

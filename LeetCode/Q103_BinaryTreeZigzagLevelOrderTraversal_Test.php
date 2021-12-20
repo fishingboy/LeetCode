@@ -11,7 +11,7 @@ class Q103_BinaryTreeZigzagLevelOrderTraversal_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -22,7 +22,7 @@ class Q103_BinaryTreeZigzagLevelOrderTraversal_Test extends TestCase
         $root = $this->buildTree($tree);
         $response = $this->solution->zigzagLevelOrder($root);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([
+        $this->assertEquals([
             [3],
             [20,9],
             [15,7]
@@ -35,7 +35,7 @@ class Q103_BinaryTreeZigzagLevelOrderTraversal_Test extends TestCase
         $root = $this->buildTree($tree);
         $response = $this->solution->zigzagLevelOrder($root);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([
+        $this->assertEquals([
             [1],
             [3,2],
         ], $response);
@@ -47,7 +47,7 @@ class Q103_BinaryTreeZigzagLevelOrderTraversal_Test extends TestCase
         $root = $this->buildTree($tree);
         $response = $this->solution->zigzagLevelOrder($root);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([
+        $this->assertEquals([
             [1],
             [2],
         ], $response);
@@ -59,7 +59,7 @@ class Q103_BinaryTreeZigzagLevelOrderTraversal_Test extends TestCase
         $root = $this->buildTree($tree);
         $response = $this->solution->zigzagLevelOrder($root);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([
+        $this->assertEquals([
             [1],
             [3,2],
             [4,5,6,7],
@@ -74,7 +74,7 @@ class Q103_BinaryTreeZigzagLevelOrderTraversal_Test extends TestCase
         $root = $this->buildTree($tree);
         $response = $this->solution->zigzagLevelOrder($root);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([[0],[-3,-4],[-1,8],[-9,3],[-2,4]], $response);
+        $this->assertEquals([[0],[-3,-4],[-1,8],[-9,3],[-2,4]], $response);
     }
 
     public function buildTree($nums)

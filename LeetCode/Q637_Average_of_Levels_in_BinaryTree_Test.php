@@ -11,7 +11,7 @@ class Q637_Average_of_Levels_in_BinaryTree_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
@@ -22,7 +22,7 @@ class Q637_Average_of_Levels_in_BinaryTree_Test extends TestCase
         $root = $this->buildTree($tree);
         $response = $this->solution->averageOfLevels($root);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([3, 14.5, 11], $response);
+        $this->assertEquals([3, 14.5, 11], $response);
     }
 
     public function test_1()
@@ -31,7 +31,7 @@ class Q637_Average_of_Levels_in_BinaryTree_Test extends TestCase
         $root = $this->buildTree($tree);
         $response = $this->solution->averageOfLevels($root);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([
+        $this->assertEquals([
             1,
             2.5,
         ], $response);
@@ -43,7 +43,7 @@ class Q637_Average_of_Levels_in_BinaryTree_Test extends TestCase
         $root = $this->buildTree($tree);
         $response = $this->solution->averageOfLevels($root);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([
+        $this->assertEquals([
             1,
             2,
         ], $response);
@@ -55,7 +55,7 @@ class Q637_Average_of_Levels_in_BinaryTree_Test extends TestCase
         $root = $this->buildTree($tree);
         $response = $this->solution->averageOfLevels($root);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertArraySubset([
+        $this->assertEquals([
         ], $response);
     }
 

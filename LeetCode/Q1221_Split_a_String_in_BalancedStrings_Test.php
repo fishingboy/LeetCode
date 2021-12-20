@@ -9,7 +9,7 @@ class Q1221_Split_a_String_in_BalancedStrings_Test extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }

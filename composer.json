@@ -3,7 +3,7 @@
   "name": "fishingboy/LeetCode",
   "type": "project",
   "require": {
-    "php": ">=7.1",
+    "php": ">=7.3",
     "phpunit/phpunit": "^9.5"
   },
   "autoload": {

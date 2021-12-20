@@ -9,7 +9,7 @@ class Q70_ClimbingStairs extends TestCase
      */
     private $solution;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->solution = new Solution();
     }
