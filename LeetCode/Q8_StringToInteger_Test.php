@@ -48,6 +48,13 @@ class Q8_StringToInteger_Test extends TestCase
         $response = $this->solution->myAtoi($s);
         $this->assertEquals(-115579378, $response);
     }
+
+    public function test_WA3()
+    {
+        $s = "words and 987";
+        $response = $this->solution->myAtoi($s);
+        $this->assertEquals(0, $response);
+    }
 }
 
 class Solution
@@ -58,7 +65,10 @@ class Solution
      */
     function myAtoi(string $str): int
     {
-        $answer = intval($str);
+        preg_match("/[\-0-9.+]+/", $str, $matches);
+        $str_number = $matches[0];
+
+        $answer = intval($str_number);
         if ($answer > pow(2, 31) -1) {
             return pow(2, 31) -1;
         } else if ($answer <  - 1 * pow(2, 31)) {
