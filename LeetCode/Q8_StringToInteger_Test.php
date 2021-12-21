@@ -55,6 +55,26 @@ class Q8_StringToInteger_Test extends TestCase
         $response = $this->solution->myAtoi($s);
         $this->assertEquals(0, $response);
     }
+
+    public function test_WA4()
+    {
+        $s = "0  123";
+        $response = $this->solution->myAtoi($s);
+        $this->assertEquals(0, $response);
+    }
+
+    public function test_WA5()
+    {
+        $s = " b11228552307";
+        $response = $this->solution->myAtoi($s);
+        $this->assertEquals(0, $response);
+    }
+
+    public function test_getNumberString()
+    {
+        $this->assertEquals("-115579378", $this->solution->getNumberString("   -115579378e25"));
+        $this->assertEquals("", $this->solution->getNumberString("words and 987"));
+    }
 }
 
 class Solution
@@ -63,18 +83,42 @@ class Solution
      * @param String $str
      * @return Integer
      */
-    function myAtoi(string $str): int
+    public function myAtoi(string $str): int
     {
-        preg_match("/[\-0-9.+]+/", $str, $matches);
-        $str_number = $matches[0];
+        $number_str = $this->getNumberString($str);
 
-        $answer = intval($str_number);
+        $answer = intval($number_str);
         if ($answer > pow(2, 31) -1) {
             return pow(2, 31) -1;
         } else if ($answer <  - 1 * pow(2, 31)) {
             return - 1 * pow(2, 31);
         } else {
             return $answer;
+        }
+    }
+
+    public function getNumberString($str)
+    {
+        $word = "";
+        $count = 0;
+        for ($i=0; $i <strlen($str) && $count < 2; $i++) {
+            if ($str[$i] == ' ') {
+                if ($word != "") {
+                    if (preg_match("/^[\-0-9.+]+/", $word, $matches)) {
+                        return $matches[0];
+                    }
+                    $word = "";
+                    $count++;
+                }
+            } else {
+                $word .= $str[$i];
+            }
+        }
+
+        if (preg_match("/^[\-0-9.+]+/", $word, $matches)) {
+            return $matches[0];
+        } else {
+            return "";
         }
     }
 }
