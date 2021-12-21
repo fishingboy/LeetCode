@@ -80,6 +80,22 @@ class Q8_StringToInteger_Test extends TestCase
 class Solution
 {
     /**
+     * @var int
+     */
+    private $min;
+
+    /**
+     * @var int
+     */
+    private $max;
+
+    public function __construct()
+    {
+        $this->min = - 1 * pow(2, 31);
+        $this->max = pow(2, 31) -1;
+    }
+
+    /**
      * @param String $str
      * @return Integer
      */
@@ -88,10 +104,10 @@ class Solution
         $number_str = $this->getNumberString($str);
 
         $answer = intval($number_str);
-        if ($answer > pow(2, 31) -1) {
-            return pow(2, 31) -1;
-        } else if ($answer <  - 1 * pow(2, 31)) {
-            return - 1 * pow(2, 31);
+        if ($answer > $this->max) {
+            return $this->max;
+        } else if ($answer < $this->min) {
+            return $this->min;
         } else {
             return $answer;
         }
