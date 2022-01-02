@@ -15,18 +15,16 @@ use PHPUnit\Framework\TestCase;
  * the sum of 1,11,20,35 is = 67 the sum of 8,16,21,22 is = 67
  * Also the size of the two arrays are equal to arr.length /2
  */
-
 class SplitArrayTest extends TestCase
 {
     /**
-     * @var Solution_1
+     * @var SolutionRecursive
      */
     private $solution;
 
     protected function setUp(): void
     {
-        $this->solution = new Solution_1();
-
+        $this->solution = new SolutionRecursive();
     }
 
     public function testSample1()
@@ -38,34 +36,39 @@ class SplitArrayTest extends TestCase
     }
 }
 
-class Solution_1
+class SolutionRecursive
 {
     private $answer = [];
 
-    public function split($nums): array
+    /**
+     * @param $nums
+     * @return array|null
+     */
+    public function split($nums)
     {
-        sort($nums);
+        // 以字母順序排序
+        usort($nums, function ($a, $b) {
+            return strcmp("$a",  "$b");
+        });
+
         $avg = array_sum($nums) / 2;
-        echo "<pre>avg = " . print_r($avg, true) . "</pre>\n";
-        $this->find($nums, $avg);
-        return $this->answer;
+        $this->findAll($nums, $avg);
+        return $this->answer[0] ?? null;
     }
 
-    public function find($nums, $sum = 0, $answer = [])
+    public function findAll($nums, $sum = 0, $answer = []) : void
     {
         foreach ($nums as $i => $num) {
             if ($sum == $num) {
+                // 找到答案
                 $answer[] = $num;
                 $this->answer[] = $answer;
             } else if ($sum > $num) {
+                // 繼續往下遞迴
                 $new_answer = array_merge($answer, [$num]);
                 $new_nums = array_slice($nums, $i+1, count($nums) - $i - 1);
-                $this->find($new_nums, $sum - $num, $new_answer);
+                $this->findAll($new_nums, $sum - $num, $new_answer);
             }
-//            if ($this->answer) {
-//                return $answer;
-//            }
         }
-        return [];
     }
 }
