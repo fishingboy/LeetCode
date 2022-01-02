@@ -17,20 +17,11 @@ use PHPUnit\Framework\TestCase;
  */
 class SplitArrayTest extends TestCase
 {
-    /**
-     * @var SolutionRecursive
-     */
-    private $solution;
-
-    protected function setUp(): void
-    {
-        $this->solution = new SolutionRecursive();
-    }
-
-    public function testSample1()
+    public function testSampleRecursive()
     {
         $nums = [16,22,35,8,20,1,21,11];
-        $response = $this->solution->split($nums);
+        $solution = new SolutionRecursive();
+        $response = $solution->split($nums);
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
         $this->assertEquals([1,11,20,35], $response);
     }
@@ -51,8 +42,13 @@ class SolutionRecursive
             return strcmp("$a",  "$b");
         });
 
+        // 算出平均值
         $avg = array_sum($nums) / 2;
+
+        // 找出所有組合
         $this->findAll($nums, $avg);
+
+        // 回傳第一組答案
         return $this->answer[0] ?? null;
     }
 
@@ -66,7 +62,7 @@ class SolutionRecursive
             } else if ($sum > $num) {
                 // 繼續往下遞迴
                 $new_answer = array_merge($answer, [$num]);
-                $new_nums = array_slice($nums, $i+1, count($nums) - $i - 1);
+                $new_nums = array_slice($nums, $i + 1, count($nums) - $i - 1);
                 $this->findAll($new_nums, $sum - $num, $new_answer);
             }
         }
