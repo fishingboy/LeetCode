@@ -32,10 +32,11 @@ class SolutionRecursive
     private $answer = [];
 
     /**
-     * @param $nums
-     * @return array|null
+     * 切成總合相等兩個陣列
+     * @param array $nums
+     * @return array
      */
-    public function split($nums)
+    public function split(array $nums): array
     {
         // 以字母順序排序
         usort($nums, function ($a, $b) {
@@ -49,10 +50,17 @@ class SolutionRecursive
         $this->findAll($nums, $avg);
 
         // 回傳第一組答案
-        return $this->answer[0] ?? null;
+        return $this->answer[0] ?? [];
     }
 
-    public function findAll($nums, $sum = 0, $answer = []) : void
+    /**
+     * 找出所有組合
+     * @param array $nums   陣列
+     * @param int   $sum    剩下要找的總合
+     * @param array $answer 目前的答案
+     * @return void
+     */
+    public function findAll(array $nums, int $sum = 0, array $answer = []) : void
     {
         foreach ($nums as $i => $num) {
             if ($sum == $num) {
