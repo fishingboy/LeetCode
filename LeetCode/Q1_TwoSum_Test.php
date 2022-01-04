@@ -2,6 +2,10 @@
 namespace LeetCode\Q1;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * TwoSum
+ * @tag math
+ */
 class Q1_TwoSum_Test extends TestCase
 {
     public function testSample()
