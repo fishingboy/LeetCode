@@ -25,6 +25,15 @@ class SplitArrayTest extends TestCase
         echo "<pre>response = " . print_r($response, true) . "</pre>\n";
         $this->assertEquals([1,11,20,35], $response);
     }
+
+    public function testSampleDP()
+    {
+        $nums = [16,22,35,8,20,1,21,11];
+        $solution = new SolutionDP();
+        $response = $solution->split($nums);
+        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
+        $this->assertEquals([1,11,20,35], $response);
+    }
 }
 
 class SolutionRecursive
@@ -74,5 +83,56 @@ class SolutionRecursive
                 $this->findAll($new_nums, $sum - $num, $new_answer);
             }
         }
+    }
+}
+
+class SolutionDP
+{
+    private $answer = [];
+
+    /**
+     * 切成總合相等兩個陣列
+     * @param array $nums
+     * @return array
+     */
+    public function split(array $nums): array
+    {
+        // 以字母順序排序
+        usort($nums, function ($a, $b) {
+            return strcmp("$a",  "$b");
+        });
+
+        // 算出平均值
+        $avg = array_sum($nums) / 2;
+
+        // 找出所有組合
+        $this->findAll($nums, $avg);
+
+        // 回傳第一組答案
+        return $this->answer[0] ?? [];
+    }
+
+    /**
+     * 找出所有組合
+     * @param array $nums   陣列
+     * @param int   $sum    剩下要找的總合
+     * @param array $answer 目前的答案
+     * @return void
+     */
+    public function findAll(array $nums, int $sum = 0, array $answer = []) : void
+    {
+        $tmp = [];
+        $count = count($nums);
+        for ($i=0; $i < $count; $i++) {
+            for ($j = 0; $j < $count; $j++) {
+                if ($i != $j) {
+                    $x = $nums[$i];
+                    $y = $nums[$j];
+                    $tmp[$x][$y] = $x + $y;
+                }
+            }
+        }
+
+        echo "<pre>tmp = " . print_r($tmp, true) . "</pre>\n";
     }
 }
