@@ -20,7 +20,17 @@ class ReindexTest extends TestCase
     public function testGetFileInfo()
     {
         $reindex = new Reindex();
-        $files = $reindex->getFileInfo("/mnt/c/Users/Leo/Code/LeetCode/LeetCode/Q1_TwoSum_Test.php");
+        $files = $reindex->getFileInfo(__DIR__ . "/../LeetCode/Q1_TwoSum_Test.php");
+
+        echo "<pre>files = " . print_r($files, true) . "</pre>\n";
+
+        $this->assertEquals("array", gettype($files));
+    }
+
+    public function testGetFilesInfo()
+    {
+        $reindex = new Reindex();
+        $files = $reindex->getFilesInfo([__DIR__ . "/../LeetCode/Q1_TwoSum_Test.php"]);
 
         echo "<pre>files = " . print_r($files, true) . "</pre>\n";
 

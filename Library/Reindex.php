@@ -7,9 +7,7 @@ class Reindex
     public function exec()
     {
         $files = $this->getFiles();
-        foreach ($files as $file) {
-
-        }
+        $files = $this->getFilesInfo($files);
         echo "<pre>files = " . print_r($files, true) . "</pre>\n";
     }
 
@@ -44,6 +42,14 @@ class Reindex
             $info['tag'] = $matches[1];
         }
         return $info;
+    }
+
+    public function getFilesInfo(array $files)
+    {
+        foreach ($files as $key => $file) {
+            $files[$key] = $this->getFileInfo($file);
+        }
+        return $files;
     }
 }
 
