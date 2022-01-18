@@ -41,7 +41,7 @@ class ReindexTest extends TestCase
 
     public function testRebuildReadMe()
     {
-        $files = json_decode('[{"no":1,"tag":"math"}]', true);
+        $files = json_decode('[{"no":1,"title":111,"tag":"math"}]', true);
         echo "<pre>files = " . print_r($files, true) . "</pre>\n";
         $reindex = new Reindex();
         $reindex->rebuildReadMe($files);

@@ -8,7 +8,6 @@ class Reindex
     {
         $files = $this->getFiles();
         $files = $this->getFilesInfo($files);
-        echo "<pre>files = " . print_r($files, true) . "</pre>\n";
         $this->rebuildReadMe($files);
     }
 
@@ -41,7 +40,7 @@ class Reindex
             "title" => "",
             "tag" => "",
         ];
-        $content = file_get_contents($file);
+        $content = file_get_contents(__DIR__ . "/../LeetCode/" . $file);
 
         // 題號
         preg_match("/Q([0-9]+)_(.*)_Test.*\.php/" , $file, $matches);
@@ -67,13 +66,18 @@ class Reindex
         foreach ($files as $key => $file) {
             $files[$key] = $this->getFileInfo($file);
         }
+
+        usort($files, function ($a, $b) {
+            return $a['no'] <=> $b['no'];
+        });
+
         return $files;
     }
 
     public function rebuildReadMe($files)
     {
-        $content  = "| NO | TITLE | TAG |\n";
-        $content .= "|:----|:----|:----|\n";
+        $content  = "| 題號 | 標題 | 類型 |\n";
+        $content .= "|----:|:----|:----|\n";
         foreach ($files as $i => $file) {
             $content .= "| {$file['no']} | {$file['title']} | {$file['tag']} |\n";
         }
