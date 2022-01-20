@@ -93,9 +93,10 @@ class Reindex
         $len = strlen($string);
         $output = "";
         for ($i=0; $i<$len; $i++) {
-            echo "<pre>string[$i] = " . print_r($string[$i], true) . "</pre>\n";
             if (65 <= ord($string[$i]) && ord($string[$i]) <= 90) {
                 $output .= " ";
+            } else if ($string[$i] == "_") {
+                continue;
             }
             $output .= $string[$i];
         }
