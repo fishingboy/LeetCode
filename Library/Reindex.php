@@ -47,7 +47,7 @@ class Reindex
         $info['no'] = intval($matches[1]);
 
         // 題目
-        $info['title'] = $matches[2];
+        $info['title'] = $this->convertTitle($matches[2]);
 
         // TAG
         if (preg_match("/\* @tag (.*)/", $content, $matches)) {
@@ -86,6 +86,20 @@ class Reindex
         file_put_contents("README.md", $content);
 
         return $content;
+    }
+
+    private function convertTitle($string)
+    {
+        $len = strlen($string);
+        $output = "";
+        for ($i=0; $i<$len; $i++) {
+            echo "<pre>string[$i] = " . print_r($string[$i], true) . "</pre>\n";
+            if (65 <= ord($string[$i]) && ord($string[$i]) <= 90) {
+                $output .= " ";
+            }
+            $output .= $string[$i];
+        }
+        return $output;
     }
 }
 
