@@ -31,9 +31,6 @@ class ReindexTest extends TestCase
     {
         $reindex = new Reindex();
         $files = $reindex->getFilesInfo([__DIR__ . "/../LeetCode/Q1_TwoSum_Test.php"]);
-
-//        echo "<pre>files = " . print_r($files, true) . "</pre>\n";
-//        echo "<pre>files = " . json_encode($files, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . "</pre>\n";
         echo "<pre>files = " . json_encode($files) . "</pre>\n";
 
         $this->assertEquals("array", gettype($files));

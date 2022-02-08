@@ -40,7 +40,6 @@ class Reindex
             "title" => "",
             "tag" => "",
         ];
-        $content = file_get_contents(__DIR__ . "/../LeetCode/" . $file);
 
         // 題號
         preg_match("/Q([0-9]+)_(.*)_Test.*\.php/" , $file, $matches);
@@ -49,10 +48,26 @@ class Reindex
         // 題目
         $info['title'] = $this->convertTitle($matches[2]);
 
+        // 取得檔案內容
+        $content = file_get_contents(__DIR__ . "/../LeetCode/" . $file);
+
+        // 取得 php doc
+        $php_doc = $this->getHeaderPhpDoc($content);
+        if (!$php_doc) {
+            return $info;
+        }
+
+        // 有標題的話就直接用
+        $title = $this->getHeaderPhpDocTitle($php_doc);
+        if ($title) {
+            $info['title'] = $title;
+        }
+
         // TAG
         if (preg_match("/\* @tag (.*)/", $content, $matches)) {
             $info['tag'] = trim($matches[1]);
         }
+
         return $info;
     }
 
@@ -82,7 +97,7 @@ class Reindex
             $content .= "| {$file['no']} | {$file['title']} | {$file['tag']} |\n";
         }
 
-        //
+        // 寫入檔案
         file_put_contents("README.md", $content);
 
         return $content;
@@ -101,6 +116,33 @@ class Reindex
             $output .= $string[$i];
         }
         return $output;
+    }
+
+    public function getHeaderPhpDoc($content)
+    {
+        $pos1 = strpos($content, "/**");
+        $pos2 = strpos($content, "*/");
+        if (false === $pos1 || false === $pos2) {
+            return "";
+        }
+
+        $class_start_pos = strpos($content, "extends TestCase");
+        if ($pos1 > $class_start_pos) {
+            return "";
+        }
+
+        return substr($content, $pos1, $pos2 - $pos1 + 2);
+    }
+
+    private function getHeaderPhpDocTitle(string $php_doc)
+    {
+        $tmp = explode("\n", $php_doc);
+        $title = $tmp[1];
+        if (strpos($title, "@")) {
+            return false;
+        }
+
+        return trim(str_replace("*", "", $title));
     }
 }
 

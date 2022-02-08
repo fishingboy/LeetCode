@@ -1,6 +1,6 @@
 | 題號 | 標題 | 類型 |
 |----:|:----|:----|
-| 1 |  Two Sum | 陣列 |
+| 1 | Two Sum | 陣列 |
 | 2 |  Add Two Numbers | 樹 |
 | 3 |  Longest Substring |  |
 | 4 |  Median Of Two Sorted Arrays |  |
@@ -25,15 +25,15 @@
 | 40 |  Combination Sum I I |  |
 | 58 |  Length Of Last Word |  |
 | 66 |  Plus One |  |
-| 67 |  Add Binary |  |
-| 69 |  S Q R T |  |
+| 67 | 就是二進位版的大數運算 |  |
+| 69 | SQRT |  |
 | 70 |  Climbing Stairs |  |
 | 83 |  Remove Duplicatesfrom Sorted List |  |
 | 88 |  Merge Sorted Array |  |
 | 98 |  Validate Binary Search Tree |  |
 | 100 |  Same Tree |  |
 | 101 |  Symmetric Tree |  |
-| 102 |  Binary Tree Level Order Traversal |  |
+| 102 | Binary Tree Level Order Traversal | 樹 |
 | 103 |  Binary Tree Zigzag Level Order Traversal |  |
 | 104 |  Maximum Depth Of Binary Tree |  |
 | 107 |  Binary Tree Level Order Traversal I I |  |

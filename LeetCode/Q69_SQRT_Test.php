@@ -2,6 +2,9 @@
 namespace LeetCode\Q69;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * SQRT
+ */
 class Q69_SQRT_Test extends TestCase
 {
     /**

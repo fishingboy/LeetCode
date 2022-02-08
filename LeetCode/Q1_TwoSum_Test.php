@@ -3,7 +3,7 @@ namespace LeetCode\Q1;
 use PHPUnit\Framework\TestCase;
 
 /**
- * TwoSum
+ * Two Sum
  * @tag 陣列
  */
 class Q1_TwoSum_Test extends TestCase
