@@ -2,6 +2,9 @@
 namespace LeetCode\Q3;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Longest Substring
+ */
 class Q3_LongestSubstring_Test extends TestCase
 {
     /**

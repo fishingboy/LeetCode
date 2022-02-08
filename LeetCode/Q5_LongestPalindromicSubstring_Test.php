@@ -2,6 +2,9 @@
 namespace LeetCode\Q5;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Longest Palindromic Substring
+ */
 class Q5_LongestPalindromicSubstring_Test extends TestCase
 {
     /**
