@@ -4,7 +4,10 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Two Sum
- * @tag 陣列
+ *
+ * difficulty: Easy
+ * tag: 陣列
+ * status: Accepted
  */
 class Q1_TwoSum_Test extends TestCase
 {

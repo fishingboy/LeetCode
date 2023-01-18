@@ -2,6 +2,9 @@
 namespace LeetCode\Q28;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Implement StrStr
+ */
 class Q28_ImplementStrStr_Test extends TestCase
 {
     /**

@@ -64,8 +64,18 @@ class Reindex
         }
 
         // TAG
-        if (preg_match("/\* @tag (.*)/", $content, $matches)) {
+        if (preg_match("/\* tag: (.*)/", $content, $matches)) {
             $info['tag'] = trim($matches[1]);
+        }
+
+        // 難度
+        if (preg_match("/\* difficulty: (.*)/", $content, $matches)) {
+            $info['difficulty'] = trim($matches[1]);
+        }
+
+        // 狀態
+        if (preg_match("/\* status: (.*)/", $content, $matches)) {
+            $info['status'] = trim($matches[1]);
         }
 
         return $info;

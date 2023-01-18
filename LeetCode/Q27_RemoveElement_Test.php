@@ -2,6 +2,10 @@
 namespace LeetCode\Q27;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Remove Element
+ * @tag 陣列
+ */
 class Q27_RemoveElement_Test extends TestCase
 {
     /**
