@@ -71,19 +71,21 @@ class Solution {
                 if ($i == $j) {
                     continue;
                 }
+                $remove_count = 0;
                 foreach ($building_points['points'] as $k => $point) {
                     // 覆蓋
                     if ($point[0] >= $building['left'] &&
                         $point[0] <= $building['right']) {
-                        echo "cover: ({$point[0]}, {$point[1]}), {$building['left']}, {$building['right']}, {$building['height']} \n";
+//                        echo "cover: ({$point[0]}, {$point[1]}), {$building['left']}, {$building['right']}, {$building['height']} \n";
                         if ($building['height'] >= $point[1]) {
-                            echo "remove: ({$point[0]}, {$point[1]}), {$building['left']}, {$building['right']}, {$building['height']} \n";
+//                            echo "remove: ({$point[0]}, {$point[1]}), {$building['left']}, {$building['right']}, {$building['height']} \n";
                             // unset($points[$i]);
                             $buildings[$j]['points'][$k] = null;
                             // 等高的話就合併
                             if ($k == "left-top" &&
                                 $point[1] > 0 &&
-                                $point[1] != $building['height']) {
+                                $point[1] < $building['height'] &&
+                                $building_points['right'] != $building['right']) {
                                 // $points[] = [$building[1], $point[1]];
                                 echo "move point: ({$building['right']}, {$point[1]}) \n";
                                 // $points[$i] = [$building['right'], $point[1]];
@@ -96,26 +98,30 @@ class Solution {
             }
         }
 
-        print_r($buildings);
+//        print_r($buildings);
 
-        // 重整答案
-        $answer = [];
+        // 移除全被蓋住的 building
         foreach ($buildings as $i => $building) {
             if ($building['points']['left-top'] === null &&
                 $building['points']['left-bottom'] === null &&
                 $building['points']['right-top'] === null &&
                 $building['points']['right-bottom'] === null) {
-                continue;
+                unset($buildings[$i]);
             }
+        }
+        $buildings = array_values($buildings);
 
+        // 重整答案
+        $answer = [];
+        foreach ($buildings as $i => $building) {
             // 加入左上角
             if ($building['points']['left-top']) {
                 $answer[] = $building['points']['left-top'];
             }
 
             // 右邊沒被蓋住的話，顯示右下角
-            if ($building['points']['right-top'] && $building['points']['right-bottom']) {
-                $answer[] = $building['points']['right-bottom'];
+            if (!isset($buildings[$i+1]) || $buildings[$i+1]['left'] > $building['right']) {
+                $answer[] = [$building['right'], 0];
             }
         }
 
