@@ -33,6 +33,31 @@ class Q218_TheSkylineProblem_Test extends TestCase
         $response = $this->solution->getSkyline($buildings);
         $this->assertEquals([[1,3],[2,0]], $response);
     }
+
+    public function testSample4()
+    {
+        $buildings = [[0,2,3],[2,4,3],[4,6,3]];
+        $response = $this->solution->getSkyline($buildings);
+        $this->assertEquals([[0,3],[6,0]], $response);
+    }
+
+    public function testSample5()
+    {
+        $buildings = [[1,20,1],[1,21,2],[1,22,3]];
+        $response = $this->solution->getSkyline($buildings);
+        $this->assertEquals([[1,3],[22,0]], $response);
+    }
+
+    public function testSample6()
+    {
+        $buildings = [[2,14,4],[4,8,8],[6,16,4]];
+        $response = $this->solution->getSkyline($buildings);
+        $this->assertEquals([[2,4],[4,8],[8,4],[16,0]], $response);
+        // 奇怪，這個規則不對吧！？
+        // 每個關鍵點都是天際線中某個水平線段的左端點
+        // 原來是我理解錯誤
+        // 那要全部重寫啦！
+    }
 }
 
 class Solution {
@@ -77,15 +102,18 @@ class Solution {
                     if ($point[0] >= $building['left'] &&
                         $point[0] <= $building['right']) {
 //                        echo "cover: ({$point[0]}, {$point[1]}), {$building['left']}, {$building['right']}, {$building['height']} \n";
-                        if ($building['height'] >= $point[1]) {
+                        if ($building['height'] == $point[1]) {
+                            // 等高的話就合併
+                            $buildings[$j]['points'][$k] = null;
+                            $buildings[$j]['left'] = $buildings[$i]['left'];
+                        } else if ($building['height'] > $point[1]) {
+                            $buildings[$j]['points'][$k] = null;
 //                            echo "remove: ({$point[0]}, {$point[1]}), {$building['left']}, {$building['right']}, {$building['height']} \n";
                             // unset($points[$i]);
-                            $buildings[$j]['points'][$k] = null;
-                            // 等高的話就合併
                             if ($k == "left-top" &&
                                 $point[1] > 0 &&
                                 $point[1] < $building['height'] &&
-                                $building_points['right'] != $building['right']) {
+                                $building_points['right'] > $building['right']) {
                                 // $points[] = [$building[1], $point[1]];
                                 echo "move point: ({$building['right']}, {$point[1]}) \n";
                                 // $points[$i] = [$building['right'], $point[1]];
@@ -98,7 +126,7 @@ class Solution {
             }
         }
 
-//        print_r($buildings);
+        print_r($buildings);
 
         // 移除全被蓋住的 building
         foreach ($buildings as $i => $building) {
