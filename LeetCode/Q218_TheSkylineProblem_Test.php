@@ -58,6 +58,12 @@ class Q218_TheSkylineProblem_Test extends TestCase
         // 原來是我理解錯誤
         // 那要全部重寫啦！
     }
+    public function testSample7()
+    {
+        $buildings = [[1,10,10],[3,7,15]];
+        $response = $this->solution->getSkyline($buildings);
+        $this->assertEquals([[1,10],[3,15],[7,10],[10,0]], $response);
+    }
 }
 
 class Solution {
@@ -83,7 +89,7 @@ class Solution {
             unset($buildings[$i][2]);
         }
 
-        print_r($buildings);
+//        print_r($buildings);
 
         // 判断覆蓋
         // $points = [];
@@ -99,21 +105,21 @@ class Solution {
                     if ($building['left'] < $point[0] && $point[0] < $building['right']) {
                         // 如果有被蓋住的話, 直接把 point 移到頂點
                         if ($point[1] < $building['height']) {
-                            echo "1. move ({$point[0]}, {$point[1]}) -> ({$point[0]}, {$building['height']}) \n";
+//                            echo "1. move ({$point[0]}, {$point[1]}) -> ({$point[0]}, {$building['height']}) \n";
                             $buildings[$j]['points'][$position] = [$point[0], $building['height']];
                         }
                     } else if (($building['left'] == $building_points['right'] && $building['left'] == $point[0]) ||
                                ($building_points['left'] == $building['right'] && $building['right'] == $point[0])) {
                         // 左右共線的話，直接把 point 移到頂點
                         if ($point[1] < $building['height']) {
-                            echo "2. move ({$point[0]}, {$point[1]}) -> ({$point[0]}, {$building['height']}) \n";
+//                            echo "2. move ({$point[0]}, {$point[1]}) -> ({$point[0]}, {$building['height']}) \n";
                             $buildings[$j]['points'][$position] = [$point[0], $building['height']];
                         }
                     } else if (($building['left'] == $building_points['left']  && $building['left'] == $point[0]) ||
                                ($building_points['right'] == $building['right']  && $building['right'] == $point[0])) {
                         // 共左線或共右的話，後面的線去移
                         if ($point[1] < $building['height'] && $building['height'] > $building_points['height']) {
-                            echo "3. move ({$point[0]}, {$point[1]}) -> ({$point[0]}, {$building['height']}) \n";
+//                            echo "3. move ({$point[0]}, {$point[1]}) -> ({$point[0]}, {$building['height']}) \n";
                             $buildings[$j]['points'][$position] = [$point[0], $building['height']];
                         }
                     }
@@ -121,7 +127,7 @@ class Solution {
             }
         }
 
-        print_r($buildings);
+//        print_r($buildings);
 
         // 取唯一値
         $group_points = [];
@@ -133,8 +139,11 @@ class Solution {
         foreach ($group_points as $i => $points) {
             $group_points[$i] = array_values($points);
         }
+        usort($group_points, function($a, $b) {
+            return $a[0][0] <=> $b[0][0];
+        });
 
-        print_r($group_points);
+//        print_r($group_points);
 
         // 顕示出答案
         $answer = [];
