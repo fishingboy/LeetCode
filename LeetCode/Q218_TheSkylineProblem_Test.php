@@ -71,6 +71,14 @@ class Q218_TheSkylineProblem_Test extends TestCase
         $response = $this->solution->getSkyline($buildings);
         $this->assertEquals([[1,10000],[1000,11001],[3000,13001],[5000,15001],[7000,17001],[9000,19001],[10001,0]], $response);
     }
+
+    public function testSample8()
+    {
+        $buildings = [[1,5,3], [1,5,3], [1,5,3]];
+        $response = $this->solution->getSkyline($buildings);
+        $this->assertEquals([[1,3],[5,0]], $response);
+    }
+
 }
 
 class Solution {
@@ -80,20 +88,19 @@ class Solution {
      */
     function getSkyline($buildings) {
         // 重整資料結構
-        $points = [];
         foreach ($buildings as $i => $building) {
             $buildings[$i]['left'] = $building[0];
             $buildings[$i]['right'] = $building[1];
             $buildings[$i]['height'] = $building[2];
 
-            $buildings[$i]['points']['left-bottom'] = [$building[0], 0];
-            $buildings[$i]['points']['left-top'] = [$building[0], $building[2]];
-            $buildings[$i]['points']['right-top'] = [$building[1], $building[2]];
-            $buildings[$i]['points']['right-bottom'] = [$building[1], 0];
+            $buildings[$i]['points'][] = [$building[0], 0];
+            $buildings[$i]['points'][] = [$building[0], $building[2]];
+            $buildings[$i]['points'][] = [$building[1], $building[2]];
+            $buildings[$i]['points'][] = [$building[1], 0];
 
-            unset($buildings[$i][0]);
-            unset($buildings[$i][1]);
-            unset($buildings[$i][2]);
+//            unset($buildings[$i][0]);
+//            unset($buildings[$i][1]);
+//            unset($buildings[$i][2]);
         }
 
 //        print_r($buildings);
@@ -108,6 +115,23 @@ class Solution {
                 if ($i == $j) {
                     continue;
                 }
+
+                // 嘗試加速
+                if ($building['left'] <= $building_points['left'] &&
+                    $building['right'] >= $building_points['right'] &&
+                    $building['height'] >= $building_points['height']) {
+                    if ($building['left'] == $building_points['left'] &&
+                        $building['right'] == $building_points['right'] &&
+                        $building['height'] == $building_points['height']) {
+                        if ($j > $i) {
+                            unset($buildings[$j]);
+                        }
+                    } else {
+                        unset($buildings[$j]);
+                    }
+                    continue;
+                }
+
                 foreach ($building_points['points'] as $position => $point) {
                     if ($building['left'] < $point[0] && $point[0] < $building['right']) {
                         // 如果有被蓋住的話, 直接把 point 移到頂點
@@ -160,11 +184,9 @@ class Solution {
         $answer = [];
         $height = 0;
         foreach ($group_points as $x => $points) {
-            if (count($points) == 2) {
-                $point = ($points[0][1] == $height) ? $points[1] : $points[0];
-                $answer[] = $point;
-                $height = $point[1];
-            }
+            $point = ($points[0][1] == $height) ? $points[1] : $points[0];
+            $answer[] = $point;
+            $height = $point[1];
         }
 
 //        echo json_encode($answer);
