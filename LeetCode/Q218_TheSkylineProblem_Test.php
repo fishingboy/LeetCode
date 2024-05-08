@@ -82,114 +82,46 @@ class Q218_TheSkylineProblem_Test extends TestCase
 }
 
 class Solution {
+
+    public const LEFT = 0;
+    public const RIGHT = 1;
+    public const HEIGHT = 2;
+
     /**
      * @param Integer[][] $buildings
      * @return Integer[][]
      */
     function getSkyline($buildings) {
-        // 重整資料結構
-        foreach ($buildings as $i => $building) {
-            $buildings[$i]['left'] = $building[0];
-            $buildings[$i]['right'] = $building[1];
-            $buildings[$i]['height'] = $building[2];
-
-            $buildings[$i]['points'][] = [$building[0], 0];
-            $buildings[$i]['points'][] = [$building[0], $building[2]];
-            $buildings[$i]['points'][] = [$building[1], $building[2]];
-            $buildings[$i]['points'][] = [$building[1], 0];
-
-//            unset($buildings[$i][0]);
-//            unset($buildings[$i][1]);
-//            unset($buildings[$i][2]);
+        $skyline = $points = [];
+        foreach ($buildings as $key => $building) {
+            // NOTE 1
+            $points[] = [$building[self::LEFT], -$building[self::HEIGHT]];
+            $points[] = [$building[self::RIGHT], $building[self::HEIGHT]];
         }
+        sort($points);
 
-//        print_r($buildings);
-
-        // 判断覆蓋
-        // $points = [];
-
-        // building
-        foreach ($buildings as $i => $building) {
-            // points
-            foreach ($buildings as $j => $building_points) {
-                if ($i == $j) {
-                    continue;
-                }
-
-                // 嘗試加速
-                if ($building['left'] <= $building_points['left'] &&
-                    $building['right'] >= $building_points['right'] &&
-                    $building['height'] >= $building_points['height']) {
-                    if ($building['left'] == $building_points['left'] &&
-                        $building['right'] == $building_points['right'] &&
-                        $building['height'] == $building_points['height']) {
-                        if ($j > $i) {
-                            unset($buildings[$j]);
-                        }
-                    } else {
-                        unset($buildings[$j]);
-                    }
-                    continue;
-                }
-
-                foreach ($building_points['points'] as $position => $point) {
-                    if ($building['left'] < $point[0] && $point[0] < $building['right']) {
-                        // 如果有被蓋住的話, 直接把 point 移到頂點
-                        if ($point[1] < $building['height']) {
-//                            echo "1. move ({$point[0]}, {$point[1]}) -> ({$point[0]}, {$building['height']}) \n";
-                            $buildings[$j]['points'][$position] = [$point[0], $building['height']];
-                        }
-                    } else if (($building['left'] == $building_points['right'] && $building['left'] == $point[0]) ||
-                               ($building_points['left'] == $building['right'] && $building['right'] == $point[0])) {
-                        // 左右共線的話，直接把 point 移到頂點
-                        if ($point[1] < $building['height']) {
-//                            echo "2. move ({$point[0]}, {$point[1]}) -> ({$point[0]}, {$building['height']}) \n";
-                            $buildings[$j]['points'][$position] = [$point[0], $building['height']];
-                        }
-                    } else if (($building['left'] == $building_points['left']  && $building['left'] == $point[0]) ||
-                               ($building_points['right'] == $building['right']  && $building['right'] == $point[0])) {
-                        // 共左線或共右的話，後面的線去移
-                        if ($point[1] < $building['height'] && $building['height'] > $building_points['height']) {
-//                            echo "3. move ({$point[0]}, {$point[1]}) -> ({$point[0]}, {$building['height']}) \n";
-                            $buildings[$j]['points'][$position] = [$point[0], $building['height']];
-                        }
-                    }
-                }
-            }
-        }
-
-//        print_r($buildings);
-
-        // 取唯一値
-        $group_points = [];
-        foreach ($buildings as $j => $building_points) {
-            foreach ($building_points['points'] as $position => $point) {
-                $group_points[$point[0]][$point[1]] = $point;
-            }
-        }
-        foreach ($group_points as $i => $points) {
-            if (count($points) == 2) {
-                $group_points[$i] = array_values($points);
+        $currentHeight = 0;
+        $existingHeights = [0];
+        // Scan from left to right
+        foreach ($points as $point) {
+            list($x, $height) = $point;
+            // A building appeared at the (x, -height) and disappeared at the (x, height).
+            if ($height < 0) {
+                $existingHeights[] = -$height;
             } else {
-                unset($group_points[$i]);
+                $key = array_search($height, $existingHeights);
+                if ($key) {
+                    unset($existingHeights[$key]);
+                }
+            }
+
+            $highestHeight = max($existingHeights);
+            if ($currentHeight != $highestHeight) {
+                // The existing highest building changed at (x, highestHeight).
+                $currentHeight = $highestHeight;
+                $skyline[] = [$x, $currentHeight];
             }
         }
-        usort($group_points, function($a, $b) {
-            return $a[0][0] <=> $b[0][0];
-        });
-
-//        print_r($group_points);
-
-        // 顕示出答案
-        $answer = [];
-        $height = 0;
-        foreach ($group_points as $x => $points) {
-            $point = ($points[0][1] == $height) ? $points[1] : $points[0];
-            $answer[] = $point;
-            $height = $point[1];
-        }
-
-//        echo json_encode($answer);
-        return $answer;
+        return $skyline;
     }
 }
