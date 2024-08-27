@@ -174,7 +174,7 @@ class Node {
     public $hash;
     public function __construct($number) {
         $this->val = $number;
-        $this->hash = md5(rand(0,999999) . time());
+        $this->hash = md5(Q01_DesignLinkedList_Test . phprand(0, 999999) . time());
     }
 }
 
