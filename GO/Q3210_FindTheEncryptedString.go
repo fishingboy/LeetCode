@@ -1,8 +1,4 @@
-package GO
-
-func GetEncryptedString(s string, k int) string {
-	return getEncryptedString(s, k)
-}
+package LeetCode
 
 func getEncryptedString(s string, k int) string {
 	if k > len(s) {
