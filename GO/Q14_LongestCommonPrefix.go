@@ -11,13 +11,17 @@ func longestCommonPrefix(strs []string) string {
 	}
 
 	prefix := 0
-	for i := 0; i < minLen; i++ {
-		var pre uint8 = 0
+	find := false
+	var pre uint8 = 0
+	for i := 0; i < minLen && !find; i++ {
+		pre = 0
 		for _, str := range strs {
 			if pre == 0 {
 				pre = str[i]
 			} else if pre != str[i] {
 				prefix = i - 1
+				find = true
+				break
 			}
 		}
 	}
