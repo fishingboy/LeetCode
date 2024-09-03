@@ -1,6 +1,9 @@
 package LeetCode
 
-import "testing"
+import (
+	"github.com/stretchr/testify/assert"
+	"testing"
+)
 
 func Test_longestCommonPrefix(t *testing.T) {
 	type args struct {
@@ -39,9 +42,8 @@ func Test_longestCommonPrefix(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := longestCommonPrefix(tt.args.strs); got != tt.want {
-				t.Errorf("longestCommonPrefix() = %v, want %v", got, tt.want)
-			}
+			got := longestCommonPrefix(tt.args.strs)
+			assert.Equal(t, tt.want, got)
 		})
 	}
 }
