@@ -1,6 +1,7 @@
 package LeetCode
 
 import (
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
@@ -28,9 +29,8 @@ func Test_getEncryptedString(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := getEncryptedString(tt.args.s, tt.args.k); got != tt.want {
-				t.Errorf("getEncryptedString() = %v, want %v", got, tt.want)
-			}
+			got := getEncryptedString(tt.args.s, tt.args.k)
+			assert.Equal(t, tt.want, got)
 		})
 	}
 }
