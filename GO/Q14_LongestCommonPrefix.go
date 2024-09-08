@@ -36,11 +36,6 @@ func longestCommonPrefix(strs []string) string {
 			}
 		}
 	}
-	//fmt.Println(prefix)
-
-	if prefix < 0 {
-		return ""
-	}
 
 	output := strs[0][:prefix]
 	return output
