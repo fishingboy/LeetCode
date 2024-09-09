@@ -11,34 +11,14 @@ use PHPUnit\Framework\TestCase;
  */
 class Q1_TwoSum_Test extends TestCase
 {
-    public function testSample()
+    public function testFromTestData()
     {
         $solution = new Solution();
-        $nums = [2, 7, 11, 15];
-        $target = 9;
-
-        $response = $solution->twoSum($nums, $target);
-        $this->assertEquals([0, 1], $response);
-    }
-
-    public function testSample2()
-    {
-        $solution = new Solution();
-        $nums = [2, 7, 11, 15];
-        $target = 18;
-
-        $response = $solution->twoSum($nums, $target);
-        $this->assertEquals([1, 2], $response);
-    }
-
-    public function testSample3()
-    {
-        $solution = new Solution();
-        $nums = [];
-        $target = 0;
-
-        $response = $solution->twoSum($nums, $target);
-        $this->assertEquals([0, 0], $response);
+        $tests = json_decode(file_get_contents( './TestData/Q1.json'), true);
+        foreach ($tests as $test) {
+            $response = $solution->twoSum($test['args']['nums'], $test['args']['target']);
+            $this->assertEquals($test['expected'], $response);
+        }
     }
 }
 
