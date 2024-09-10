@@ -1,49 +1,39 @@
 package LeetCode
 
 import (
+	"encoding/json"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
 func Test_twoSum(t *testing.T) {
-	type args struct {
-		nums   []int
-		target int
+	// 定義測試案例的結構體
+	type testCase struct {
+		Name string `json:"name"`
+		Args struct {
+			Nums   []int `json:"nums"`
+			Target int   `json:"target"`
+		} `json:"args"`
+		Expected []int `json:"expected"`
 	}
-	tests := []struct {
-		name string
-		args args
-		want []int
-	}{
-		{
-			name: "example 1",
-			args: args{
-				nums:   []int{2, 7, 11, 15},
-				target: 9,
-			},
-			want: []int{0, 1},
-		},
-		{
-			name: "example 2",
-			args: args{
-				nums:   []int{3, 2, 4},
-				target: 6,
-			},
-			want: []int{1, 2},
-		},
-		{
-			name: "example 3",
-			args: args{
-				nums:   []int{3, 3},
-				target: 6,
-			},
-			want: []int{0, 1},
-		},
+
+	// 讀取 JSON 文件內容
+	jsonString, err := readFromFile("../TestData/Q1.json")
+	if err != nil {
+		t.Fatalf("Failed to read JSON file: %v", err)
 	}
+
+	// 解析 JSON 字符串到測試案例結構體 slice 中
+	var tests []testCase
+	err = json.Unmarshal([]byte(jsonString), &tests)
+	if err != nil {
+		t.Fatalf("Failed to unmarshal JSON: %v", err)
+	}
+
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			got := twoSum(tt.args.nums, tt.args.target)
-			assert.Equal(t, tt.want, got)
+		t.Run(tt.Name, func(t *testing.T) {
+			got := twoSum(tt.Args.Nums, tt.Args.Target)
+			assert.Equal(t, tt.Expected, got, "Test case %s failed", tt.Name)
 		})
 	}
 }
