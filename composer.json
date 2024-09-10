@@ -2,7 +2,8 @@
   "type": "project",
   "require": {
     "php": ">=7.3",
-    "phpunit/phpunit": "^9.5"
+    "phpunit/phpunit": "^9.5",
+      "ext-json": "*"
   },
   "autoload": {
     "psr-4": {

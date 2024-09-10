@@ -1,0 +1,44 @@
+[
+    {
+        "name": "example 1",
+        "args": {
+            "s": "abcabcbb"
+        },
+        "expected": 3
+    },
+    {
+        "name": "example 2",
+        "args": {
+            "s": "bbbbb"
+        },
+        "expected": 1
+    },
+    {
+        "name": "example 3",
+        "args": {
+            "s": "pwwkew"
+        },
+        "expected": 3
+    },
+    {
+        "name": "WA1",
+        "args": {
+            "s": " "
+        },
+        "expected": 1
+    },
+    {
+        "name": "WA2",
+        "args": {
+            "s": "au"
+        },
+        "expected": 2
+    },
+    {
+        "name": "WA3",
+        "args": {
+            "s": "aab"
+        },
+        "expected": 2
+    }
+]
