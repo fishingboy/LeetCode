@@ -16,7 +16,16 @@ class Q4_MedianOfTwoSortedArrays_Test extends TestCase
     {
         $this->solution = new Solution();
     }
-    
+
+    public function testFromTestData()
+    {
+        $tests = json_decode(file_get_contents( './TestData/Q4.json'), true);
+        foreach ($tests as $test) {
+            $response = $this->solution->findMedianSortedArrays($test['args']['nums1'], $test['args']['nums2']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
+    }
+
     public function testSample()
     {
         $nums1 = [1, 3];
@@ -51,16 +60,16 @@ class Q4_MedianOfTwoSortedArrays_Test extends TestCase
 
     public function testBoundary3()
     {
-        $nums1 = [1,1,1,1,1,1];
-        $nums2 = [1,1,1,1,1,1];
+        $nums1 = [1, 1, 1, 1, 1, 1];
+        $nums2 = [1, 1, 1, 1, 1, 1];
         $response = $this->solution->findMedianSortedArrays($nums1, $nums2);
         $this->assertEquals(1, $response);
     }
 
     public function testBoundary4()
     {
-        $nums1 = [1,1,1,1,1,1];
-        $nums2 = [1,1,1,1,1];
+        $nums1 = [1, 1, 1, 1, 1, 1];
+        $nums2 = [1, 1, 1, 1, 1];
         $response = $this->solution->findMedianSortedArrays($nums1, $nums2);
         $this->assertEquals(1, $response);
     }
