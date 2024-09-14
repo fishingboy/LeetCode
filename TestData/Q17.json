@@ -1,0 +1,16 @@
+[
+    {
+        "name": "testExample1",
+        "args": {
+            "digits": "23"
+        },
+        "expected": ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
+    },
+    {
+        "name": "test_WA1",
+        "args": {
+            "digits": ""
+        },
+        "expected": []
+    }
+]

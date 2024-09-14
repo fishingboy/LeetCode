@@ -1,0 +1,30 @@
+[
+    {
+        "name": "testExample3",
+        "args": {
+            "s": "(]"
+        },
+        "expected": false
+    },
+    {
+        "name": "testExample4",
+        "args": {
+            "s": "([)]"
+        },
+        "expected": false
+    },
+    {
+        "name": "testExample5",
+        "args": {
+            "s": "{[]}"
+        },
+        "expected": true
+    },
+    {
+        "name": "testExample6",
+        "args": {
+            "s": "{[{"
+        },
+        "expected": false
+    }
+]

@@ -1,0 +1,26 @@
+[
+    {
+        "name": "testSample1",
+        "args": {
+            "haystack": "hello",
+            "needle": "ll"
+        },
+        "expected": 2
+    },
+    {
+        "name": "testSample2",
+        "args": {
+            "haystack": "aaaaa",
+            "needle": "bba"
+        },
+        "expected": -1
+    },
+    {
+        "name": "testWrongAnswer1",
+        "args": {
+            "haystack": "",
+            "needle": ""
+        },
+        "expected": 0
+    }
+]

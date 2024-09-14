@@ -4,30 +4,15 @@ use PHPUnit\Framework\TestCase;
 
 class Q17_LetterCombinationsOf_a_PhoneNumber_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
-    }
-
-    public function testExample1()
-    {
-        $digits = "23";
-        $response = $this->solution->letterCombinations($digits);
-        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertEquals(["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"], $response);
-    }
-
-    public function test_WA1()
-    {
-        $digits = "";
-        $response = $this->solution->letterCombinations($digits);
-        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertEquals([], $response);
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->letterCombinations($test['args']['digits']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 }
 

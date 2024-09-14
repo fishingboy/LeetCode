@@ -4,42 +4,15 @@ use PHPUnit\Framework\TestCase;
 
 class Q20_ValidParentheses_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
-    }
-
-    public function testExample3()
-    {
-        $s = "(]";
-        $response = $this->solution->isValid($s);
-        $this->assertFalse($response);
-    }
-
-    public function testExample4()
-    {
-        $s = "([)]";
-        $response = $this->solution->isValid($s);
-        $this->assertFalse($response);
-    }
-
-    public function testExample5()
-    {
-        $s = "{[]}";
-        $response = $this->solution->isValid($s);
-        $this->assertTrue($response);
-    }
-
-    public function testExample6()
-    {
-        $s = "{[{";
-        $response = $this->solution->isValid($s);
-        $this->assertFalse($response);
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->isValid($test['args']['s']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 }
 
