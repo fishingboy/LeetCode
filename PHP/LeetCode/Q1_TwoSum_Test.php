@@ -14,7 +14,8 @@ class Q1_TwoSum_Test extends TestCase
     public function testFromTestData()
     {
         $solution = new Solution();
-        $tests = json_decode(file_get_contents( './TestData/Q1.json'), true);
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
         foreach ($tests as $test) {
             $response = $solution->twoSum($test['args']['nums'], $test['args']['target']);
             $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");

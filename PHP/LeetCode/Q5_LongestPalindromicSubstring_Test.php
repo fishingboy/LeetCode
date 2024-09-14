@@ -7,57 +7,15 @@ use PHPUnit\Framework\TestCase;
  */
 class Q5_LongestPalindromicSubstring_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
-    }
-    
-    public function testSample()
-    {
-        $s = "babad";
-        $response = $this->solution->longestPalindrome($s);
-        $this->assertEquals("bab", $response);
-    }
-
-    public function test_1()
-    {
-        $s = "baabad";
-        $response = $this->solution->longestPalindrome($s);
-        $this->assertEquals("baab", $response);
-    }
-
-    public function test_wa1()
-    {
-        $s = "abbc";
-        $response = $this->solution->longestPalindrome($s);
-        $this->assertEquals("bb", $response);
-    }
-
-    public function test_wa2()
-    {
-        $s = "cbbd";
-        $response = $this->solution->longestPalindrome($s);
-        $this->assertEquals("bb", $response);
-    }
-
-
-    public function test_wa3()
-    {
-        $s = "bb";
-        $response = $this->solution->longestPalindrome($s);
-        $this->assertEquals("bb", $response);
-    }
-
-    public function test_wa4()
-    {
-        $s = "ccc";
-        $response = $this->solution->longestPalindrome($s);
-        $this->assertEquals("ccc", $response);
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->longestPalindrome($test['args']['s']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 }
 

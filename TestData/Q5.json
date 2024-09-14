@@ -1,0 +1,37 @@
+[
+    {
+        "name": "example 1",
+        "args": {
+            "s": "babad"
+        },
+        "expected": "bab"
+    },
+    {
+        "name": "test_1",
+        "args": {
+            "s": "baabad"
+        },
+        "expected": "baab"
+    },
+    {
+        "name": "wa1",
+        "args": {
+            "s": "abbc"
+        },
+        "expected": "bb"
+    },
+    {
+        "name": "wa2",
+        "args": {
+            "s": "cbbd"
+        },
+        "expected": "bb"
+    },
+    {
+        "name": "wa4",
+        "args": {
+            "s": "ccc"
+        },
+        "expected": "ccc"
+    }
+]

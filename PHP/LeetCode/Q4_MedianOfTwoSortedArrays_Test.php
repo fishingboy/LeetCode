@@ -10,7 +10,8 @@ class Q4_MedianOfTwoSortedArrays_Test extends TestCase
     public function testFromTestData()
     {
         $solution = new Solution();
-        $tests = json_decode(file_get_contents( './TestData/Q4.json'), true);
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
         foreach ($tests as $test) {
             $response = $solution->findMedianSortedArrays($test['args']['nums1'], $test['args']['nums2']);
             $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
