@@ -4,42 +4,15 @@ use PHPUnit\Framework\TestCase;
 
 class Q12_IntegerToRoman_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
-    }
-
-    public function test_3應該回傳III()
-    {
-        $int = 3;
-        $response = $this->solution->intToRoman($int);
-        $this->assertEquals("III", $response);
-    }
-
-    public function test_58應該回傳LVIII()
-    {
-        $int = 58;
-        $response = $this->solution->intToRoman($int);
-        $this->assertEquals("LVIII", $response);
-    }
-
-    public function test_1994應該回傳MCMXCIV()
-    {
-        $int = 1994;
-        $response = $this->solution->intToRoman($int);
-        $this->assertEquals("MCMXCIV", $response);
-    }
-
-    public function test_2399應該回傳MMCCCXCIX()
-    {
-        $int = 2399;
-        $response = $this->solution->intToRoman($int);
-        $this->assertEquals("MMCCCXCIX", $response);
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->intToRoman($test['args']['int']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 }
 

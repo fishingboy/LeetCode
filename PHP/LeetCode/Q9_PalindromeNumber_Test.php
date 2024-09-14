@@ -4,49 +4,15 @@ use PHPUnit\Framework\TestCase;
 
 class Q9_PalindromeNumber_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
-    }
-
-    public function testSample1()
-    {
-        $x = 121;
-        $response = $this->solution->isPalindrome($x);
-        $this->assertTrue($response);
-    }
-
-    public function testSample2()
-    {
-        $x = -121;
-        $response = $this->solution->isPalindrome($x);
-        $this->assertFalse($response);
-    }
-
-    public function testSample3()
-    {
-        $x = 10;
-        $response = $this->solution->isPalindrome($x);
-        $this->assertFalse($response);
-    }
-
-    public function testBoundary1()
-    {
-        $x = 0;
-        $response = $this->solution->isPalindrome($x);
-        $this->assertTrue($response);
-    }
-
-    public function testBoundary2()
-    {
-        $x = 9;
-        $response = $this->solution->isPalindrome($x);
-        $this->assertTrue($response);
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->isPalindrome($test['args']['x']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 }
 

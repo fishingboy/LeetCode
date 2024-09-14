@@ -4,49 +4,15 @@ use PHPUnit\Framework\TestCase;
 
 class Q14_LongestCommonPrefix_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
-    }
-
-    public function test_sample1()
-    {
-        $strs = ["flower","flow","flight"];
-        $response = $this->solution->longestCommonPrefix($strs);
-        $this->assertEquals("fl", $response);
-    }
-
-    public function test_sample2()
-    {
-        $strs = ["dog","racecar","car"];
-        $response = $this->solution->longestCommonPrefix($strs);
-        $this->assertEquals("", $response);
-    }
-
-    public function test_wa1()
-    {
-        $strs = ["a"];
-        $response = $this->solution->longestCommonPrefix($strs);
-        $this->assertEquals("a", $response);
-    }
-
-    public function test_wa2()
-    {
-        $strs = ["a","b"];
-        $response = $this->solution->longestCommonPrefix($strs);
-        $this->assertEquals("", $response);
-    }
-
-    public function test_wa3()
-    {
-        $strs = ["aca","cba"];
-        $response = $this->solution->longestCommonPrefix($strs);
-        $this->assertEquals("", $response);
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->longestCommonPrefix($test['args']['strs']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 }
 

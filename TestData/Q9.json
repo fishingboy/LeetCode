@@ -1,0 +1,37 @@
+[
+    {
+        "name": "testSample1",
+        "args": {
+            "x": 121
+        },
+        "expected": true
+    },
+    {
+        "name": "testSample2",
+        "args": {
+            "x": -121
+        },
+        "expected": false
+    },
+    {
+        "name": "testSample3",
+        "args": {
+            "x": 10
+        },
+        "expected": false
+    },
+    {
+        "name": "testBoundary1",
+        "args": {
+            "x": 0
+        },
+        "expected": true
+    },
+    {
+        "name": "testBoundary2",
+        "args": {
+            "x": 9
+        },
+        "expected": true
+    }
+]

@@ -1,0 +1,44 @@
+[
+    {
+        "name": "test_III應該回傳3",
+        "args": {
+            "roman": "III"
+        },
+        "expected": 3
+    },
+    {
+        "name": "test_IV應該回傳4",
+        "args": {
+            "roman": "IV"
+        },
+        "expected": 4
+    },
+    {
+        "name": "test_VI應該回傳6",
+        "args": {
+            "roman": "IV"
+        },
+        "expected": 4
+    },
+    {
+        "name": "test_LVIII應該回傳58",
+        "args": {
+            "roman": "LVIII"
+        },
+        "expected": 58
+    },
+    {
+        "name": "test_MCMXCIV應該回傳1994",
+        "args": {
+            "roman": "MCMXCIV"
+        },
+        "expected": 1994
+    },
+    {
+        "name": "test_MMCCCXCIX應該回傳2399",
+        "args": {
+            "roman": "MMCCCXCIX"
+        },
+        "expected": 2399
+    }
+]

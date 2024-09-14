@@ -1,0 +1,30 @@
+[
+    {
+        "name": "test_3應該回傳III",
+        "args": {
+            "int": 3
+        },
+        "expected": "III"
+    },
+    {
+        "name": "test_58應該回傳LVIII",
+        "args": {
+            "int": 58
+        },
+        "expected": "LVIII"
+    },
+    {
+        "name": "test_1994應該回傳MCMXCIV",
+        "args": {
+            "int": 1994
+        },
+        "expected": "MCMXCIV"
+    },
+    {
+        "name": "test_2399應該回傳MMCCCXCIX",
+        "args": {
+            "int": 2399
+        },
+        "expected": "MMCCCXCIX"
+    }
+]

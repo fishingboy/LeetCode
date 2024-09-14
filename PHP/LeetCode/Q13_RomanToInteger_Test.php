@@ -4,56 +4,15 @@ use PHPUnit\Framework\TestCase;
 
 class Q13_RomanToInteger_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
-    }
-
-    public function test_III應該回傳3()
-    {
-        $roman = "III";
-        $response = $this->solution->romanToInt($roman);
-        $this->assertEquals(3, $response);
-    }
-
-    public function test_IV應該回傳4()
-    {
-        $roman = "IV";
-        $response = $this->solution->romanToInt($roman);
-        $this->assertEquals(4, $response);
-    }
-
-    public function test_VI應該回傳6()
-    {
-        $roman = "IV";
-        $response = $this->solution->romanToInt($roman);
-        $this->assertEquals(4, $response);
-    }
-
-    public function test_LVIII應該回傳58()
-    {
-        $roman = "LVIII";
-        $response = $this->solution->romanToInt($roman);
-        $this->assertEquals(58, $response);
-    }
-
-    public function test_MCMXCIV應該回傳1994()
-    {
-        $roman = "MCMXCIV";
-        $response = $this->solution->romanToInt($roman);
-        $this->assertEquals(1994, $response);
-    }
-
-    public function test_MMCCCXCIX應該回傳2399()
-    {
-        $roman = "MMCCCXCIX";
-        $response = $this->solution->romanToInt($roman);
-        $this->assertEquals(2399, $response);
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->romanToInt($test['args']['roman']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 }
 

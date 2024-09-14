@@ -1,0 +1,37 @@
+[
+    {
+        "name": "test_sample1",
+        "args": {
+            "strs": ["flower","flow","flight"]
+        },
+        "expected": "fl"
+    },
+    {
+        "name": "test_sample2",
+        "args": {
+            "strs": ["dog","racecar","car"]
+        },
+        "expected": ""
+    },
+    {
+        "name": "test_wa1",
+        "args": {
+            "strs": ["a"]
+        },
+        "expected": "a"
+    },
+    {
+        "name": "test_wa2",
+        "args": {
+            "strs": ["a","b"]
+        },
+        "expected": ""
+    },
+    {
+        "name": "test_wa3",
+        "args": {
+            "strs": ["aca","cba"]
+        },
+        "expected": ""
+    }
+]
