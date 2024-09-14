@@ -14,5 +14,37 @@
             "nums2": [3, 4]
         },
         "expected": 2.5
+    },
+    {
+        "name": "Boundary1",
+        "args": {
+            "nums1": [1, 2, 3, 4],
+            "nums2": []
+        },
+        "expected": 2.5
+    },
+    {
+        "name": "Boundary2",
+        "args": {
+            "nums1": [4],
+            "nums2": []
+        },
+        "expected": 4
+    },
+    {
+        "name": "Boundary3",
+        "args": {
+            "nums1": [1, 1, 1, 1, 1, 1],
+            "nums2": [1, 1, 1, 1, 1, 1]
+        },
+        "expected": 1
+    },
+    {
+        "name": "Boundary4",
+        "args": {
+            "nums1": [1, 1, 1, 1, 1, 1],
+            "nums2": [1, 1, 1, 1, 1]
+        },
+        "expected": 1
     }
 ]

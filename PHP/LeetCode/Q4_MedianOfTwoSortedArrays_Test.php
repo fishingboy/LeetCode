@@ -7,80 +7,15 @@ use PHPUnit\Framework\TestCase;
  */
 class Q4_MedianOfTwoSortedArrays_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
-    {
-        $this->solution = new Solution();
-    }
-
     public function testFromTestData()
     {
+        $solution = new Solution();
         $tests = json_decode(file_get_contents( './TestData/Q4.json'), true);
         foreach ($tests as $test) {
-            $response = $this->solution->findMedianSortedArrays($test['args']['nums1'], $test['args']['nums2']);
+            $response = $solution->findMedianSortedArrays($test['args']['nums1'], $test['args']['nums2']);
             $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
         }
     }
-
-    public function testSample()
-    {
-        $nums1 = [1, 3];
-        $nums2 = [2];
-        $response = $this->solution->findMedianSortedArrays($nums1, $nums2);
-        $this->assertEquals(2, $response);
-    }
-
-    public function testSample2()
-    {
-        $nums1 = [1, 2];
-        $nums2 = [3, 4];
-        $response = $this->solution->findMedianSortedArrays($nums1, $nums2);
-        $this->assertEquals(2.5, $response);
-    }
-
-    public function testBoundary1()
-    {
-        $nums1 = [1, 2, 3, 4];
-        $nums2 = [];
-        $response = $this->solution->findMedianSortedArrays($nums1, $nums2);
-        $this->assertEquals(2.5, $response);
-    }
-
-    public function testBoundary2()
-    {
-        $nums1 = [4];
-        $nums2 = [];
-        $response = $this->solution->findMedianSortedArrays($nums1, $nums2);
-        $this->assertEquals(4, $response);
-    }
-
-    public function testBoundary3()
-    {
-        $nums1 = [1, 1, 1, 1, 1, 1];
-        $nums2 = [1, 1, 1, 1, 1, 1];
-        $response = $this->solution->findMedianSortedArrays($nums1, $nums2);
-        $this->assertEquals(1, $response);
-    }
-
-    public function testBoundary4()
-    {
-        $nums1 = [1, 1, 1, 1, 1, 1];
-        $nums2 = [1, 1, 1, 1, 1];
-        $response = $this->solution->findMedianSortedArrays($nums1, $nums2);
-        $this->assertEquals(1, $response);
-    }
-
-//    public function testBoundary5()
-//    {
-//        $nums1 = [4, 3];
-//        $nums2 = [2, 1];
-//        $response = $this->solution->findMedianSortedArrays($nums1, $nums2);
-//        $this->assertEquals(2.5, $response);
-//    }
 }
 
 class Solution

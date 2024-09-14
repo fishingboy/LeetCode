@@ -7,21 +7,12 @@ use PHPUnit\Framework\TestCase;
  */
 class Q3_LongestSubstring_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
-    {
-        $this->solution = new Solution();
-    }
-
     public function testFromTestData()
     {
+        $solution = new Solution();
         $tests = json_decode(file_get_contents( './TestData/Q3.json'), true);
         foreach ($tests as $test) {
-            $response = $this->solution->lengthOfLongestSubstring($test['args']['s']);
+            $response = $solution->lengthOfLongestSubstring($test['args']['s']);
             $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
         }
     }
