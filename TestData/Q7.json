@@ -1,0 +1,44 @@
+[
+    {
+        "name": "testSample1",
+        "args": {
+            "x": 123
+        },
+        "expected": 321
+    },
+    {
+        "name": "testSample2",
+        "args": {
+            "x": -123
+        },
+        "expected": -321
+    },
+    {
+        "name": "testSample3",
+        "args": {
+            "x": 120
+        },
+        "expected": 21
+    },
+    {
+        "name": "testBoundary1",
+        "args": {
+            "x": 1
+        },
+        "expected": 1
+    },
+    {
+        "name": "testBoundary2",
+        "args": {
+            "x": 0
+        },
+        "expected": 0
+    },
+    {
+        "name": "testWa1",
+        "args": {
+            "x": 1534236469
+        },
+        "expected": 0
+    }
+]

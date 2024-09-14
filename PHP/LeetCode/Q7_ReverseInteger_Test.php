@@ -4,62 +4,15 @@ use PHPUnit\Framework\TestCase;
 
 class Q7_ReverseInteger_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
-    }
-
-    public function testSample1()
-    {
-        $x = 123;
-        $response = $this->solution->reverse($x);
-        $this->assertEquals(321, $response);
-    }
-
-    public function testSample2()
-    {
-        $x = -123;
-        $response = $this->solution->reverse($x);
-        $this->assertEquals(-321, $response);
-    }
-
-    public function testSample3()
-    {
-        $x = 120;
-        $response = $this->solution->reverse($x);
-        $this->assertEquals(21, $response);
-    }
-
-    public function testBoundary1()
-    {
-        $x = 1;
-        $response = $this->solution->reverse($x);
-        $this->assertEquals(1, $response);
-    }
-
-    public function testBoundary2()
-    {
-        $x = 0;
-        $response = $this->solution->reverse($x);
-        $this->assertEquals(0, $response);
-    }
-
-    // Input
-    // 1534236469
-    // Output
-    // 9646324351
-    // Expected
-    // 0
-    public function testWa1()
-    {
-        $x = 1534236469;
-        $response = $this->solution->reverse($x);
-        $this->assertEquals(0, $response);
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->reverse($test['args']['x']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 }
 

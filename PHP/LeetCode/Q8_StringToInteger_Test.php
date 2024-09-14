@@ -4,76 +4,15 @@ use PHPUnit\Framework\TestCase;
 
 class Q8_StringToInteger_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
-    }
-
-    public function testSample1()
-    {
-        $s = "42";
-        $response = $this->solution->myAtoi($s);
-        $this->assertEquals(42, $response);
-    }
-
-    public function testSample2()
-    {
-        $s = "   -42";
-        $response = $this->solution->myAtoi($s);
-        $this->assertEquals(-42, $response);
-    }
-
-    public function testSample3()
-    {
-        $s = "4193 with words";
-        $response = $this->solution->myAtoi($s);
-        $this->assertEquals(4193, $response);
-    }
-
-    public function test_WA1()
-    {
-        $s = "-91283472332";
-        $response = $this->solution->myAtoi($s);
-        $this->assertEquals(-2147483648, $response);
-    }
-
-    public function test_WA2()
-    {
-        $s = "   -115579378e25";
-        $response = $this->solution->myAtoi($s);
-        $this->assertEquals(-115579378, $response);
-    }
-
-    public function test_WA3()
-    {
-        $s = "words and 987";
-        $response = $this->solution->myAtoi($s);
-        $this->assertEquals(0, $response);
-    }
-
-    public function test_WA4()
-    {
-        $s = "0  123";
-        $response = $this->solution->myAtoi($s);
-        $this->assertEquals(0, $response);
-    }
-
-    public function test_WA5()
-    {
-        $s = " b11228552307";
-        $response = $this->solution->myAtoi($s);
-        $this->assertEquals(0, $response);
-    }
-
-    public function test_getNumberString()
-    {
-        $this->assertEquals("-115579378", $this->solution->getNumberString("   -115579378e25"));
-        $this->assertEquals("", $this->solution->getNumberString("words and 987"));
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->myAtoi($test['args']['s']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 }
 

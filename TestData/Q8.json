@@ -1,0 +1,58 @@
+[
+    {
+        "name": "testSample1",
+        "args": {
+            "s": "42"
+        },
+        "expected": 42
+    },
+    {
+        "name": "testSample2",
+        "args": {
+            "s": "   -42"
+        },
+        "expected": -42
+    },
+    {
+        "name": "testSample3",
+        "args": {
+            "s": "4193 with words"
+        },
+        "expected": 4193
+    },
+    {
+        "name": "test_WA1",
+        "args": {
+            "s": "-91283472332"
+        },
+        "expected": -2147483648
+    },
+    {
+        "name": "test_WA2",
+        "args": {
+            "s": "   -115579378e25"
+        },
+        "expected": -115579378
+    },
+    {
+        "name": "test_WA3",
+        "args": {
+            "s": "words and 987"
+        },
+        "expected": 0
+    },
+    {
+        "name": "test_WA4",
+        "args": {
+            "s": "0  123"
+        },
+        "expected": 0
+    },
+    {
+        "name": "test_WA5",
+        "args": {
+            "s": " b11228552307"
+        },
+        "expected": 0
+    }
+]
