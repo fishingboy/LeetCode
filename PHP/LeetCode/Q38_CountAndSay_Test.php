@@ -13,6 +13,16 @@ class Q38_CountAndSay_Test extends TestCase
     {
         $this->solution = new Solution();
     }
+    public function testFromTestData()
+    {
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->countAndSay($test['args']['n']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
+    }
 
     public function testSample1()
     {

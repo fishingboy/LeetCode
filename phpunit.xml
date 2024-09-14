@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<phpunit bootstrap="bootstrap.php">
-	<testsuites>
-		<testsuite name="TestSuite">
-			<directory>LeetCode/</directory>
-			<directory>Other/</directory>
-		</testsuite>
-	</testsuites>
-	<php>
-		<const name="PHPUNIT_TEST" value="1" />
-		<server name="REMOTE_ADDR" value="0.0.0.0" />
-	</php>
-    <filter>
-        <whitelist>
-            <directory>LeetCode</directory>
-            <directory>Other</directory>
-        </whitelist>
-    </filter>
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="bootstrap.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage>
+    <include>
+      <directory>LeetCode</directory>
+      <directory>Other</directory>
+    </include>
+  </coverage>
+  <testsuites>
+    <testsuite name="TestSuite">
+      <directory>LeetCode/</directory>
+      <directory>Other/</directory>
+    </testsuite>
+  </testsuites>
+  <php>
+    <const name="PHPUNIT_TEST" value="1"/>
+    <server name="REMOTE_ADDR" value="0.0.0.0"/>
+  </php>
 </phpunit>

@@ -1,0 +1,9 @@
+[
+    {
+        "name": "testSample1",
+        "args": {
+            "n": 5
+        },
+        "expected": "111221"
+    }
+]

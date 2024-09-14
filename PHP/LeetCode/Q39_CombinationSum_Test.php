@@ -4,22 +4,15 @@ use PHPUnit\Framework\TestCase;
 
 class Q39_CombinationSum_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
-    }
-
-    public function testSample1()
-    {
-        $candidates = [2,3,6,7];
-        $target = 7;
-        $response = $this->solution->combinationSum($candidates, $target);
-        $this->assertEquals([[2,2,3],[7]], $response);
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->combinationSum($test['args']['candidates'], $test['args']['target']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 }
 
