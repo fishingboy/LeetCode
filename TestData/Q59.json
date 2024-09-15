@@ -1,0 +1,22 @@
+[
+    {
+        "name": "testSample1",
+        "args": {
+            "n": 3
+        },
+        "expected": [
+            [1,2,3],
+            [8,9,4],
+            [7,6,5]
+        ]
+    },
+    {
+        "name": "testSample2",
+        "args": {
+            "n": 1
+        },
+        "expected": [
+            [1]
+        ]
+    }
+]

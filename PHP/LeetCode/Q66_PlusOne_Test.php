@@ -4,42 +4,15 @@ use PHPUnit\Framework\TestCase;
 
 class Q66_PlusOne_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
-    }
-
-    public function testSample1()
-    {
-        $digits = [1,2,3];
-        $response = $this->solution->plusOne($digits);
-        $this->assertEquals([1,2,4], $response);
-    }
-
-    public function testSample2()
-    {
-        $digits = [1,2,9];
-        $response = $this->solution->plusOne($digits);
-        $this->assertEquals([1,3,0], $response);
-    }
-
-    public function testSample3()
-    {
-        $digits = [9, 9, 9];
-        $response = $this->solution->plusOne($digits);
-        $this->assertEquals([1, 0, 0, 0], $response);
-    }
-
-    public function test_wa1()
-    {
-        $digits = [9];
-        $response = $this->solution->plusOne($digits);
-        $this->assertEquals([1, 0], $response);
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->plusOne($test['args']['digits']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 }
 

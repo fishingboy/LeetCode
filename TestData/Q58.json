@@ -1,0 +1,37 @@
+[
+    {
+        "name": "testSample1",
+        "args": {
+            "s": "hello world"
+        },
+        "expected": 5
+    },
+    {
+        "name": "test_hello_world_應該回傳5",
+        "args": {
+            "s": "hello world"
+        },
+        "expected": 5
+    },
+    {
+        "name": "test_hello_moto_應該回傳4",
+        "args": {
+            "s": "hello moto"
+        },
+        "expected": 4
+    },
+    {
+        "name": "test_空字串應該回傳0",
+        "args": {
+            "s": ""
+        },
+        "expected": 0
+    },
+    {
+        "name": "test_wa1",
+        "args": {
+            "s": "a "
+        },
+        "expected": 1
+    }
+]

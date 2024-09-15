@@ -4,49 +4,15 @@ use PHPUnit\Framework\TestCase;
 
 class Q58_LengthOfLastWord_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
-    }
-
-    public function testSample1()
-    {
-        $s = "hello world";
-        $response = $this->solution->lengthOfLastWord($s);
-        $this->assertEquals(5, $response);
-    }
-
-    public function test_hello_world_應該回傳5()
-    {
-        $s = "hello world";
-        $response = $this->solution->lengthOfLastWord($s);
-        $this->assertEquals(5, $response);
-    }
-
-    public function test_hello_moto_應該回傳4()
-    {
-        $s = "hello moto";
-        $response = $this->solution->lengthOfLastWord($s);
-        $this->assertEquals(4, $response);
-    }
-
-    public function test_空字串應該回傳0()
-    {
-        $s = "";
-        $response = $this->solution->lengthOfLastWord($s);
-        $this->assertEquals(0, $response);
-    }
-
-    public function test_wa1()
-    {
-        $s = "a ";
-        $response = $this->solution->lengthOfLastWord($s);
-        $this->assertEquals(1, $response);
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->lengthOfLastWord($test['args']['s']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 }
 

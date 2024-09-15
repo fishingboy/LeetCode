@@ -1,0 +1,30 @@
+[
+    {
+        "name": "testSample1",
+        "args": {
+            "digits": [1,2,3]
+        },
+        "expected": [1,2,4]
+    },
+    {
+        "name": "testSample2",
+        "args": {
+            "digits": [1,2,9]
+        },
+        "expected": [1,3,0]
+    },
+    {
+        "name": "testSample3",
+        "args": {
+            "digits": [9, 9, 9]
+        },
+        "expected": [1, 0, 0, 0]
+    },
+    {
+        "name": "test_wa1",
+        "args": {
+            "digits": [9]
+        },
+        "expected": [1, 0]
+    }
+]

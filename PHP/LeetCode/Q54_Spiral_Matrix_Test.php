@@ -4,21 +4,15 @@ use PHPUnit\Framework\TestCase;
 
 class Q54_Spiral_Matrix_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
-    }
-
-    public function testSample1()
-    {
-        $matrix = [[1,2,3],[4,5,6],[7,8,9]];
-        $response = $this->solution->spiralOrder($matrix);
-        $this->assertEquals([1,2,3,6,9,8,7,4,5], $response);
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->spiralOrder($test['args']['matrix']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 }
 
