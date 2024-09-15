@@ -7,42 +7,15 @@ use PHPUnit\Framework\TestCase;
  */
 class Q69_SQRT_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
-    }
-
-    public function testSample1()
-    {
-        $x = 4;
-        $response = $this->solution->mySqrt($x);
-        $this->assertEquals(2, $response);
-    }
-
-    public function testSample2()
-    {
-        $x = 8;
-        $response = $this->solution->mySqrt($x);
-        $this->assertEquals(2, $response);
-    }
-
-    public function test1()
-    {
-        $x = 1;
-        $response = $this->solution->mySqrt($x);
-        $this->assertEquals(1, $response);
-    }
-
-    public function test2()
-    {
-        $x = 0;
-        $response = $this->solution->mySqrt($x);
-        $this->assertEquals(0, $response);
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->mySqrt($test['args']['x']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 }
 

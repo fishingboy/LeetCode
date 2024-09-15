@@ -4,49 +4,15 @@ use PHPUnit\Framework\TestCase;
 
 class Q70_Climbing_Stairs_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
-    }
-
-    public function testSample1()
-    {
-        $x = 2;
-        $response = $this->solution->climbStairs($x);
-        $this->assertEquals(2, $response);
-    }
-
-    public function testSample2()
-    {
-        $x = 3;
-        $response = $this->solution->climbStairs($x);
-        $this->assertEquals(3, $response);
-    }
-
-    public function testSample3()
-    {
-        $x = 4;
-        $response = $this->solution->climbStairs($x);
-        $this->assertEquals(5, $response);
-    }
-    public function testSample5()
-    {
-        $x = 5;
-        $response = $this->solution->climbStairs($x);
-        $this->assertEquals(8, $response);
-    }
-
-    public function test_between_1_10()
-    {
-        for ($i = 1; $i<=10; $i++) {
-            echo "$i ==> " . $this->solution->climbStairs($i) . "\n";
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->climbStairs($test['args']['x']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
         }
-        $this->assertTrue(true);
     }
 }
 

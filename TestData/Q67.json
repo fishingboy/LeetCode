@@ -1,0 +1,26 @@
+[
+    {
+        "name": "testSample1",
+        "args": {
+            "a": "11",
+            "b": "1"
+        },
+        "expected": "100"
+    },
+    {
+        "name": "testSample2",
+        "args": {
+            "a": "1010",
+            "b": "1011"
+        },
+        "expected": "10101"
+    },
+    {
+        "name": "test_wa1",
+        "args": {
+            "a": "0",
+            "b": "0"
+        },
+        "expected": "0"
+    }
+]

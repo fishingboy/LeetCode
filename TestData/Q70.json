@@ -1,0 +1,30 @@
+[
+    {
+        "name": "testSample1",
+        "args": {
+            "x": 2
+        },
+        "expected": 2
+    },
+    {
+        "name": "testSample2",
+        "args": {
+            "x": 3
+        },
+        "expected": 3
+    },
+    {
+        "name": "testSample3",
+        "args": {
+            "x": 4
+        },
+        "expected": 5
+    },
+    {
+        "name": "testSample5",
+        "args": {
+            "x": 5
+        },
+        "expected": 8
+    }
+]
