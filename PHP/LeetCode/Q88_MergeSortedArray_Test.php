@@ -4,6 +4,22 @@ use PHPUnit\Framework\TestCase;
 
 class Q88_MergeSortedArray_Test extends TestCase
 {
+    public function testFromTestData()
+    {
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->merge(
+                $test['args']['nums1'],
+                $test['args']['m'],
+                $test['args']['nums2'],
+                $test['args']['n']
+            );
+            $this->assertEquals($test['expected'], $test['args']['nums1'], "[{$test['name']}] test failed");
+        }
+    }
+
     /**
      * @var Solution
      */
