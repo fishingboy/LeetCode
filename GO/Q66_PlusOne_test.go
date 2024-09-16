@@ -6,18 +6,18 @@ import (
 	"testing"
 )
 
-func Test_lengthOfLastWord(t *testing.T) {
+func Test_plusOne(t *testing.T) {
 	// 定義測試案例的結構體
 	type testCase struct {
 		Name string `json:"name"`
 		Args struct {
-			S string `json:"s"`
+			Digits []int `json:"digits"`
 		} `json:"args"`
-		Expected int `json:"expected"`
+		Expected []int `json:"expected"`
 	}
 
 	// 讀取 JSON 文件內容
-	jsonString, err := readFromFile("../TestData/Q58.json")
+	jsonString, err := readFromFile("../TestData/Q66.json")
 	if err != nil {
 		t.Fatalf("Failed to read JSON file: %v", err)
 	}
@@ -31,7 +31,7 @@ func Test_lengthOfLastWord(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.Name, func(t *testing.T) {
-			got := lengthOfLastWord(tt.Args.S)
+			got := plusOne(tt.Args.Digits)
 			assert.Equal(t, tt.Expected, got, "Test case %s failed", tt.Name)
 		})
 	}
