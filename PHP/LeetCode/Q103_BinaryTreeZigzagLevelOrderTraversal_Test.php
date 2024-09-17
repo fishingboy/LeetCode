@@ -1,10 +1,10 @@
 <?php
 namespace LeetCode\Q103;
+use Library\TestBase;
 use Library\TreeBuilder;
 use Library\TreeNode;
-use PHPUnit\Framework\TestCase;
 
-class Q103_BinaryTreeZigzagLevelOrderTraversal_Test extends TestCase
+class Q103_BinaryTreeZigzagLevelOrderTraversal_Test extends TestBase
 {
     public function testFromTestData()
     {
@@ -16,12 +16,6 @@ class Q103_BinaryTreeZigzagLevelOrderTraversal_Test extends TestCase
             $response = $solution->zigzagLevelOrder($root);
             $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
         }
-    }
-
-    public function buildTree($nums): TreeNode
-    {
-        $builder = new TreeBuilder($nums);
-        return $builder->getRoot();
     }
 }
 

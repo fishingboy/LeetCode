@@ -1,10 +1,11 @@
 <?php
 namespace LeetCode\Q98;
+use Library\TestBase;
 use Library\TreeBuilder;
 use Library\TreeNode;
 use PHPUnit\Framework\TestCase;
 
-class Q98_ValidateBinarySearchTree_Test extends TestCase
+class Q98_ValidateBinarySearchTree_Test extends TestBase
 {
     public function testFromTestData()
     {
@@ -16,12 +17,6 @@ class Q98_ValidateBinarySearchTree_Test extends TestCase
             $response = $solution->isValidBST($root);
             $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
         }
-    }
-
-    public function buildTree($nums): TreeNode
-    {
-        $builder = new TreeBuilder($nums);
-        return $builder->getRoot();
     }
 }
 

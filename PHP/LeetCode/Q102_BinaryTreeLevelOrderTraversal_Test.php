@@ -1,5 +1,6 @@
 <?php
 namespace LeetCode\Q102;
+use Library\TestBase;
 use Library\TreeBuilder;
 use Library\TreeNode;
 use PHPUnit\Framework\TestCase;
@@ -8,7 +9,7 @@ use PHPUnit\Framework\TestCase;
  * Binary Tree Level Order Traversal
  * @tag 樹
  */
-class Q102_BinaryTreeLevelOrderTraversal_Test extends TestCase
+class Q102_BinaryTreeLevelOrderTraversal_Test extends TestBase
 {
     public function testFromTestData()
     {
@@ -20,12 +21,6 @@ class Q102_BinaryTreeLevelOrderTraversal_Test extends TestCase
             $response = $solution->levelOrder($root);
             $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
         }
-    }
-
-    public function buildTree($nums): TreeNode
-    {
-        $builder = new TreeBuilder($nums);
-        return $builder->getRoot();
     }
 }
 

@@ -1,10 +1,11 @@
 <?php
 namespace LeetCode\Q104;
+use Library\TestBase;
 use Library\TreeBuilder;
 use Library\TreeNode;
 use PHPUnit\Framework\TestCase;
 
-class Q104_MaximumDepthOfBinaryTree_Test extends TestCase
+class Q104_MaximumDepthOfBinaryTree_Test extends TestBase
 {
     public function testFromTestData()
     {
@@ -16,12 +17,6 @@ class Q104_MaximumDepthOfBinaryTree_Test extends TestCase
             $response = $solution->maxDepth($root);
             $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
         }
-    }
-
-    public function buildTree($nums): TreeNode
-    {
-        $builder = new TreeBuilder($nums);
-        return $builder->getRoot();
     }
 }
 

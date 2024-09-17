@@ -1,10 +1,11 @@
 <?php
 namespace LeetCode\Q100;
+use Library\TestBase;
 use Library\TreeBuilder;
 use Library\TreeNode;
 use PHPUnit\Framework\TestCase;
 
-class Q100_SameTree_Test extends TestCase
+class Q100_SameTree_Test extends TestBase
 {
     public function testFromTestData()
     {
@@ -17,12 +18,6 @@ class Q100_SameTree_Test extends TestCase
             $response = $solution->isSameTree($root, $root2);
             $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
         }
-    }
-
-    public function buildTree($nums): TreeNode
-    {
-        $builder = new TreeBuilder($nums);
-        return $builder->getRoot();
     }
 }
 
