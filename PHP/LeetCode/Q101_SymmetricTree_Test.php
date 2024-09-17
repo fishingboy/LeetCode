@@ -6,41 +6,19 @@ use PHPUnit\Framework\TestCase;
 
 class Q101_SymmetricTree_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $root = $this->buildTree($test['args']['tree']);
+            $response = $solution->isSymmetric($root);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 
-    public function testSample1()
-    {
-        $tree = [1,2,2,3,4,4,3];
-        $root = $this->buildTree($tree);
-        $response = $this->solution->isSymmetric($root);
-        $this->assertTrue($response);
-    }
-
-    public function testSample2()
-    {
-        $tree = [1,2,2,null,3,null,3];
-        $root = $this->buildTree($tree);
-        $response = $this->solution->isSymmetric($root);
-        $this->assertFalse($response);
-    }
-
-    public function test_wa1()
-    {
-        $tree = [1,0];
-        $root = $this->buildTree($tree);
-        $response = $this->solution->isSymmetric($root);
-        $this->assertFalse($response);
-    }
-
-    public function buildTree($nums)
+    public function buildTree($nums): TreeNode
     {
         $builder = new TreeBuilder($nums);
         return $builder->getRoot();

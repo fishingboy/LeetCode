@@ -6,50 +6,20 @@ use PHPUnit\Framework\TestCase;
 
 class Q100_SameTree_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $root = $this->buildTree($test['args']['tree']);
+            $root2 = $this->buildTree($test['args']['tree2']);
+            $response = $solution->isSameTree($root, $root2);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 
-    public function testSample1()
-    {
-        $tree = [1,2,3];
-        $root = $this->buildTree($tree);
-        $tree2 = [1,2,3];
-        $root2 = $this->buildTree($tree2);
-        $response = $this->solution->isSameTree($root, $root2);
-        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertTrue($response);
-    }
-
-    public function testSample2()
-    {
-        $tree = [1,2];
-        $root = $this->buildTree($tree);
-        $tree2 = [1,null,2];
-        $root2 = $this->buildTree($tree2);
-        $response = $this->solution->isSameTree($root, $root2);
-        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertFalse($response);
-    }
-
-    public function testSample3()
-    {
-        $tree = [1,2,1];
-        $root = $this->buildTree($tree);
-        $tree2 = [1,1,2];
-        $root2 = $this->buildTree($tree2);
-        $response = $this->solution->isSameTree($root, $root2);
-        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertFalse($response);
-    }
-
-    public function buildTree($nums)
+    public function buildTree($nums): TreeNode
     {
         $builder = new TreeBuilder($nums);
         return $builder->getRoot();

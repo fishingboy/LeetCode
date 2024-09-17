@@ -6,54 +6,23 @@ use PHPUnit\Framework\TestCase;
 
 class Q98_ValidateBinarySearchTree_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $root = $this->buildTree($test['args']['nums']);
+            $response = $solution->isValidBST($root);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 
-    public function testSample1()
-    {
-        $nums = [2,1,3];
-        $root = $this->buildTree($nums);
-        $response = $this->solution->isValidBST($root);
-        $this->assertTrue($response);
-    }
-
-    public function testSample2()
-    {
-        $nums =  [5,1,4,null,null,3,6];
-        $root = $this->buildTree($nums);
-        $response = $this->solution->isValidBST($root);
-        $this->assertFalse($response);
-    }
-
-    public function test_wa1()
-    {
-        $nums =  [1,1];
-        $root = $this->buildTree($nums);
-        $response = $this->solution->isValidBST($root);
-        $this->assertFalse($response);
-    }
-
-    public function test_wa2()
-    {
-        $nums = [10,5,15,null,null,6,20];
-        $root = $this->buildTree($nums);
-        $response = $this->solution->isValidBST($root);
-        $this->assertFalse($response);
-    }
-
-    public function buildTree($nums)
+    public function buildTree($nums): TreeNode
     {
         $builder = new TreeBuilder($nums);
         return $builder->getRoot();
     }
-
 }
 
 /**
