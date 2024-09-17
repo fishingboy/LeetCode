@@ -1,0 +1,23 @@
+[
+    {
+        "name": "testExample1",
+        "args": {
+            "s": "A man, a plan, a canal: Panama"
+        },
+        "expected": true
+    },
+    {
+        "name": "testExample2",
+        "args": {
+            "s": "race a car"
+        },
+        "expected": false
+    },
+    {
+        "name": "test_WA1",
+        "args": {
+            "s": "0P"
+        },
+        "expected": false
+    }
+]

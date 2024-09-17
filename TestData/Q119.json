@@ -1,0 +1,9 @@
+[
+    {
+        "name": "testSample1",
+        "args": {
+            "rowIndex": 3
+        },
+        "expected": [1,3,3,1]
+    }
+]
