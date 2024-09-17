@@ -1,11 +1,24 @@
 <?php
 namespace LeetCode\Q111;
+use Library\TestBase;
 use Library\TreeBuilder;
 use Library\TreeNode;
 use PHPUnit\Framework\TestCase;
 
-class Q111_MinimumDepthOfBinaryTree_Test extends TestCase
+class Q111_MinimumDepthOfBinaryTree_Test extends TestBase
 {
+    public function testFromTestData()
+    {
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $root = $this->buildTree($test['args']['tree']);
+            $response = $solution->minDepth($root);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
+    }
+
     /**
      * @var Solution
      */
