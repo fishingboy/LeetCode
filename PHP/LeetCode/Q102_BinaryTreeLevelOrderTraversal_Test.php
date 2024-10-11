@@ -1,5 +1,6 @@
 <?php
 namespace LeetCode\Q102;
+use Library\TestBase;
 use Library\TreeBuilder;
 use Library\TreeNode;
 use PHPUnit\Framework\TestCase;
@@ -8,69 +9,18 @@ use PHPUnit\Framework\TestCase;
  * Binary Tree Level Order Traversal
  * @tag 樹
  */
-class Q102_BinaryTreeLevelOrderTraversal_Test extends TestCase
+class Q102_BinaryTreeLevelOrderTraversal_Test extends TestBase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
-    }
-
-    public function testSample1()
-    {
-        $tree = [3,9,20,null,null,15,7];
-        $root = $this->buildTree($tree);
-        $response = $this->solution->levelOrder($root);
-        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertEquals([
-            [3],
-            [9,20],
-            [15,7]
-        ], $response);
-    }
-
-    public function test_1()
-    {
-        $tree = [1,2,3];
-        $root = $this->buildTree($tree);
-        $response = $this->solution->levelOrder($root);
-        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertEquals([
-            [1],
-            [2,3],
-        ], $response);
-    }
-
-    public function test_2()
-    {
-        $tree = [1,2];
-        $root = $this->buildTree($tree);
-        $response = $this->solution->levelOrder($root);
-        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertEquals([
-            [1],
-            [2],
-        ], $response);
-    }
-
-    public function test_wa1()
-    {
-        $tree = [];
-        $root = $this->buildTree($tree);
-        $response = $this->solution->levelOrder($root);
-        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertEquals([
-        ], $response);
-    }
-
-    public function buildTree($nums)
-    {
-        $builder = new TreeBuilder($nums);
-        return $builder->getRoot();
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $root = $this->buildTree($test['args']['tree']);
+            $response = $solution->levelOrder($root);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 }
 

@@ -4,32 +4,15 @@ use PHPUnit\Framework\TestCase;
 
 class Q118_Pascal_Triangle_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
-    }
-
-    public function testSample1()
-    {
-        $response = $this->solution->generate(5);
-        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertEquals([
-            [1],
-            [1,1],
-            [1,2,1],
-        ],$response);
-    }
-
-    public function test_WA1()
-    {
-        $response = $this->solution->generate(0);
-        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertEquals([],$response);
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->generate($test['args']['numRows']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed: " . json_encode($test));
+        }
     }
 }
 

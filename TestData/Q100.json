@@ -1,0 +1,26 @@
+[
+    {
+        "name": "testSample1",
+        "args": {
+            "tree": [1,2,3],
+            "tree2": [1,2,3]
+        },
+        "expected": true
+    },
+    {
+        "name": "testSample2",
+        "args": {
+            "tree": [1,2],
+            "tree2": [1,null,2]
+        },
+        "expected": false
+    },
+    {
+        "name": "testSample3",
+        "args": {
+            "tree": [1,2,1],
+            "tree2": [1,1,2]
+        },
+        "expected": false
+    }
+]

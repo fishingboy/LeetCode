@@ -4,28 +4,15 @@ use PHPUnit\Framework\TestCase;
 
 class Q137_SingleNumberII_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
-    }
-
-    public function testSample1()
-    {
-        $nums = [2,2,3,2];
-        $response = $this->solution->singleNumber($nums);
-        $this->assertEquals(3, $response);
-    }
-
-    public function testSample2()
-    {
-        $nums = [0,1,0,1,0,1,99];
-        $response = $this->solution->singleNumber($nums);
-        $this->assertEquals(99, $response);
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->singleNumber($test['args']['nums']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 }
 

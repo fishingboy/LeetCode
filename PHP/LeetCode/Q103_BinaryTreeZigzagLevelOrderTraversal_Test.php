@@ -1,86 +1,21 @@
 <?php
 namespace LeetCode\Q103;
+use Library\TestBase;
 use Library\TreeBuilder;
 use Library\TreeNode;
-use PHPUnit\Framework\TestCase;
 
-class Q103_BinaryTreeZigzagLevelOrderTraversal_Test extends TestCase
+class Q103_BinaryTreeZigzagLevelOrderTraversal_Test extends TestBase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
-    }
-
-    public function testSample1()
-    {
-        $tree = [3,9,20,null,null,15,7];
-        $root = $this->buildTree($tree);
-        $response = $this->solution->zigzagLevelOrder($root);
-        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertEquals([
-            [3],
-            [20,9],
-            [15,7]
-        ], $response);
-    }
-
-    public function test_1()
-    {
-        $tree = [1,2,3];
-        $root = $this->buildTree($tree);
-        $response = $this->solution->zigzagLevelOrder($root);
-        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertEquals([
-            [1],
-            [3,2],
-        ], $response);
-    }
-
-    public function test_2()
-    {
-        $tree = [1,2];
-        $root = $this->buildTree($tree);
-        $response = $this->solution->zigzagLevelOrder($root);
-        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertEquals([
-            [1],
-            [2],
-        ], $response);
-    }
-
-    public function test_3()
-    {
-        $tree = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
-        $root = $this->buildTree($tree);
-        $response = $this->solution->zigzagLevelOrder($root);
-        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertEquals([
-            [1],
-            [3,2],
-            [4,5,6,7],
-            [15,14,13,12,11,10,9,8],
-            [16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
-        ], $response);
-    }
-
-    public function test_wa1()
-    {
-        $tree = [0,-4,-3,null,-1,8,null,null,3,null,-9,-2,null,4];
-        $root = $this->buildTree($tree);
-        $response = $this->solution->zigzagLevelOrder($root);
-        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertEquals([[0],[-3,-4],[-1,8],[-9,3],[-2,4]], $response);
-    }
-
-    public function buildTree($nums)
-    {
-        $builder = new TreeBuilder($nums);
-        return $builder->getRoot();
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $root = $this->buildTree($test['args']['tree']);
+            $response = $solution->zigzagLevelOrder($root);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 }
 

@@ -4,42 +4,23 @@ use PHPUnit\Framework\TestCase;
 
 class Q125_ValidPalindrome_Test extends TestCase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->isPalindrome($test['args']['s']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed" . json_encode($test));
+        }
     }
 
     public function test_convertString()
     {
+        $solution = new Solution();
         $s = "A man, a plan,";
-        $response = $this->solution->convertString($s);
+        $response = $solution->convertString($s);
         $this->assertEquals("AMANAPLAN", $response);
-    }
-
-    public function testExample1()
-    {
-        $s = "A man, a plan, a canal: Panama";
-        $response = $this->solution->isPalindrome($s);
-        $this->assertTrue($response);
-    }
-
-    public function testExample2()
-    {
-        $s = "race a car";
-        $response = $this->solution->isPalindrome($s);
-        $this->assertFalse($response);
-    }
-
-    public function test_WA1()
-    {
-        $s = "0P";
-        $response = $this->solution->isPalindrome($s);
-        $this->assertFalse($response);
     }
 }
 

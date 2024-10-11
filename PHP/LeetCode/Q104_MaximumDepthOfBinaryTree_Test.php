@@ -1,43 +1,22 @@
 <?php
 namespace LeetCode\Q104;
+use Library\TestBase;
 use Library\TreeBuilder;
 use Library\TreeNode;
 use PHPUnit\Framework\TestCase;
 
-class Q104_MaximumDepthOfBinaryTree_Test extends TestCase
+class Q104_MaximumDepthOfBinaryTree_Test extends TestBase
 {
-    /**
-     * @var Solution
-     */
-    private $solution;
-
-    public function setUp() : void
+    public function testFromTestData()
     {
-        $this->solution = new Solution();
-    }
-
-    public function buildTree($nums): TreeNode
-    {
-        $builder = new TreeBuilder($nums);
-        return $builder->getRoot();
-    }
-
-    public function testSample1()
-    {
-        $tree = [3,9,20,null,null,15,7];
-        $root = $this->buildTree($tree);
-        $response = $this->solution->maxDepth($root);
-        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertEquals(3, $response);
-    }
-
-    public function testSample2()
-    {
-        $tree = [1,null,2];
-        $root = $this->buildTree($tree);
-        $response = $this->solution->maxDepth($root);
-        echo "<pre>response = " . print_r($response, true) . "</pre>\n";
-        $this->assertEquals(2, $response);
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $root = $this->buildTree($test['args']['tree']);
+            $response = $solution->maxDepth($root);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 }
 
