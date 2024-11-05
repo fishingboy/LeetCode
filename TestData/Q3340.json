@@ -1,0 +1,31 @@
+[
+    {
+        "name": "testSample1",
+        "args": {
+            "num": "1234"
+        },
+        "expected": false
+    },
+    {
+        "name": "testSample2",
+        "args": {
+            "num": "24123"
+        },
+        "expected": true
+    },
+    {
+        "name": "testSample3",
+        "args": {
+            "num": "00"
+        },
+        "expected": true
+    },
+    {
+        "name": "wa1",
+        "args": {
+            "num": "523"
+        },
+        "expected": false
+    }
+
+]
