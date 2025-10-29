@@ -14,18 +14,12 @@ func isFascinating(n int) bool {
 		for num > 0 {
 			bit := num % 10
 
-			if m[bit] == true {
+			if m[bit] == true || bit == 0 {
 				return false
 			}
 
 			m[bit] = true
 			num = num / 10
-		}
-	}
-
-	for i := 1; i < 10; i++ {
-		if m[i] == false {
-			return false
 		}
 	}
 
