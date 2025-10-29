@@ -1,0 +1,23 @@
+[
+    {
+        "name": "testSample1",
+        "args": {
+            "n": 192
+        },
+        "expected": true
+    },
+    {
+        "name": "testSample2",
+        "args": {
+            "n": 100
+        },
+        "expected": false
+    },
+    {
+        "name": "testWa1",
+        "args": {
+            "n": 267
+        },
+        "expected": false
+    }
+]
