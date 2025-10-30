@@ -14,14 +14,15 @@ class Q2729_Check_if_TheNumber_is_Fascinating extends TestCase
         $this->solution = new Solution();
     }
 
-    public function testExample1()
+    public function testFromTestData()
     {
-        $n = 192;
-        $response = $this->solution->isFascinating($n);
-        $this->assertTrue($response);
-        $n = 100;
-        $response = $this->solution->isFascinating($n);
-        $this->assertFalse($response);
+        $solution = new Solution();
+        $question_no = explode("_", basename(__FILE__))[0];
+        $tests = json_decode(file_get_contents( "./TestData/{$question_no}.json"), true);
+        foreach ($tests as $test) {
+            $response = $solution->isFascinating($test['args']['n']);
+            $this->assertEquals($test['expected'], $response, "[{$test['name']}] test failed");
+        }
     }
 }
 
