@@ -50,19 +50,26 @@ class Solution
      */
     function merge(&$nums1, $m, $nums2, $n)
     {
-        $index = 0;
-        for ($i=0; $i<$n; $i++) {
-            $item = $nums2[$i];
-            while ($nums1[$index] <= $item && $index < $m) {
-                $index++;
+        for ($i = $m + $n - 1; $i >= 0; $i--) {
+            if ($m == 0) {
+                $nums1[$i] = $nums2[$n - 1];
+                $n--;
+                continue;
             }
 
-            for ($j = $m; $j > $index; $j--) {
-                $nums1[$j] = $nums1[$j - 1];
+            if ($n == 0) {
+                $nums1[$i] = $nums1[$m - 1];
+                $m--;
+                continue;
             }
-            $nums1[$index] = $item;
-            $index++;
-            $m++;
+
+            if ($nums1[$m-1] > $nums2[$n-1]) {
+                $nums1[$i] = $nums1[$m-1];
+                $m--;
+            } else {
+                $nums1[$i] = $nums2[$n-1];
+                $n--;
+            }
         }
     }
 }
