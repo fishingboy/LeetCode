@@ -1,0 +1,26 @@
+[
+    {
+        "name": "example1",
+        "args": {
+            "s": "PAYPALISHIRING",
+            "numRows": 3
+        },
+        "expected": "PAHNAPLSIIGYIR"
+    },
+    {
+        "name": "example2",
+        "args": {
+            "s": "PAYPALISHIRING",
+            "numRows": 4
+        },
+        "expected": "PINALSIGYAHRPI"
+    },
+    {
+        "name": "WA1",
+        "args": {
+            "s": "AB",
+            "numRows": 1
+        },
+        "expected": "AB"
+    }
+]
