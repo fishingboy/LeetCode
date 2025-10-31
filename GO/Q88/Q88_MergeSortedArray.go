@@ -5,32 +5,25 @@ func Merge(nums1 []int, m int, nums2 []int, n int) {
 }
 
 func merge(nums1 []int, m int, nums2 []int, n int) {
-	nums3 := []int{}
-
-	index1 := 0
-	index2 := 0
-	for i := 0; i < m+n; i++ {
-		if index1 >= m {
-			nums3 = append(nums3, nums2[index2])
-			index2++
+	for i := m + n - 1; i >= 0; i-- {
+		if m == 0 {
+			nums1[i] = nums2[n-1]
+			n--
 			continue
 		}
 
-		if index2 >= n {
-			nums3 = append(nums3, nums1[index1])
-			index1++
+		if n == 0 {
+			nums1[i] = nums1[m-1]
+			m--
 			continue
 		}
 
-		if nums1[index1] < nums2[index2] {
-			nums3 = append(nums3, nums1[index1])
-			index1++
+		if nums1[m-1] > nums2[n-1] {
+			nums1[i] = nums1[m-1]
+			m--
 		} else {
-			nums3 = append(nums3, nums2[index2])
-			index2++
+			nums1[i] = nums2[n-1]
+			n--
 		}
 	}
-
-	// 必須要將 nums3 用 copy 蓋回去
-	copy(nums1, nums3)
 }
