@@ -6,19 +6,27 @@ import (
 	"testing"
 )
 
-func maxArea(height []int) int {
-	maxinum := 0
+func maxArea(height []int) (result int) {
+	l, r := 0, len(height)-1
 
-	for i := 0; i < len(height)-1; i++ {
-		for j := i + 1; j < len(height); j++ {
-			area := (j - i) * min(height[i], height[j])
-			if area > maxinum {
-				maxinum = area
-			}
+	for l < r {
+		area := (r - l) * min(height[l], height[r])
+
+		if area > result {
+			result = area
+		}
+
+		if height[l] < height[r] {
+			l++
+		} else if height[r] < height[l] {
+			r--
+		} else {
+			l++
+			r--
 		}
 	}
 
-	return maxinum
+	return result
 }
 
 func Test_maxArea(t *testing.T) {
