@@ -3,8 +3,19 @@ package LeetCode
 import (
 	"encoding/json"
 	"github.com/stretchr/testify/assert"
+	"strings"
 	"testing"
 )
+
+func lengthOfLastWord(s string) int {
+	temp := strings.Split(s, " ")
+	for i := len(temp) - 1; i >= 0; i-- {
+		if len(temp[i]) > 0 {
+			return len(temp[i])
+		}
+	}
+	return 0
+}
 
 func Test_lengthOfLastWord(t *testing.T) {
 	// 定義測試案例的結構體
