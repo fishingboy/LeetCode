@@ -1,0 +1,26 @@
+[
+    {
+        "name": "testExample1",
+        "args": {
+            "nums": [-1,2,1,-4],
+            "target": 1
+        },
+        "expected": 2
+    },
+    {
+        "name": "testExample2",
+        "args": {
+            "nums": [0,0,0],
+            "target": 1
+        },
+        "expected": 0
+    },
+    {
+        "name": "testWA1",
+        "args": {
+            "nums": [-1000,-5,-5,-5,-5,-5,-5,-1,-1,-1],
+            "target": -14
+        },
+        "expected": -15
+    }
+]
