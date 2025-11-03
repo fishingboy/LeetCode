@@ -1,6 +1,6 @@
 [
     {
-        "name": "example 1",
+        "name": "Sample1",
         "args": {
             "nums": [2, 7, 11, 15],
             "target": 9
@@ -8,7 +8,7 @@
         "expected": [0, 1]
     },
     {
-        "name": "example 2",
+        "name": "Sample2",
         "args": {
             "nums": [3, 2, 4],
             "target": 6
@@ -16,7 +16,7 @@
         "expected": [1, 2]
     },
     {
-        "name": "example 3",
+        "name": "Sample3",
         "args": {
             "nums": [3, 3],
             "target": 6

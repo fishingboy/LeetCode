@@ -1,6 +1,6 @@
 [
     {
-        "name": "testSample1",
+        "name": "Sample1",
         "args": {
             "n": 3
         },
@@ -11,7 +11,7 @@
         ]
     },
     {
-        "name": "testSample2",
+        "name": "Sample2",
         "args": {
             "n": 1
         },

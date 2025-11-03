@@ -1,6 +1,6 @@
 [
     {
-        "name": "testSample1",
+        "name": "Sample1",
         "args": {
             "a": "11",
             "b": "1"
@@ -8,7 +8,7 @@
         "expected": "100"
     },
     {
-        "name": "testSample2",
+        "name": "Sample2",
         "args": {
             "a": "1010",
             "b": "1011"

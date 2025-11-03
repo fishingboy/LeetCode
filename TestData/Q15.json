@@ -1,6 +1,6 @@
 [
     {
-        "name": "testExample1",
+        "name": "Sample1",
         "args": {
             "nums": [-1, 0, 1, 2, -1, -4]
         },
@@ -10,14 +10,14 @@
         ]
     },
     {
-        "name": "testExample2",
+        "name": "Sample2",
         "args": {
             "nums": [0,1,1]
         },
         "expected": []
     },
     {
-        "name": "testExample3",
+        "name": "Sample3",
         "args": {
             "nums": [0,0,0]
         },

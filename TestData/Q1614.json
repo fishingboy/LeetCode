@@ -1,20 +1,20 @@
 [
     {
-        "name": "testSample1",
+        "name": "Sample1",
         "args": {
             "s": "(1+(2*3)+((8)/4))+1"
         },
         "expected": 3
     },
     {
-        "name": "testSample2",
+        "name": "Sample2",
         "args": {
             "s": "(1)+((2))+(((3)))"
         },
         "expected": 3
     },
     {
-        "name": "testSample3",
+        "name": "Sample3",
         "args": {
             "s": "()(())((()()))"
         },

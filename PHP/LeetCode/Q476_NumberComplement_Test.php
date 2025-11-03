@@ -14,14 +14,14 @@ class Q476_NumberComplement_Test extends TestCase
         $this->solution = new Solution();
     }
 
-    public function testExample1()
+    public function testSample1()
     {
         $num = 5;
         $response = $this->solution->findComplement($num);
         $this->assertEquals(2, $response);
     }
 
-    public function testExample2()
+    public function testSample2()
     {
         $num = 1;
         $response = $this->solution->findComplement($num);

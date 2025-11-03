@@ -1,13 +1,13 @@
 [
     {
-        "name": "testExample1",
+        "name": "Sample1",
         "args": {
             "s": "A man, a plan, a canal: Panama"
         },
         "expected": true
     },
     {
-        "name": "testExample2",
+        "name": "Sample2",
         "args": {
             "s": "race a car"
         },

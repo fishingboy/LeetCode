@@ -16,7 +16,7 @@ class Q83_RemoveDuplicates_from_SortedList_Test extends TestCase
         $this->solution = new Solution();
     }
 
-    public function testExample1()
+    public function testSample1()
     {
         $nums = [1,1,2,3,3];
         $head = $this->arrayToListNode($nums);

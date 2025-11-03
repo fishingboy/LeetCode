@@ -42,7 +42,7 @@ class Q21_MergeTwoSortedLists_Test extends TestCase
         $this->assertEquals([1, 1, 2, 3, 4, 4], $array);
     }
 
-    public function testExample2()
+    public function testSample2()
     {
         $l1 = $this->arrayToListNode( []);
         $l2 = $this->arrayToListNode( [1]);
@@ -53,7 +53,7 @@ class Q21_MergeTwoSortedLists_Test extends TestCase
         $this->assertEquals([1], $array);
     }
 
-    public function testExample3()
+    public function testSample3()
     {
         $l1 = $this->arrayToListNode( [-10,-4,-4,0,0,1,4,6]);
         $l2 = $this->arrayToListNode( []);

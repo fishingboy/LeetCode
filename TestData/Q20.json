@@ -1,27 +1,27 @@
 [
     {
-        "name": "testExample3",
+        "name": "Sample3",
         "args": {
             "s": "(]"
         },
         "expected": false
     },
     {
-        "name": "testExample4",
+        "name": "Sample4",
         "args": {
             "s": "([)]"
         },
         "expected": false
     },
     {
-        "name": "testExample5",
+        "name": "Sample5",
         "args": {
             "s": "{[]}"
         },
         "expected": true
     },
     {
-        "name": "testExample6",
+        "name": "Sample6",
         "args": {
             "s": "{[{"
         },

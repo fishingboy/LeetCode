@@ -1,6 +1,6 @@
 [
     {
-        "name": "testSample1",
+        "name": "Sample1",
         "args": {
             "haystack": "hello",
             "needle": "ll"
@@ -8,7 +8,7 @@
         "expected": 2
     },
     {
-        "name": "testSample2",
+        "name": "Sample2",
         "args": {
             "haystack": "aaaaa",
             "needle": "bba"

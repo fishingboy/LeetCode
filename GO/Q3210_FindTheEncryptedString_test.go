@@ -26,12 +26,12 @@ func Test_getEncryptedString(t *testing.T) {
 		want string
 	}{
 		{
-			name: "example1",
+			name: "Sample1",
 			args: args{s: "dart", k: 3},
 			want: "tdar",
 		},
 		{
-			name: "example2",
+			name: "Sample2",
 			args: args{s: "aaa", k: 1},
 			want: "aaa",
 		},

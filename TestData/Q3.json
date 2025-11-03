@@ -1,20 +1,20 @@
 [
     {
-        "name": "example 1",
+        "name": "Sample1",
         "args": {
             "s": "abcabcbb"
         },
         "expected": 3
     },
     {
-        "name": "example 2",
+        "name": "Sample2",
         "args": {
             "s": "bbbbb"
         },
         "expected": 1
     },
     {
-        "name": "example 3",
+        "name": "Sample3",
         "args": {
             "s": "pwwkew"
         },

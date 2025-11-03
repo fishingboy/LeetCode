@@ -1,13 +1,13 @@
 [
     {
-        "name": "testSample1",
+        "name": "Sample1",
         "args": {
             "n": 192
         },
         "expected": true
     },
     {
-        "name": "testSample2",
+        "name": "Sample2",
         "args": {
             "n": 100
         },

@@ -1,13 +1,13 @@
 [
     {
-        "name": "testSample1",
+        "name": "Sample1",
         "args": {
             "nums": [2, 2, 3, 2]
         },
         "expected": 3
     },
     {
-        "name": "testSample2",
+        "name": "Sample2",
         "args": {
             "nums": [0, 1, 0, 1, 0, 1, 99]
         },

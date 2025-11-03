@@ -1,6 +1,6 @@
 [
     {
-        "name": "testExample1",
+        "name": "Sample1",
         "args": {
             "nums": [1, 2, 3, 4, 5],
             "n": 2

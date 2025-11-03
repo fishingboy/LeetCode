@@ -1,6 +1,6 @@
 [
     {
-        "name": "example1",
+        "name": "Sample1",
         "args": {
             "s": "PAYPALISHIRING",
             "numRows": 3
@@ -8,7 +8,7 @@
         "expected": "PAHNAPLSIIGYIR"
     },
     {
-        "name": "example2",
+        "name": "Sample2",
         "args": {
             "s": "PAYPALISHIRING",
             "numRows": 4

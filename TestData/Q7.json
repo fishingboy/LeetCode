@@ -1,20 +1,20 @@
 [
     {
-        "name": "testSample1",
+        "name": "Sample1",
         "args": {
             "x": 123
         },
         "expected": 321
     },
     {
-        "name": "testSample2",
+        "name": "Sample2",
         "args": {
             "x": -123
         },
         "expected": -321
     },
     {
-        "name": "testSample3",
+        "name": "Sample3",
         "args": {
             "x": 120
         },
