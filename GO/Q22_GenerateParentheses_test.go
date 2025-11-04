@@ -2,53 +2,63 @@ package LeetCode
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/stretchr/testify/assert"
 	"sort"
 	"testing"
 )
 
-var output []string
-
 func generateParenthesis(n int) []string {
-	output = []string{}
-	genP(n, "()")
+	output := []string{}
+
+	for i := 0; i < n; i++ {
+		process := []string{}
+
+		if i == 0 {
+			output = append(output, "()")
+			continue
+		} else {
+			for _, item := range output {
+				// 插入下一個括號
+				for j := 0; j <= i+1; j++ {
+					s := item[:j] + "()" + item[j:]
+
+					// 去除重覆
+					isDuplicate := false
+					for _, processItem := range process {
+						//fmt.Println(processItem, s)
+						if processItem == s {
+							isDuplicate = true
+							break
+						}
+					}
+
+					if !isDuplicate {
+						process = append(process, s)
+					}
+				}
+			}
+		}
+
+		output = process
+	}
+
 	sort.Strings(output)
 	return output
 }
 
-func genP(n int, s string) {
-	if n == 1 {
-		isDuplicate := false
-		for _, item := range output {
-			if s == item {
-				isDuplicate = true
-				break
-			}
-		}
-
-		if !isDuplicate {
-			output = append(output, s)
-		}
-
-		return
-	}
-
-	genP(n-1, "()"+s)
-	for i := 1; i < len(s); i++ {
-		genP(n-1, s[:i]+"()"+s[i:])
-	}
-	genP(n-1, s+"()")
-}
-
 func Test_2(t *testing.T) {
 	generateParenthesis(2)
-	fmt.Println(output)
+	//fmt.Println(output)
 }
 
 func Test_3(t *testing.T) {
 	generateParenthesis(3)
-	fmt.Println(output)
+	//fmt.Println(output)
+}
+
+func Test_8(t *testing.T) {
+	generateParenthesis(8)
+	//fmt.Println(output)
 }
 
 func Test_generateParenthesis(t *testing.T) {
