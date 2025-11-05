@@ -15,31 +15,21 @@ import (
  */
 func mergeKLists(lists []*ListNode) *ListNode {
 	var firstNode, beforeNode, answer *ListNode
-	length := len(lists)
 
 	for {
-		nodes := make([]*ListNode, length)
 		minN := 99999
 		minI := -1
-
-		//fmt.Println("lists =>", lists[0].Val, lists[1].Val, lists[2].Val)
 
 		for i, node := range lists {
 			if node == nil {
 				continue
 			}
 
-			if nodes[i] == nil {
-				nodes[i] = node
-			}
-
-			if nodes[i].Val < minN {
-				minN = nodes[i].Val
+			if node.Val < minN {
+				minN = node.Val
 				minI = i
 			}
 		}
-
-		//fmt.Println("nodes =>", nodes[0].Val, nodes[1].Val, nodes[2].Val)
 
 		if minI == -1 {
 			break
