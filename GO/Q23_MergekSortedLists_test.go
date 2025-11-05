@@ -14,7 +14,7 @@ import (
  * }
  */
 func mergeKLists(lists []*ListNode) *ListNode {
-	var firstNode, beforeNode, answer *ListNode
+	var firstNode, beforeNode *ListNode
 
 	for {
 		minN := 99999
@@ -35,18 +35,17 @@ func mergeKLists(lists []*ListNode) *ListNode {
 			break
 		}
 
-		answer = &ListNode{Val: minN}
-		lists[minI] = lists[minI].Next
-
 		if firstNode == nil {
-			firstNode = answer
+			firstNode = lists[minI]
 		}
 
 		if beforeNode != nil {
-			beforeNode.Next = answer
+			beforeNode.Next = lists[minI]
 		}
 
-		beforeNode = answer
+		beforeNode = lists[minI]
+
+		lists[minI] = lists[minI].Next
 	}
 
 	return firstNode
