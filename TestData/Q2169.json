@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Sample1",
+        "args": {
+            "num1": 2,
+            "num2": 3
+        },
+        "expected": 3
+    },
+    {
+        "name": "Sample2",
+        "args": {
+            "num1": 10,
+            "num2": 10
+        },
+        "expected": 1
+    },
+    {
+        "name": "WA1",
+        "args": {
+            "num1": 0,
+            "num2": 0
+        },
+        "expected": 0
+    }
+]

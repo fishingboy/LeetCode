@@ -12,8 +12,6 @@ type MinHeap struct {
 func (this *MinHeap) Push(n int) {
 	this.items = append(this.items, n)
 	i := len(this.items) - 1
-	//level := math.Log2(float64(i))
-	//fmt.Println("level", level)
 	for i > 0 {
 		parent := (i - 1) / 2
 		if this.items[i] < this.items[parent] {
