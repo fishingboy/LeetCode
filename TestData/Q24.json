@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Sample1",
+        "args": {
+            "head":  [1,2,3,4]
+        },
+        "expected": [2,1,4,3]
+    },
+    {
+        "name": "Sample2",
+        "args": {
+            "head":  []
+        },
+        "expected": []
+    },
+    {
+        "name": "Sample3",
+        "args": {
+            "head":  [1]
+        },
+        "expected": [1]
+    },
+    {
+        "name": "Sample4",
+        "args": {
+            "head": [1,2,3]
+        },
+        "expected": [2,1,3]
+    }
+]

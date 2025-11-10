@@ -34,6 +34,10 @@ func array2List(nums []int) *ListNode {
 }
 
 func list2array(node *ListNode) (result []int) {
+	if node == nil {
+		return result
+	}
+
 	for node != nil {
 		result = append(result, node.Val)
 		node = node.Next
