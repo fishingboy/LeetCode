@@ -1,0 +1,74 @@
+[
+    {
+        "name": "Sample1",
+        "args": {
+            "s": "aa",
+            "p": "a"
+        },
+        "expected": false
+    },
+    {
+        "name": "Sample2",
+        "args": {
+            "s": "aa",
+            "p": "a*"
+        },
+        "expected": true
+    },
+    {
+        "name": "Sample3",
+        "args": {
+            "s": "ab",
+            "p": ".*"
+        },
+        "expected": true
+    },
+    {
+        "name": "Test1",
+        "args": {
+            "s": "abcdef",
+            "p": "abcdef"
+        },
+        "expected": true
+    },
+    {
+        "name": "Test2",
+        "args": {
+            "s": "abcdef",
+            "p": "......"
+        },
+        "expected": true
+    },
+    {
+        "name": "Test3",
+        "args": {
+            "s": "abccd",
+            "p": ".*"
+        },
+        "expected": true
+    },
+    {
+        "name": "Test4",
+        "args": {
+            "s": "aaaaa",
+            "p": "a*"
+        },
+        "expected": true
+    },
+    {
+        "name": "WA1",
+        "args": {
+            "s": "a",
+            "p": "ab*"
+        },
+        "expected": true
+    },
+    {
+        "name": "WA2",
+        "args": {
+            "s": "ab",
+            "p": ".*c"
+        },
+        "expected": false
+    }
+]
