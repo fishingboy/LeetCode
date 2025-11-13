@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Sample1",
+        "args": {
+            "dividend": 10,
+            "divisor": 3
+        },
+        "expected": 3
+    },
+    {
+        "name": "Sample2",
+        "args": {
+            "dividend": 7,
+            "divisor": -3
+        },
+        "expected": -2
+    },
+    {
+        "name": "WA1",
+        "args": {
+            "dividend": -2147483648,
+            "divisor": -1
+        },
+        "expected": 2147483647
+    }
+]
