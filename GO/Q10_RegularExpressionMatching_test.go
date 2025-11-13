@@ -7,6 +7,12 @@ import (
 	"testing"
 )
 
+// TODO: 優化方向
+// 1. 去掉把 pattern 切開的這個步驟(方便用 map memo)
+// 2.把已經算過的子集記錄下來
+// 3.用堆疊模擬遞迴
+// 4.使用 DP 解法
+
 func isMatch(s string, p string) bool {
 	// 先把 pattern 切開
 	pattern := []string{}
