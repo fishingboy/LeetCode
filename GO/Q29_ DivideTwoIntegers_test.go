@@ -23,18 +23,30 @@ func divide(dividend int, divisor int) int {
 	minOutput := math.MinInt32
 	maxOutput := math.MaxInt32
 
-	if dividend > 0 {
-		for dividend >= 0 {
-			output++
-			dividend -= divisor
+	flag := 1
+	if dividend < 0 {
+		flag = -1
+		dividend = -dividend
+	}
+
+	for dividend >= divisor {
+		if dividend == divisor {
+			output += 1
+			break
 		}
-		output--
-	} else {
-		for dividend <= 0 {
-			output--
-			dividend += divisor
+
+		temp := divisor
+		t := 1
+		for temp < dividend {
+			temp = temp << 1
+			t = t << 1
 		}
-		output++
+		output += t >> 1
+		dividend -= temp >> 1
+	}
+
+	if flag == -1 {
+		output = -output
 	}
 
 	if output < minOutput {

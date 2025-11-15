@@ -22,5 +22,29 @@
             "divisor": -1
         },
         "expected": 2147483647
+    },
+    {
+        "name": "WA2",
+        "args": {
+            "dividend": 1,
+            "divisor": 1
+        },
+        "expected": 1
+    },
+    {
+        "name": "WA3",
+        "args": {
+            "dividend": 1,
+            "divisor": -1
+        },
+        "expected": -1
+    },
+    {
+        "name": "WA4",
+        "args": {
+            "dividend": 2147483647,
+            "divisor": 1
+        },
+        "expected": 2147483647
     }
 ]
