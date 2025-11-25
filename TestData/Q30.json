@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Example1",
+        "args": {
+            "s": "barfoothefoobarman",
+            "words": ["foo","bar"]
+        },
+        "expected": [0,9]
+    },
+    {
+        "name": "Example2",
+        "args": {
+            "s": "wordgoodgoodgoodbestword",
+            "words": ["word","good","best","word"]
+        },
+        "expected": []
+    },
+    {
+        "name": "Example3",
+        "args": {
+            "s": "barfoofoobarthefoobarman",
+            "words": ["bar","foo","the"]
+        },
+        "expected": [6,9,12]
+    },
+    {
+        "name": "Test1",
+        "args": {
+            "s": "abcdefghij",
+            "words": ["a", "b", "c"]
+        },
+        "expected": [0]
+    },
+    {
+        "name": "TLE1",
+        "args": {
+            "s": "fffffffffffffffffffffffffffffffff",
+            "words": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"]
+        },
+        "expected": []
+    }
+]
