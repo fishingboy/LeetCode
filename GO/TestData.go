@@ -3,6 +3,9 @@ package LeetCode
 import (
 	"fmt"
 	"io/ioutil"
+	"path/filepath"
+	"runtime"
+	"strings"
 )
 
 type ListNode struct {
@@ -43,6 +46,16 @@ func list2array(node *ListNode) (result []int) {
 		node = node.Next
 	}
 	return result
+}
+
+func readFromQuestionNo() (string, error) {
+	_, file, _, ok := runtime.Caller(1)
+	if !ok {
+		return "", fmt.Errorf("Question Number Not Found.")
+	}
+
+	tmp := strings.Split(filepath.Base(file), "_")
+	return readFromFile(fmt.Sprintf("../TestData/%s.json", tmp[0]))
 }
 
 func readFromFile(filename string) (string, error) {

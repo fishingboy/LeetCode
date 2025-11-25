@@ -58,7 +58,7 @@ func Test_longestCommonPrefix(t *testing.T) {
 	}
 
 	// 讀取 JSON 文件內容
-	jsonString, err := readFromFile("../TestData/Q14.json")
+	jsonString, err := readFromQuestionNo()
 	if err != nil {
 		t.Fatalf("Failed to read JSON file: %v", err)
 	}
