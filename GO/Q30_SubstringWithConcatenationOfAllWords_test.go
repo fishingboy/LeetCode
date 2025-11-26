@@ -3,45 +3,45 @@ package LeetCode
 import (
 	"encoding/json"
 	"github.com/stretchr/testify/assert"
+	"maps"
 	"testing"
 )
 
-var perm map[string]string
-
-func findPerm(s string, words []string) {
-	if len(words) == 0 {
-		perm[s] = s
-	}
-
-	for i, word := range words {
-		remainWords := []string{}
-		remainWords = append(remainWords, words[:i]...)
-		remainWords = append(remainWords, words[i+1:]...)
-		findPerm(s+word, remainWords)
-	}
-}
+// 每個字串都一樣長度，那可以不用預先把排列組合算完
 
 func findSubstring(s string, words []string) []int {
-	perm = map[string]string{}
 	result := []int{}
+	totalLength := 0
+	length := len(words[0])
 
-	// 先算出所有排列組合
-	findPerm("", words)
-
-	// 算出子字串長度
-	n := 0
+	// 先把 words 放進 map ，順便統計數量
+	wordsMap := map[string]int{}
 	for _, word := range words {
-		n += len(word)
+		wordsMap[word]++
+		totalLength += len(word)
 	}
 
-	// 再取固定長度，跟組合內所有字串做比對
-	for i := 0; i < len(s)-n+1; i++ {
-		sub := s[i : i+n]
-		for _, item := range perm {
-			if sub == item {
-				result = append(result, i)
+	// 把子字串取出來，切分完和 map 做比對
+	processMap := map[string]int{}
+	for i := 0; i < len(s)-totalLength+1; i++ {
+		maps.Copy(processMap, wordsMap)
+		for j := 0; j < len(words); j++ {
+			sub := s[i+j*length : i+(j+1)*length]
+			if processMap[sub] == 0 {
 				break
 			}
+			processMap[sub]--
+		}
+
+		isResult := true
+		for _, count := range processMap {
+			if count > 0 {
+				isResult = false
+				break
+			}
+		}
+		if isResult {
+			result = append(result, i)
 		}
 	}
 
