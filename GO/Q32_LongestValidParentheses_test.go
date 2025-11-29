@@ -10,7 +10,6 @@ import (
 
 func longestValidParentheses(s string) int {
 	result := 0
-	//maxResult := 0
 	invalid := []int{}
 	stackChar := []byte{}
 	stackPos := []int{}
