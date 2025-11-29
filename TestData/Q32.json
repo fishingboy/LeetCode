@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Example1",
+        "args": {
+            "s": "(()"
+        },
+        "expected": 2
+    },
+    {
+        "name": "Example2",
+        "args": {
+            "s": ")()())"
+        },
+        "expected": 4
+    },
+    {
+        "name": "Example3",
+        "args": {
+            "nums": ""
+        },
+        "expected": 0
+    },
+    {
+        "name": "Test1",
+        "args": {
+            "s": "((()()))()()"
+        },
+        "expected": 12
+    },
+    {
+        "name": "WA1",
+        "args": {
+            "s": "()(()"
+        },
+        "expected": 2
+    }
+]
